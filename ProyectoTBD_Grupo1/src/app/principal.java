@@ -36,23 +36,25 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        registro_Clientes = new javax.swing.JDialog();
+        titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        titulo2 = new javax.swing.JLabel();
+        boton_cliente1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        boton_empleado = new javax.swing.JButton();
         fondo_princiipal = new javax.swing.JLabel();
+
+        registro_Clientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 120, 30));
-
-        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("¿No tienes cuenta?... registrate");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 200, 20));
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("!Bienvenidos a tienda electronica!");
+        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 280, 20));
 
         boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
         boton_salir.setContentAreaFilled(false);
@@ -62,8 +64,32 @@ public class principal extends javax.swing.JFrame {
                 boton_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 440, 130, 50));
-        getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 490));
+        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 130, 50));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Empleado");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 267, 70, 40));
+
+        titulo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo2.setText("¿Qué eres?");
+        getContentPane().add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 130, 20));
+
+        boton_cliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/customer.png"))); // NOI18N
+        boton_cliente1.setContentAreaFilled(false);
+        boton_cliente1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/customer (1).png"))); // NOI18N
+        getContentPane().add(boton_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 80, 70));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Cliente");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 60, 30));
+
+        boton_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/employee.png"))); // NOI18N
+        boton_empleado.setContentAreaFilled(false);
+        boton_empleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/employee (1).png"))); // NOI18N
+        getContentPane().add(boton_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 100, 90));
+        getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,10 +134,14 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_cliente1;
+    private javax.swing.JButton boton_empleado;
     private javax.swing.JButton boton_salir;
     private javax.swing.JLabel fondo_princiipal;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JDialog registro_Clientes;
+    private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulo2;
     // End of variables declaration//GEN-END:variables
 }

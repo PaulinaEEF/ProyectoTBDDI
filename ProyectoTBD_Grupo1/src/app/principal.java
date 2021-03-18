@@ -61,9 +61,9 @@ public class principal extends javax.swing.JFrame {
         String nombreCliente = "Diego";
         try {
             Connection con = conectarBase.getConexion();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO cliente (id, nombreCliente) VALUES ("+id+","+nombreCliente+")");
-            //ps.setInt(0, id);
-            //ps.setString(1, nombreCliente);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO cliente (idCliente, nombreCliente) VALUES (?,?)");
+            ps.setInt(1, id);
+            ps.setString(2, nombreCliente);
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro guardado");

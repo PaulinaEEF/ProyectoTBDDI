@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class conectarBase {
         public static Connection getConexion() {
 
-        String conexionUrl = "jdbc:proyectofinal.ctaduxdfxkkv.us-east-1.rds.amazonaws.com://localhost:1433;"
+        String conexionUrl = "jdbc:sqlserver://proyectofinal.ctaduxdfxkkv.us-east-1.rds.amazonaws.com:1433;"
                 + "database=proyectoFinal;"
                 + "user=Equipo1;"
                 + "password=DPJREP**;"

@@ -21,6 +21,10 @@ public class principal extends javax.swing.JFrame {
      */
     public principal() {
         initComponents();
+        setResizable(false);
+       // this.setExtendedState(MAXIMIZED_BOTH);
+        setTitle("TIENDA");
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,45 +36,41 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jDialog1 = new javax.swing.JDialog();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        boton_salir = new javax.swing.JButton();
+        fondo_princiipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Pantalla principal");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 370, 100));
+        jButton1.setText("jButton1");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 120, 30));
 
-        jButton1.setText("PROBANDO");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("¿No tienes cuenta?... registrate");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 200, 20));
+
+        boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
+        boton_salir.setContentAreaFilled(false);
+        boton_salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit (1).png"))); // NOI18N
+        boton_salir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                boton_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 440, 130, 50));
+        getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-//        String matricula = this.txt_Matricula.getText();
-//        String nombre = this.txt_nombre.getText();
-//        int edad = Integer.parseInt(txt_edad.getText());
-//        String email = txt_email.getText();
-        int id = 12;
-        String nombreCliente = "Diego";
-        try {
-            Connection con = conectarBase.getConexion();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO cliente (idCliente, nombreCliente) VALUES (?,?)");
-            ps.setInt(1, id);
-            ps.setString(2, nombreCliente);
-
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registro guardado");
-        } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void boton_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_salirMouseClicked
+     System.exit(0);
+    }//GEN-LAST:event_boton_salirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -108,7 +108,10 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_salir;
+    private javax.swing.JLabel fondo_princiipal;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

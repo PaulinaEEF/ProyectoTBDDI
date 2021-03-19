@@ -72,6 +72,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         fondo_principal2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         login_clientes.setUndecorated(true);
@@ -127,9 +128,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         login_empleados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_login_empleado.setText("LOGIN");
-        login_empleados.getContentPane().add(btn_login_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, 100, 30));
-
-        user_empleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        login_empleados.getContentPane().add(btn_login_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 100, 30));
         login_empleados.getContentPane().add(user_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 160, 30));
 
         jTextField1.setEditable(false);
@@ -137,8 +136,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("EMPLOYEE LOGIN");
         login_empleados.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 200, 30));
-
-        password_empleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         login_empleados.getContentPane().add(password_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 160, 30));
 
         btn_regresar_empleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -175,7 +172,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 boton_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, 230, 140));
+        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 460, 230, 140));
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel1.setText("Empleado");
@@ -183,12 +180,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel7.setText("Hora actual");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 100, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 700, 100, 30));
 
         hora_jbl.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         hora_jbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hora_jbl.setText("00:00:00");
-        getContentPane().add(hora_jbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 110, 40));
+        getContentPane().add(hora_jbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 730, 110, 40));
 
         titulo2.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -221,19 +218,22 @@ public class principal extends javax.swing.JFrame implements Runnable {
         getContentPane().add(boton_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 180, 120));
 
         fondo_princiipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
-        getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 910, 620));
+        getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 590));
 
         fondo_principal2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
-        getContentPane().add(fondo_principal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 820, 540));
+        getContentPane().add(fondo_principal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 820, 590));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 800));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, -100, 640, 660));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, -150, 1030, 1100));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 860, 940));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 860, 560));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 860, 880));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -325,6 +325,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

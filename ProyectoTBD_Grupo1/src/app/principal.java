@@ -161,6 +161,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
         perfil_empleados = new javax.swing.JDialog();
         btn_cerrar_sesion_empleado = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
+        login_admin = new javax.swing.JDialog();
+        btn_ingresar_admin = new javax.swing.JButton();
+        btn_regresar_loginAdmin = new javax.swing.JButton();
+        password_admin = new javax.swing.JPasswordField();
+        jTextField1 = new javax.swing.JTextField();
+        user_admin = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        fondo_login_admin = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -716,6 +724,47 @@ public class principal extends javax.swing.JFrame implements Runnable {
         perfil_empleados.getContentPane().add(btn_cerrar_sesion_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 120, 70));
         perfil_empleados.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 450));
 
+        login_admin.setUndecorated(true);
+        login_admin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_ingresar_admin.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        btn_ingresar_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/user.png"))); // NOI18N
+        btn_ingresar_admin.setText("Login");
+        btn_ingresar_admin.setContentAreaFilled(false);
+        btn_ingresar_admin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ingresar_adminMouseClicked(evt);
+            }
+        });
+        login_admin.getContentPane().add(btn_ingresar_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 150, 50));
+
+        btn_regresar_loginAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
+        btn_regresar_loginAdmin.setContentAreaFilled(false);
+        btn_regresar_loginAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_regresar_loginAdminMouseClicked(evt);
+            }
+        });
+        login_admin.getContentPane().add(btn_regresar_loginAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 80, 70));
+
+        password_admin.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        login_admin.getContentPane().add(password_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 410, 30));
+
+        jTextField1.setBackground(new java.awt.Color(0, 255, 255));
+        jTextField1.setBorder(null);
+        login_admin.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 110, 60));
+
+        user_admin.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        login_admin.getContentPane().add(user_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 410, 30));
+
+        jLabel29.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("Admin Login");
+        login_admin.getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 240, 60));
+
+        fondo_login_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login2.gif"))); // NOI18N
+        login_admin.getContentPane().add(fondo_login_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 320));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -725,6 +774,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         titulo.setText("¡Bienvenidos a tienda electronica!");
         getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 550, 30));
 
+        boton_salir.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
         boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit (2).png"))); // NOI18N
         boton_salir.setContentAreaFilled(false);
         boton_salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit (3).png"))); // NOI18N
@@ -733,7 +783,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 boton_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 460, 230, 140));
+        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 540, 230, 140));
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel1.setText("Empleado");
@@ -743,13 +793,17 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel7.setText("Hora actual");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 700, 100, 30));
 
+        btn_admin.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        btn_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
         btn_admin.setText("admin");
+        btn_admin.setContentAreaFilled(false);
+        btn_admin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario (1).png"))); // NOI18N
         btn_admin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_adminMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 410, -1, -1));
+        getContentPane().add(btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 260, 160));
 
         hora_jbl.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         hora_jbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -855,10 +909,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_anteriorActionPerformed
 
     private void btn_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adminMouseClicked
-        administradores.pack();
-        administradores.setModal(true);
-        administradores.setLocationRelativeTo(null);
-        administradores.setVisible(true);
+        TextPrompt j1 = new TextPrompt("Username", user_admin);
+        TextPrompt j2 = new TextPrompt("Password", password_admin);
+        login_admin.pack();
+        login_admin.setModal(true);
+        login_admin.setLocationRelativeTo(null);
+        login_admin.setVisible(true);
 
     }//GEN-LAST:event_btn_adminMouseClicked
 
@@ -938,6 +994,18 @@ public class principal extends javax.swing.JFrame implements Runnable {
         perfil_empleados.setVisible(true);
     }//GEN-LAST:event_btn_login_empleadoMouseClicked
 
+    private void btn_regresar_loginAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar_loginAdminMouseClicked
+       login_admin.dispose();
+    }//GEN-LAST:event_btn_regresar_loginAdminMouseClicked
+
+    private void btn_ingresar_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresar_adminMouseClicked
+        login_admin.dispose();
+        administradores.pack();
+        administradores.setModal(true);
+        administradores.setLocationRelativeTo(null);
+        administradores.setVisible(true);
+    }//GEN-LAST:event_btn_ingresar_adminMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -995,14 +1063,17 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_cerrar_sesion_empleado;
     private javax.swing.JButton btn_crear_cliente;
     private javax.swing.JButton btn_ingresarCliente;
+    private javax.swing.JButton btn_ingresar_admin;
     private javax.swing.JButton btn_login_empleado;
     private javax.swing.JButton btn_regresar2;
     private javax.swing.JButton btn_regresar3;
     private javax.swing.JButton btn_regresar4;
     private javax.swing.JButton btn_regresarCliente;
     private javax.swing.JButton btn_regresar_empleado;
+    private javax.swing.JButton btn_regresar_loginAdmin;
     private javax.swing.JLabel fondo_admiistradores;
     private javax.swing.JLabel fondo_loginCliente;
+    private javax.swing.JLabel fondo_login_admin;
     private javax.swing.JLabel fondo_login_empleados;
     private javax.swing.JLabel fondo_princiipal;
     private javax.swing.JLabel fondo_principal2;
@@ -1035,6 +1106,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1076,14 +1148,17 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JDialog login_admin;
     private javax.swing.JDialog login_clientes;
     private javax.swing.JDialog login_empleados;
     private javax.swing.JPanel panel_crear;
     private javax.swing.JPanel panel_eliminar;
     private javax.swing.JPanel panel_modificar;
+    private javax.swing.JPasswordField password_admin;
     private javax.swing.JPasswordField password_empleado;
     private javax.swing.JPasswordField password_login_cliente;
     private javax.swing.JDialog perfil_empleados;
@@ -1096,6 +1171,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_buscar1;
     private javax.swing.JTextField txt_buscar2;
+    private javax.swing.JTextField user_admin;
     private javax.swing.JTextField user_empleado;
     // End of variables declaration//GEN-END:variables
 

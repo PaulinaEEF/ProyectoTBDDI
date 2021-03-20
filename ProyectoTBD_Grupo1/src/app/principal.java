@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.*;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,6 +20,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     String hora, minutos, segundos;
     Thread hilo;
+    ImageIcon Imagen[] = new ImageIcon[7];
+    int contImages = 1;
 
     /**
      * Creates new form principal
@@ -31,6 +34,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
         this.setLocationRelativeTo(null);
         hilo = new Thread(this);
         hilo.start();
+        for (int i = 1; i < 6; i++) {
+            Imagen[i] = new ImageIcon(getClass().getResource("/app/fotos/judd" + i + ".jpeg"));
+            jLabel10.setIcon(Imagen[1]);
+        }
     }
 
     /**
@@ -59,10 +66,44 @@ public class principal extends javax.swing.JFrame implements Runnable {
         password_empleado = new javax.swing.JPasswordField();
         btn_regresar_empleado = new javax.swing.JButton();
         fondo_login_empleados = new javax.swing.JLabel();
+        Perfil_clientes = new javax.swing.JDialog();
+        siguiente = new javax.swing.JButton();
+        anterior = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        administradores = new javax.swing.JDialog();
+        tabbed_eliminar = new javax.swing.JTabbedPane();
+        panel_crear = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        btn_regresar4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        panel_modificar = new javax.swing.JPanel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        btn_regresar3 = new javax.swing.JButton();
+        panel_eliminar = new javax.swing.JPanel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        btn_regresar2 = new javax.swing.JButton();
+        fondo_admiistradores = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btn_admin = new javax.swing.JButton();
         hora_jbl = new javax.swing.JLabel();
         titulo2 = new javax.swing.JLabel();
         boton_cliente1 = new javax.swing.JButton();
@@ -155,6 +196,163 @@ public class principal extends javax.swing.JFrame implements Runnable {
         fondo_login_empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/empleadologin.jpg"))); // NOI18N
         login_empleados.getContentPane().add(fondo_login_empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 530));
 
+        Perfil_clientes.setUndecorated(true);
+        Perfil_clientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        siguiente.setText("jButton1");
+        siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteActionPerformed(evt);
+            }
+        });
+        Perfil_clientes.getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 670, -1, -1));
+
+        anterior.setText("jButton2");
+        anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anteriorActionPerformed(evt);
+            }
+        });
+        Perfil_clientes.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 660, -1, -1));
+
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 3));
+        Perfil_clientes.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 1270, 590));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 800, 590));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 600));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 750, 600));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 810, 610));
+
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/categories.png"))); // NOI18N
+        jMenu1.setText("Categorías");
+        jMenu1.setMinimumSize(new java.awt.Dimension(100, 70));
+        jMenu1.setPreferredSize(new java.awt.Dimension(100, 30));
+        jMenu1.setRequestFocusEnabled(false);
+        jMenu1.setRolloverEnabled(false);
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        Perfil_clientes.setJMenuBar(jMenuBar1);
+
+        administradores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabbed_eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 204)));
+
+        panel_crear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        panel_crear.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 530, 240));
+
+        jButton1.setText("jButton1");
+        panel_crear.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 100, 40));
+
+        btn_regresar4.setText("Regresar");
+        btn_regresar4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_regresar4MouseClicked(evt);
+            }
+        });
+        panel_crear.add(btn_regresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 100, 40));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panel_crear.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
+
+        tabbed_eliminar.addTab("Crear", panel_crear);
+
+        panel_modificar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panel_modificar.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 20));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        panel_modificar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 540, 280));
+
+        jButton3.setText("jButton3");
+        panel_modificar.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
+
+        btn_regresar3.setText("Regresar");
+        btn_regresar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_regresar3MouseClicked(evt);
+            }
+        });
+        panel_modificar.add(btn_regresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, -1, -1));
+
+        tabbed_eliminar.addTab("Modificar", panel_modificar);
+
+        panel_eliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panel_eliminar.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 570, 360));
+
+        jButton5.setText("jButton5");
+        panel_eliminar.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
+
+        btn_regresar2.setText("regresar");
+        btn_regresar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_regresar2MouseClicked(evt);
+            }
+        });
+        panel_eliminar.add(btn_regresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
+
+        tabbed_eliminar.addTab("Eliminar", panel_eliminar);
+
+        administradores.getContentPane().add(tabbed_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 500));
+        administradores.getContentPane().add(fondo_admiistradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 450));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -181,6 +379,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel7.setText("Hora actual");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 700, 100, 30));
+
+        btn_admin.setText("admin");
+        btn_admin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_adminMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 410, -1, -1));
 
         hora_jbl.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         hora_jbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -243,12 +449,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_boton_salirMouseClicked
 
     private void boton_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_cliente1MouseClicked
-        TextPrompt cc = new TextPrompt("ID Cliente", id_login_cliente);
-        TextPrompt cc2 = new TextPrompt("Password", password_login_cliente);
-        login_clientes.pack();
-        login_clientes.setModal(true);
-        login_clientes.setLocationRelativeTo(null);
-        login_clientes.setVisible(true);
+//        TextPrompt cc = new TextPrompt("ID Cliente", id_login_cliente);
+//        TextPrompt cc2 = new TextPrompt("Password", password_login_cliente);
+        Perfil_clientes.pack();
+        Perfil_clientes.setModal(true);
+        Perfil_clientes.setLocationRelativeTo(null);
+        Perfil_clientes.setVisible(true);
+
     }//GEN-LAST:event_boton_cliente1MouseClicked
 
     private void boton_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_empleadoMouseClicked
@@ -261,12 +468,48 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_boton_empleadoMouseClicked
 
     private void btn_regresar_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar_empleadoMouseClicked
-       login_empleados.dispose();
+        login_empleados.dispose();
     }//GEN-LAST:event_btn_regresar_empleadoMouseClicked
 
     private void btn_regresarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarClienteMouseClicked
         login_clientes.dispose();
     }//GEN-LAST:event_btn_regresarClienteMouseClicked
+
+    private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
+        if (contImages == 5) {
+            contImages = 0;
+        }
+        contImages++;
+        jLabel10.setIcon(Imagen[contImages]);
+    }//GEN-LAST:event_siguienteActionPerformed
+
+    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
+        if (contImages == 1) {
+            contImages = 5;
+        }
+        contImages--;
+        jLabel10.setIcon(Imagen[contImages]);
+    }//GEN-LAST:event_anteriorActionPerformed
+
+    private void btn_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adminMouseClicked
+        administradores.pack();
+        administradores.setModal(true);
+        administradores.setLocationRelativeTo(null);
+        administradores.setVisible(true);
+
+    }//GEN-LAST:event_btn_adminMouseClicked
+
+    private void btn_regresar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar2MouseClicked
+        administradores.dispose();
+    }//GEN-LAST:event_btn_regresar2MouseClicked
+
+    private void btn_regresar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar3MouseClicked
+        administradores.dispose();
+    }//GEN-LAST:event_btn_regresar3MouseClicked
+
+    private void btn_regresar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar4MouseClicked
+        administradores.dispose();
+    }//GEN-LAST:event_btn_regresar4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -305,22 +548,41 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog Perfil_clientes;
+    private javax.swing.JDialog administradores;
+    private javax.swing.JButton anterior;
     private javax.swing.JButton boton_cliente1;
     private javax.swing.JButton boton_empleado;
     private javax.swing.JButton boton_salir;
+    private javax.swing.JButton btn_admin;
     private javax.swing.JButton btn_crear_cliente;
     private javax.swing.JButton btn_ingresarCliente;
     private javax.swing.JButton btn_login_empleado;
+    private javax.swing.JButton btn_regresar2;
+    private javax.swing.JButton btn_regresar3;
+    private javax.swing.JButton btn_regresar4;
     private javax.swing.JButton btn_regresarCliente;
     private javax.swing.JButton btn_regresar_empleado;
+    private javax.swing.JLabel fondo_admiistradores;
     private javax.swing.JLabel fondo_loginCliente;
     private javax.swing.JLabel fondo_login_empleados;
     private javax.swing.JLabel fondo_princiipal;
     private javax.swing.JLabel fondo_principal2;
     private javax.swing.JLabel hora_jbl;
     private javax.swing.JTextField id_login_cliente;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -329,11 +591,26 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JDialog login_clientes;
     private javax.swing.JDialog login_empleados;
+    private javax.swing.JPanel panel_crear;
+    private javax.swing.JPanel panel_eliminar;
+    private javax.swing.JPanel panel_modificar;
     private javax.swing.JPasswordField password_empleado;
     private javax.swing.JPasswordField password_login_cliente;
+    private javax.swing.JButton siguiente;
+    private javax.swing.JTabbedPane tabbed_eliminar;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo2;
     private javax.swing.JTextField user_empleado;

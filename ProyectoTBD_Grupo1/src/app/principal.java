@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.*;
 import javax.swing.ImageIcon;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -20,7 +23,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     String hora, minutos, segundos;
     Thread hilo;
-    ImageIcon Imagen[] = new ImageIcon[7];
+    ImageIcon Imagen[] = new ImageIcon[5];
     int contImages = 1;
 
     /**
@@ -34,10 +37,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
         this.setLocationRelativeTo(null);
         hilo = new Thread(this);
         hilo.start();
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 5; i++) {
             Imagen[i] = new ImageIcon(getClass().getResource("/app/fotos/judd" + i + ".jpeg"));
             jLabel10.setIcon(Imagen[1]);
+
         }
+        TextPrompt cc2 = new TextPrompt("¿Qué estás buscando?", txt_buscar);
+
     }
 
     /**
@@ -66,7 +72,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
         password_empleado = new javax.swing.JPasswordField();
         btn_regresar_empleado = new javax.swing.JButton();
         fondo_login_empleados = new javax.swing.JLabel();
-        Perfil_clientes = new javax.swing.JDialog();
+        Perfil_clientes_enLinea = new javax.swing.JDialog();
+        txt_buscar = new javax.swing.JTextField();
+        btn_cerrar_sesion = new javax.swing.JButton();
+        btn_buscar_producto = new javax.swing.JButton();
         siguiente = new javax.swing.JButton();
         anterior = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -77,6 +86,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         administradores = new javax.swing.JDialog();
         tabbed_eliminar = new javax.swing.JTabbedPane();
@@ -99,6 +114,26 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jButton5 = new javax.swing.JButton();
         btn_regresar2 = new javax.swing.JButton();
         fondo_admiistradores = new javax.swing.JLabel();
+        Perfil_clientes_frecuentes = new javax.swing.JDialog();
+        txt_buscar1 = new javax.swing.JTextField();
+        btn_cerrar_sesion1 = new javax.swing.JButton();
+        btn_buscar_producto1 = new javax.swing.JButton();
+        siguiente1 = new javax.swing.JButton();
+        anterior1 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -141,6 +176,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
         btn_ingresarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login (1).png"))); // NOI18N
         btn_ingresarCliente.setContentAreaFilled(false);
         btn_ingresarCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login_1.png"))); // NOI18N
+        btn_ingresarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ingresarClienteMouseClicked(evt);
+            }
+        });
         login_clientes.getContentPane().add(btn_ingresarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, 140, 60));
 
         btn_regresarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -196,39 +236,57 @@ public class principal extends javax.swing.JFrame implements Runnable {
         fondo_login_empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/empleadologin.jpg"))); // NOI18N
         login_empleados.getContentPane().add(fondo_login_empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 530));
 
-        Perfil_clientes.setUndecorated(true);
-        Perfil_clientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Perfil_clientes_enLinea.setUndecorated(true);
+        Perfil_clientes_enLinea.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Perfil_clientes_enLinea.getContentPane().add(txt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 180, 30));
 
-        siguiente.setText("jButton1");
+        btn_cerrar_sesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/power.png"))); // NOI18N
+        btn_cerrar_sesion.setContentAreaFilled(false);
+        btn_cerrar_sesion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/power (1).png"))); // NOI18N
+        btn_cerrar_sesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cerrar_sesionMouseClicked(evt);
+            }
+        });
+        Perfil_clientes_enLinea.getContentPane().add(btn_cerrar_sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 0, 130, 80));
+
+        btn_buscar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search.png"))); // NOI18N
+        btn_buscar_producto.setContentAreaFilled(false);
+        btn_buscar_producto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search (1).png"))); // NOI18N
+        Perfil_clientes_enLinea.getContentPane().add(btn_buscar_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 150, 80));
+
+        siguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/next-button.png"))); // NOI18N
+        siguiente.setContentAreaFilled(false);
         siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siguienteActionPerformed(evt);
             }
         });
-        Perfil_clientes.getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 670, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 700, -1, -1));
 
-        anterior.setText("jButton2");
+        anterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
+        anterior.setContentAreaFilled(false);
         anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anteriorActionPerformed(evt);
             }
         });
-        Perfil_clientes.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 660, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 700, -1, -1));
 
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 3));
-        Perfil_clientes.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 1270, 590));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 1280, 260));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 800, 590));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 800, 480));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 600));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 470));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 750, 600));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 610));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 810, 610));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 810, 620));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/categories.png"))); // NOI18N
         jMenu1.setText("Categorías");
@@ -237,15 +295,53 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jMenu1.setRequestFocusEnabled(false);
         jMenu1.setRolloverEnabled(false);
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/television.png"))); // NOI18N
+        jMenuItem1.setText("Smart TV");
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iphone.png"))); // NOI18N
+        jMenuItem2.setText("Celulares");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/smart-watch.png"))); // NOI18N
+        jMenuItem3.setText("Relojes");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/macbook-pro.png"))); // NOI18N
+        jMenuItem4.setText("Computadoras");
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/video-camera.png"))); // NOI18N
+        jMenuItem5.setText("Cámaras");
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ps4.png"))); // NOI18N
+        jMenuItem6.setText("Consolas de juego");
+        jMenu1.add(jMenuItem6);
+
         jMenuBar1.add(jMenu1);
+
+        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-to-cart.png"))); // NOI18N
+        jMenu3.setText("Añadir al carrito");
+        jMenu3.setMinimumSize(new java.awt.Dimension(100, 70));
+        jMenu3.setName(""); // NOI18N
+        jMenu3.setOpaque(true);
+        jMenu3.setPreferredSize(new java.awt.Dimension(145, 30));
+        jMenu3.setRequestFocusEnabled(false);
+        jMenu3.setRolloverEnabled(false);
+        jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        Perfil_clientes.setJMenuBar(jMenuBar1);
+        Perfil_clientes_enLinea.setJMenuBar(jMenuBar1);
 
         administradores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -353,6 +449,102 @@ public class principal extends javax.swing.JFrame implements Runnable {
         administradores.getContentPane().add(tabbed_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 500));
         administradores.getContentPane().add(fondo_admiistradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 450));
 
+        Perfil_clientes_frecuentes.setUndecorated(true);
+        Perfil_clientes_frecuentes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Perfil_clientes_frecuentes.getContentPane().add(txt_buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 180, 30));
+
+        btn_cerrar_sesion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/power.png"))); // NOI18N
+        btn_cerrar_sesion1.setContentAreaFilled(false);
+        btn_cerrar_sesion1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/power (1).png"))); // NOI18N
+        btn_cerrar_sesion1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cerrar_sesion1MouseClicked(evt);
+            }
+        });
+        Perfil_clientes_frecuentes.getContentPane().add(btn_cerrar_sesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 0, 130, 80));
+
+        btn_buscar_producto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search.png"))); // NOI18N
+        btn_buscar_producto1.setContentAreaFilled(false);
+        btn_buscar_producto1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search (1).png"))); // NOI18N
+        Perfil_clientes_frecuentes.getContentPane().add(btn_buscar_producto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 150, 80));
+
+        siguiente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/next-button.png"))); // NOI18N
+        siguiente1.setContentAreaFilled(false);
+        siguiente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguiente1ActionPerformed(evt);
+            }
+        });
+        Perfil_clientes_frecuentes.getContentPane().add(siguiente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 700, -1, -1));
+
+        anterior1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
+        anterior1.setContentAreaFilled(false);
+        anterior1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anterior1ActionPerformed(evt);
+            }
+        });
+        Perfil_clientes_frecuentes.getContentPane().add(anterior1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 700, -1, -1));
+
+        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 3));
+        Perfil_clientes_frecuentes.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 1280, 260));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes_frecuentes.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 800, 480));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes_frecuentes.getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 470));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes_frecuentes.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 610));
+
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        Perfil_clientes_frecuentes.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 810, 620));
+
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/categories.png"))); // NOI18N
+        jMenu4.setText("Categorías");
+        jMenu4.setMinimumSize(new java.awt.Dimension(100, 70));
+        jMenu4.setPreferredSize(new java.awt.Dimension(100, 30));
+        jMenu4.setRequestFocusEnabled(false);
+        jMenu4.setRolloverEnabled(false);
+
+        jMenuItem7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/television.png"))); // NOI18N
+        jMenuItem7.setText("Smart TV");
+        jMenu4.add(jMenuItem7);
+
+        jMenuItem8.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iphone.png"))); // NOI18N
+        jMenuItem8.setText("Celulares");
+        jMenu4.add(jMenuItem8);
+
+        jMenuItem9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/smart-watch.png"))); // NOI18N
+        jMenuItem9.setText("Relojes");
+        jMenu4.add(jMenuItem9);
+
+        jMenuItem10.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/macbook-pro.png"))); // NOI18N
+        jMenuItem10.setText("Computadoras");
+        jMenu4.add(jMenuItem10);
+
+        jMenuItem11.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/video-camera.png"))); // NOI18N
+        jMenuItem11.setText("Cámaras");
+        jMenu4.add(jMenuItem11);
+
+        jMenuItem12.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ps4.png"))); // NOI18N
+        jMenuItem12.setText("Consolas de juego");
+        jMenu4.add(jMenuItem12);
+
+        jMenuBar2.add(jMenu4);
+
+        jMenu6.setText("Edit");
+        jMenuBar2.add(jMenu6);
+
+        Perfil_clientes_frecuentes.setJMenuBar(jMenuBar2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -449,12 +641,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_boton_salirMouseClicked
 
     private void boton_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_cliente1MouseClicked
-//        TextPrompt cc = new TextPrompt("ID Cliente", id_login_cliente);
-//        TextPrompt cc2 = new TextPrompt("Password", password_login_cliente);
-        Perfil_clientes.pack();
-        Perfil_clientes.setModal(true);
-        Perfil_clientes.setLocationRelativeTo(null);
-        Perfil_clientes.setVisible(true);
+        TextPrompt cc = new TextPrompt("ID Cliente", id_login_cliente);
+        TextPrompt cc2 = new TextPrompt("Password", password_login_cliente);
+        login_clientes.pack();
+        login_clientes.setModal(true);
+        login_clientes.setLocationRelativeTo(null);
+        login_clientes.setVisible(true);
 
     }//GEN-LAST:event_boton_cliente1MouseClicked
 
@@ -476,7 +668,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btn_regresarClienteMouseClicked
 
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
-        if (contImages == 5) {
+        if (contImages == 4) {
             contImages = 0;
         }
         contImages++;
@@ -485,7 +677,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
         if (contImages == 1) {
-            contImages = 5;
+            contImages = 4;
         }
         contImages--;
         jLabel10.setIcon(Imagen[contImages]);
@@ -510,6 +702,38 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private void btn_regresar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar4MouseClicked
         administradores.dispose();
     }//GEN-LAST:event_btn_regresar4MouseClicked
+
+    private void btn_cerrar_sesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesionMouseClicked
+        Perfil_clientes_enLinea.dispose();
+
+    }//GEN-LAST:event_btn_cerrar_sesionMouseClicked
+
+    private void btn_cerrar_sesion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesion1MouseClicked
+        Perfil_clientes_frecuentes.dispose();
+    }//GEN-LAST:event_btn_cerrar_sesion1MouseClicked
+
+    private void siguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente1ActionPerformed
+        if (contImages == 4) {
+            contImages = 0;
+        }
+        contImages++;
+        jLabel10.setIcon(Imagen[contImages]);
+    }//GEN-LAST:event_siguiente1ActionPerformed
+
+    private void anterior1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anterior1ActionPerformed
+        if (contImages == 1) {
+            contImages = 4;
+        }
+        contImages--;
+        jLabel10.setIcon(Imagen[contImages]);
+    }//GEN-LAST:event_anterior1ActionPerformed
+
+    private void btn_ingresarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarClienteMouseClicked
+        Perfil_clientes_enLinea.pack();
+        Perfil_clientes_enLinea.setModal(true);
+        Perfil_clientes_enLinea.setLocationRelativeTo(null);
+        Perfil_clientes_enLinea.setVisible(true);
+    }//GEN-LAST:event_btn_ingresarClienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -548,13 +772,19 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog Perfil_clientes;
+    private javax.swing.JDialog Perfil_clientes_enLinea;
+    private javax.swing.JDialog Perfil_clientes_frecuentes;
     private javax.swing.JDialog administradores;
     private javax.swing.JButton anterior;
+    private javax.swing.JButton anterior1;
     private javax.swing.JButton boton_cliente1;
     private javax.swing.JButton boton_empleado;
     private javax.swing.JButton boton_salir;
     private javax.swing.JButton btn_admin;
+    private javax.swing.JButton btn_buscar_producto;
+    private javax.swing.JButton btn_buscar_producto1;
+    private javax.swing.JButton btn_cerrar_sesion;
+    private javax.swing.JButton btn_cerrar_sesion1;
     private javax.swing.JButton btn_crear_cliente;
     private javax.swing.JButton btn_ingresarCliente;
     private javax.swing.JButton btn_login_empleado;
@@ -583,7 +813,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -593,8 +828,23 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -610,9 +860,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPasswordField password_empleado;
     private javax.swing.JPasswordField password_login_cliente;
     private javax.swing.JButton siguiente;
+    private javax.swing.JButton siguiente1;
     private javax.swing.JTabbedPane tabbed_eliminar;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo2;
+    private javax.swing.JTextField txt_buscar;
+    private javax.swing.JTextField txt_buscar1;
     private javax.swing.JTextField user_empleado;
     // End of variables declaration//GEN-END:variables
 

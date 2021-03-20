@@ -104,19 +104,26 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jButton1 = new javax.swing.JButton();
         btn_regresar4 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         panel_modificar = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         btn_regresar3 = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         panel_eliminar = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jLabel31 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         btn_regresar2 = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
         fondo_admiistradores = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
         Perfil_clientes_frecuentes = new javax.swing.JDialog();
         txt_buscar1 = new javax.swing.JTextField();
         btn_cerrar_sesion1 = new javax.swing.JButton();
@@ -426,21 +433,36 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        panel_crear.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 530, 240));
+        panel_crear.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 580, 220));
 
-        jButton1.setText("jButton1");
-        panel_crear.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 100, 40));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user.png"))); // NOI18N
+        jButton1.setToolTipText("");
+        jButton1.setContentAreaFilled(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user (1).png"))); // NOI18N
+        panel_crear.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 100, 70));
 
-        btn_regresar4.setText("Regresar");
+        btn_regresar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
+        btn_regresar4.setContentAreaFilled(false);
+        btn_regresar4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message (1).png"))); // NOI18N
         btn_regresar4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_regresar4MouseClicked(evt);
             }
         });
-        panel_crear.add(btn_regresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 100, 40));
+        panel_crear.add(btn_regresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 100, 70));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_crear.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
+
+        jLabel34.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setText("Regresar");
+        panel_crear.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(648, 350, 80, 20));
+
+        jLabel36.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Insertar");
+        panel_crear.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 70, 20));
 
         tabbed_eliminar.addTab("Crear", panel_crear);
 
@@ -462,25 +484,39 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        panel_modificar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 540, 280));
+        panel_modificar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 610, 260));
 
-        jButton3.setText("jButton3");
-        panel_modificar.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order.png"))); // NOI18N
+        jButton3.setContentAreaFilled(false);
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order (1).png"))); // NOI18N
+        panel_modificar.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 100, 70));
 
-        btn_regresar3.setText("Regresar");
+        btn_regresar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
+        btn_regresar3.setContentAreaFilled(false);
+        btn_regresar3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message (1).png"))); // NOI18N
         btn_regresar3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_regresar3MouseClicked(evt);
             }
         });
-        panel_modificar.add(btn_regresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, -1, -1));
+        panel_modificar.add(btn_regresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 80, 60));
+
+        jLabel33.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("Regresar");
+        panel_modificar.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 60, 20));
+
+        jLabel35.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setText("Modificar");
+        panel_modificar.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, -1, -1));
 
         tabbed_eliminar.addTab("Modificar", panel_modificar);
 
         panel_eliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panel_eliminar.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        panel_eliminar.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 90, 30));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -495,23 +531,42 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 570, 360));
+        panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 570, 260));
 
-        jButton5.setText("jButton5");
-        panel_eliminar.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
+        jLabel31.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("Eliminar");
+        panel_eliminar.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 90, -1));
 
-        btn_regresar2.setText("regresar");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x.png"))); // NOI18N
+        jButton5.setContentAreaFilled(false);
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x (1).png"))); // NOI18N
+        panel_eliminar.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 90, 70));
+
+        btn_regresar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
+        btn_regresar2.setContentAreaFilled(false);
+        btn_regresar2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message (1).png"))); // NOI18N
         btn_regresar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_regresar2MouseClicked(evt);
             }
         });
-        panel_eliminar.add(btn_regresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
+        panel_eliminar.add(btn_regresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 90, 70));
+
+        jLabel32.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel32.setText("Regresar");
+        panel_eliminar.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 60, 20));
 
         tabbed_eliminar.addTab("Eliminar", panel_eliminar);
 
-        administradores.getContentPane().add(tabbed_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 500));
-        administradores.getContentPane().add(fondo_admiistradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 450));
+        administradores.getContentPane().add(tabbed_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 840, 410));
+
+        fondo_admiistradores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        administradores.getContentPane().add(fondo_admiistradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 540));
+
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        jLabel30.setText("jLabel30");
+        administradores.getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 160, 540));
 
         Perfil_clientes_frecuentes.setUndecorated(true);
         Perfil_clientes_frecuentes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1108,6 +1163,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

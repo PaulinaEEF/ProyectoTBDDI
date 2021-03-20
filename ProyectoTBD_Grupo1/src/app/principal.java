@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +22,14 @@ import java.awt.event.MouseEvent;
  */
 public class principal extends javax.swing.JFrame implements Runnable {
 
+    ArrayList<String> servicioUsuario = new ArrayList();
+    ArrayList<String> servicioPassword = new ArrayList();
+
+    ArrayList<String> llamadasUser = new ArrayList();
+    ArrayList<String> llamadasPassword = new ArrayList();
+
+    ArrayList<String> EmpleadosUser = new ArrayList();
+    ArrayList<String> EmpleadosPassword = new ArrayList();
     String hora, minutos, segundos;
     Thread hilo;
     ImageIcon Imagen[] = new ImageIcon[5];
@@ -43,7 +52,29 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         }
         TextPrompt cc2 = new TextPrompt("¿Qué estás buscando?", txt_buscar);
+        servicioUsuario.add("Daniel");
+        servicioUsuario.add("Andrea");
+        servicioUsuario.add("Sebastian");
 
+        servicioPassword.add("12345");
+        servicioPassword.add("54321");
+        servicioPassword.add("6789");
+
+        llamadasUser.add("Lucia");
+        llamadasUser.add("David");
+        llamadasUser.add("Santiago");
+
+        llamadasPassword.add("abcd");
+        llamadasPassword.add("efgh");
+        llamadasPassword.add("ijkl");
+
+        EmpleadosUser.add("James");
+        EmpleadosUser.add("Daniela");
+        EmpleadosUser.add("Andres");
+
+        EmpleadosPassword.add("a11b");
+        EmpleadosPassword.add("a12b");
+        EmpleadosPassword.add("a13b");
     }
 
     /**
@@ -176,15 +207,41 @@ public class principal extends javax.swing.JFrame implements Runnable {
         user_admin = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         fondo_login_admin = new javax.swing.JLabel();
+        crear_cuenta_cliente = new javax.swing.JDialog();
+        jLabel37 = new javax.swing.JLabel();
+        id_registrar_cliente = new javax.swing.JTextField();
+        nombre_registrar_cliente = new javax.swing.JTextField();
+        btn_siguiente = new javax.swing.JButton();
+        cmb_tipoCliente = new javax.swing.JComboBox<>();
+        btn_regresar = new javax.swing.JButton();
+        jLabel38 = new javax.swing.JLabel();
+        fondo_registro_clientes = new javax.swing.JLabel();
+        cliente_en_linea = new javax.swing.JDialog();
+        jLabel39 = new javax.swing.JLabel();
+        ServicioAlCliente = new javax.swing.JDialog();
+        txt_busqueda = new javax.swing.JTextField();
+        btn_regresar_servicio = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btn_busqueda = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        fondo_servicioAlCliente = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        centrode_llamadas = new javax.swing.JDialog();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jTextField2 = new javax.swing.JTextField();
+        fondo_centroLlamadas = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
+        jLabel40 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btn_admin = new javax.swing.JButton();
         hora_jbl = new javax.swing.JLabel();
         titulo2 = new javax.swing.JLabel();
-        boton_cliente1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         boton_empleado = new javax.swing.JButton();
         fondo_princiipal = new javax.swing.JLabel();
         fondo_principal2 = new javax.swing.JLabel();
@@ -242,6 +299,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
         btn_crear_cliente.setText("Crea una cuenta");
         btn_crear_cliente.setContentAreaFilled(false);
         btn_crear_cliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/follow (1).png"))); // NOI18N
+        btn_crear_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_crear_clienteMouseClicked(evt);
+            }
+        });
         login_clientes.getContentPane().add(btn_crear_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 200, 80));
 
         fondo_loginCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2021-03-18 at 21.35.49.jpeg"))); // NOI18N
@@ -414,6 +476,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         Perfil_clientes_enLinea.setJMenuBar(jMenuBar1);
 
+        administradores.setUndecorated(true);
         administradores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabbed_eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 204)));
@@ -531,7 +594,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 570, 260));
+        panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 610, 260));
 
         jLabel31.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -820,6 +883,111 @@ public class principal extends javax.swing.JFrame implements Runnable {
         fondo_login_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login2.gif"))); // NOI18N
         login_admin.getContentPane().add(fondo_login_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 320));
 
+        crear_cuenta_cliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel37.setText("jLabel37");
+        crear_cuenta_cliente.getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 120, 30));
+
+        id_registrar_cliente.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        id_registrar_cliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        crear_cuenta_cliente.getContentPane().add(id_registrar_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 160, 30));
+
+        nombre_registrar_cliente.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        nombre_registrar_cliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        crear_cuenta_cliente.getContentPane().add(nombre_registrar_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 160, 30));
+        crear_cuenta_cliente.getContentPane().add(btn_siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 100, 30));
+
+        cmb_tipoCliente.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        cmb_tipoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Con contrato", "En línea", "Normal" }));
+        crear_cuenta_cliente.getContentPane().add(cmb_tipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 130, 30));
+
+        btn_regresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_regresarMouseClicked(evt);
+            }
+        });
+        crear_cuenta_cliente.getContentPane().add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 90, 30));
+
+        jLabel38.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel38.setText("Selecciona que tipo de cliente quieres ser ");
+        crear_cuenta_cliente.getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 280, 30));
+        crear_cuenta_cliente.getContentPane().add(fondo_registro_clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 320));
+
+        cliente_en_linea.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        cliente_en_linea.getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 370));
+
+        ServicioAlCliente.setUndecorated(true);
+        ServicioAlCliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ServicioAlCliente.getContentPane().add(txt_busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 150, 30));
+
+        btn_regresar_servicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
+        btn_regresar_servicio.setContentAreaFilled(false);
+        btn_regresar_servicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_regresar_servicioMouseClicked(evt);
+            }
+        });
+        ServicioAlCliente.getContentPane().add(btn_regresar_servicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 50, 40));
+
+        jLabel2.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Servicio al cliente");
+        ServicioAlCliente.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 240, 30));
+
+        btn_busqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search (2).png"))); // NOI18N
+        btn_busqueda.setContentAreaFilled(false);
+        ServicioAlCliente.getContentPane().add(btn_busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 90, 60));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable4);
+
+        ServicioAlCliente.getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 820, 170));
+
+        fondo_servicioAlCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientservices.gif"))); // NOI18N
+        ServicioAlCliente.getContentPane().add(fondo_servicioAlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 440));
+
+        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientservices.gif"))); // NOI18N
+        ServicioAlCliente.getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 900, 450));
+
+        centrode_llamadas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton2.setText("jButton2");
+        centrode_llamadas.getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 80, 30));
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable5);
+
+        centrode_llamadas.getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 830, 310));
+
+        jTextField2.setText("jTextField2");
+        centrode_llamadas.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 110, 30));
+
+        fondo_centroLlamadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_clientes1.gif"))); // NOI18N
+        centrode_llamadas.getContentPane().add(fondo_centroLlamadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_clientes1.gif"))); // NOI18N
+        centrode_llamadas.getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 530, 600));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -827,7 +995,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         titulo.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("¡Bienvenidos a tienda electronica!");
-        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 550, 30));
+        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 550, 30));
 
         boton_salir.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
         boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit (2).png"))); // NOI18N
@@ -838,11 +1006,16 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 boton_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 540, 230, 140));
+        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 230, 140));
+
+        jLabel40.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("DBMA");
+        getContentPane().add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, 90, 20));
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel1.setText("Empleado");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, 90, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 40));
 
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel7.setText("Hora actual");
@@ -850,7 +1023,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         btn_admin.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         btn_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
-        btn_admin.setText("admin");
         btn_admin.setContentAreaFilled(false);
         btn_admin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario (1).png"))); // NOI18N
         btn_admin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -858,7 +1030,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 btn_adminMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 260, 160));
+        getContentPane().add(btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 260, 160));
 
         hora_jbl.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         hora_jbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -870,21 +1042,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         titulo2.setText("¿Qué eres?");
         getContentPane().add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 140, 40));
 
-        boton_cliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/customer-review.png"))); // NOI18N
-        boton_cliente1.setContentAreaFilled(false);
-        boton_cliente1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/customer-review (1).png"))); // NOI18N
-        boton_cliente1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                boton_cliente1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(boton_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 240, 120));
-
-        jLabel2.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Cliente");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, 80, 40));
-
         boton_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/employee (1).png"))); // NOI18N
         boton_empleado.setContentAreaFilled(false);
         boton_empleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/employee (2).png"))); // NOI18N
@@ -893,7 +1050,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 boton_empleadoMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 180, 120));
+        getContentPane().add(boton_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, 180, 120));
 
         fondo_princiipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
         getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 590));
@@ -919,16 +1076,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private void boton_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_salirMouseClicked
         System.exit(0);
     }//GEN-LAST:event_boton_salirMouseClicked
-
-    private void boton_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_cliente1MouseClicked
-        TextPrompt cc = new TextPrompt("ID Cliente", id_login_cliente);
-        TextPrompt cc2 = new TextPrompt("Password", password_login_cliente);
-        login_clientes.pack();
-        login_clientes.setModal(true);
-        login_clientes.setLocationRelativeTo(null);
-        login_clientes.setVisible(true);
-
-    }//GEN-LAST:event_boton_cliente1MouseClicked
 
     private void boton_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_empleadoMouseClicked
         TextPrompt e1 = new TextPrompt("Username", user_empleado);
@@ -1042,24 +1189,59 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btn_cerrar_sesion_empleadoMouseClicked
 
     private void btn_login_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_login_empleadoMouseClicked
-        login_empleados.dispose();
-        perfil_empleados.pack();
-        perfil_empleados.setModal(true);
-        perfil_empleados.setLocationRelativeTo(null);
-        perfil_empleados.setVisible(true);
+
+        String userr = user_empleado.getText();
+        String pass = password_empleado.getText();
+
+        for (int i = 0; i < servicioUsuario.size(); i++) {
+            for (int j = 0; j < servicioPassword.size(); j++) {
+                if (userr.equals(servicioUsuario.get(i)) && pass.equals(servicioPassword.get(i))) {
+                    login_empleados.dispose();
+                    ServicioAlCliente.pack();
+                    ServicioAlCliente.setModal(true);
+                    ServicioAlCliente.setLocationRelativeTo(null);
+                    ServicioAlCliente.setVisible(true);
+                    break;
+                }else{
+                    
+                }
+            }
+        }
+        TextPrompt l1 = new TextPrompt("¿Que estás buscando?", txt_busqueda);
+
     }//GEN-LAST:event_btn_login_empleadoMouseClicked
 
     private void btn_regresar_loginAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar_loginAdminMouseClicked
-       login_admin.dispose();
+        login_admin.dispose();
     }//GEN-LAST:event_btn_regresar_loginAdminMouseClicked
 
     private void btn_ingresar_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresar_adminMouseClicked
+
         login_admin.dispose();
         administradores.pack();
         administradores.setModal(true);
         administradores.setLocationRelativeTo(null);
         administradores.setVisible(true);
     }//GEN-LAST:event_btn_ingresar_adminMouseClicked
+
+    private void btn_crear_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crear_clienteMouseClicked
+        TextPrompt p1 = new TextPrompt("Crea un ID", id_registrar_cliente);
+        TextPrompt p2 = new TextPrompt("Tu nombre", nombre_registrar_cliente);
+        login_clientes.dispose();
+        crear_cuenta_cliente.pack();
+        crear_cuenta_cliente.setModal(true);
+        crear_cuenta_cliente.setLocationRelativeTo(null);
+        crear_cuenta_cliente.setVisible(true);
+
+    }//GEN-LAST:event_btn_crear_clienteMouseClicked
+
+    private void btn_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarMouseClicked
+        crear_cuenta_cliente.dispose();
+    }//GEN-LAST:event_btn_regresarMouseClicked
+
+    private void btn_regresar_servicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar_servicioMouseClicked
+        ServicioAlCliente.dispose();
+    }//GEN-LAST:event_btn_regresar_servicioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1101,17 +1283,18 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JDialog Perfil_clientes_enLinea;
     private javax.swing.JDialog Perfil_clientes_frecuentes;
     private javax.swing.JDialog Perfil_clientes_poco_frecuentes;
+    private javax.swing.JDialog ServicioAlCliente;
     private javax.swing.JDialog administradores;
     private javax.swing.JButton anterior;
     private javax.swing.JButton anterior1;
     private javax.swing.JButton anterior2;
-    private javax.swing.JButton boton_cliente1;
     private javax.swing.JButton boton_empleado;
     private javax.swing.JButton boton_salir;
     private javax.swing.JButton btn_admin;
     private javax.swing.JButton btn_buscar_producto;
     private javax.swing.JButton btn_buscar_producto1;
     private javax.swing.JButton btn_buscar_producto2;
+    private javax.swing.JButton btn_busqueda;
     private javax.swing.JButton btn_cerrar_sesion;
     private javax.swing.JButton btn_cerrar_sesion1;
     private javax.swing.JButton btn_cerrar_sesion2;
@@ -1120,21 +1303,33 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_ingresarCliente;
     private javax.swing.JButton btn_ingresar_admin;
     private javax.swing.JButton btn_login_empleado;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JButton btn_regresar2;
     private javax.swing.JButton btn_regresar3;
     private javax.swing.JButton btn_regresar4;
     private javax.swing.JButton btn_regresarCliente;
     private javax.swing.JButton btn_regresar_empleado;
     private javax.swing.JButton btn_regresar_loginAdmin;
+    private javax.swing.JButton btn_regresar_servicio;
+    private javax.swing.JButton btn_siguiente;
+    private javax.swing.JDialog centrode_llamadas;
+    private javax.swing.JDialog cliente_en_linea;
+    private javax.swing.JComboBox<String> cmb_tipoCliente;
+    private javax.swing.JDialog crear_cuenta_cliente;
     private javax.swing.JLabel fondo_admiistradores;
+    private javax.swing.JLabel fondo_centroLlamadas;
     private javax.swing.JLabel fondo_loginCliente;
     private javax.swing.JLabel fondo_login_admin;
     private javax.swing.JLabel fondo_login_empleados;
     private javax.swing.JLabel fondo_princiipal;
     private javax.swing.JLabel fondo_principal2;
+    private javax.swing.JLabel fondo_registro_clientes;
+    private javax.swing.JLabel fondo_servicioAlCliente;
     private javax.swing.JLabel hora_jbl;
     private javax.swing.JTextField id_login_cliente;
+    private javax.swing.JTextField id_registrar_cliente;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -1170,7 +1365,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1207,16 +1408,22 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JDialog login_admin;
     private javax.swing.JDialog login_clientes;
     private javax.swing.JDialog login_empleados;
+    private javax.swing.JTextField nombre_registrar_cliente;
     private javax.swing.JPanel panel_crear;
     private javax.swing.JPanel panel_eliminar;
     private javax.swing.JPanel panel_modificar;
@@ -1233,6 +1440,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_buscar1;
     private javax.swing.JTextField txt_buscar2;
+    private javax.swing.JTextField txt_busqueda;
     private javax.swing.JTextField user_admin;
     private javax.swing.JTextField user_empleado;
     // End of variables declaration//GEN-END:variables
@@ -1259,4 +1467,5 @@ public class principal extends javax.swing.JFrame implements Runnable {
         minutos = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
+
 }

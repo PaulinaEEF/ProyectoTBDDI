@@ -68,8 +68,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
         login_empleados = new javax.swing.JDialog();
         btn_login_empleado = new javax.swing.JButton();
         user_empleado = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         password_empleado = new javax.swing.JPasswordField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
         btn_regresar_empleado = new javax.swing.JButton();
         fondo_login_empleados = new javax.swing.JLabel();
         Perfil_clientes_enLinea = new javax.swing.JDialog();
@@ -154,6 +157,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
+        jTextField3 = new javax.swing.JTextField();
+        perfil_empleados = new javax.swing.JDialog();
+        btn_cerrar_sesion_empleado = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -228,16 +235,45 @@ public class principal extends javax.swing.JFrame implements Runnable {
         login_empleados.setUndecorated(true);
         login_empleados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_login_empleado.setText("LOGIN");
-        login_empleados.getContentPane().add(btn_login_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 100, 30));
-        login_empleados.getContentPane().add(user_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 160, 30));
+        btn_login_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/log-in.png"))); // NOI18N
+        btn_login_empleado.setContentAreaFilled(false);
+        btn_login_empleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/log-in (1).png"))); // NOI18N
+        btn_login_empleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_login_empleadoMouseClicked(evt);
+            }
+        });
+        login_empleados.getContentPane().add(btn_login_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 120, 60));
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("EMPLOYEE LOGIN");
-        login_empleados.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 200, 30));
-        login_empleados.getContentPane().add(password_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 160, 30));
+        user_empleado.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        user_empleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        login_empleados.getContentPane().add(user_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 210, 40));
+
+        jLabel27.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("Login");
+        login_empleados.getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 490, 50, 20));
+
+        jLabel26.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("EMPLOYEE LOGIN");
+        login_empleados.getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 190, 30));
+
+        password_empleado.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        password_empleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        login_empleados.getContentPane().add(password_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 210, 40));
+
+        jTextField6.setEditable(false);
+        jTextField6.setBackground(new java.awt.Color(255, 204, 51));
+        jTextField6.setAutoscrolls(false);
+        jTextField6.setBorder(null);
+        login_empleados.getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 340, 280));
+
+        jTextField4.setEditable(false);
+        jTextField4.setBackground(new java.awt.Color(255, 204, 0));
+        jTextField4.setAutoscrolls(false);
+        jTextField4.setBorder(null);
+        login_empleados.getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 340, 70));
 
         btn_regresar_empleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_regresar_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
@@ -251,10 +287,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 btn_regresar_empleadoMouseClicked(evt);
             }
         });
-        login_empleados.getContentPane().add(btn_regresar_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 170, 90));
+        login_empleados.getContentPane().add(btn_regresar_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 170, 90));
 
-        fondo_login_empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/empleadologin.jpg"))); // NOI18N
-        login_empleados.getContentPane().add(fondo_login_empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 530));
+        fondo_login_empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login-form-emp.gif"))); // NOI18N
+        login_empleados.getContentPane().add(fondo_login_empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         Perfil_clientes_enLinea.setUndecorated(true);
         Perfil_clientes_enLinea.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -661,6 +697,25 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         Perfil_clientes_poco_frecuentes.setJMenuBar(jMenuBar3);
 
+        jTextField3.setEditable(false);
+        jTextField3.setBackground(new java.awt.Color(255, 204, 0));
+        jTextField3.setAutoscrolls(false);
+        jTextField3.setBorder(null);
+
+        perfil_empleados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_cerrar_sesion_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/power.png"))); // NOI18N
+        btn_cerrar_sesion_empleado.setToolTipText("");
+        btn_cerrar_sesion_empleado.setContentAreaFilled(false);
+        btn_cerrar_sesion_empleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/power (1).png"))); // NOI18N
+        btn_cerrar_sesion_empleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cerrar_sesion_empleadoMouseClicked(evt);
+            }
+        });
+        perfil_empleados.getContentPane().add(btn_cerrar_sesion_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 120, 70));
+        perfil_empleados.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 450));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -871,6 +926,18 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel10.setIcon(Imagen[contImages]);
     }//GEN-LAST:event_anterior2ActionPerformed
 
+    private void btn_cerrar_sesion_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesion_empleadoMouseClicked
+        perfil_empleados.dispose();
+    }//GEN-LAST:event_btn_cerrar_sesion_empleadoMouseClicked
+
+    private void btn_login_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_login_empleadoMouseClicked
+        login_empleados.dispose();
+        perfil_empleados.pack();
+        perfil_empleados.setModal(true);
+        perfil_empleados.setLocationRelativeTo(null);
+        perfil_empleados.setVisible(true);
+    }//GEN-LAST:event_btn_login_empleadoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -925,6 +992,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_cerrar_sesion;
     private javax.swing.JButton btn_cerrar_sesion1;
     private javax.swing.JButton btn_cerrar_sesion2;
+    private javax.swing.JButton btn_cerrar_sesion_empleado;
     private javax.swing.JButton btn_crear_cliente;
     private javax.swing.JButton btn_ingresarCliente;
     private javax.swing.JButton btn_login_empleado;
@@ -964,6 +1032,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1005,7 +1076,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JDialog login_clientes;
     private javax.swing.JDialog login_empleados;
     private javax.swing.JPanel panel_crear;
@@ -1013,6 +1086,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel panel_modificar;
     private javax.swing.JPasswordField password_empleado;
     private javax.swing.JPasswordField password_login_cliente;
+    private javax.swing.JDialog perfil_empleados;
     private javax.swing.JButton siguiente;
     private javax.swing.JButton siguiente1;
     private javax.swing.JButton siguiente2;

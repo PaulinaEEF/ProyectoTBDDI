@@ -18,6 +18,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -155,7 +156,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel34 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         panel_modificar = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cb_modificar = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_modificar = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
@@ -563,8 +564,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         panel_modificar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panel_modificar.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 20));
+        cb_modificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_modificar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_modificarItemStateChanged(evt);
+            }
+        });
+        panel_modificar.add(cb_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 20));
 
         tabla_modificar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -610,7 +616,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         panel_eliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
         panel_eliminar.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 90, 30));
 
         tabla_eliminar.setModel(new javax.swing.table.DefaultTableModel(
@@ -1186,146 +1192,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
         tabla_crear.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
-
-        if (cb_crear.getSelectedItem() != null) {
-            String contenido = (String) cb_crear.getSelectedItem();
-
-            switch (contenido) {
-                case "PRODUCTO": {
-                    String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-
-                case "CLIENTE_TIENDA": {
-                    String[] arr = {"idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "CONTRATO": {
-                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "CATEGORIA": {
-
-                    String[] arr = {"idProducto", "nombreCategoria"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-
-                    break;
-                }
-                case "TIENE_EN_CARRITO": {
-                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "CLIENTE_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "CLIENTE_POCO_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "DETALLE_FACTURA": {
-                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "ALMACEN": {
-                    String[] arr = {"codigoAlmacen", "ciudad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "INVENTARIO": {
-                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "ORDEN": {
-                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "CLIENTE_VIRTUAL": {
-                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "FACTURA": {
-                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-                case "TIENDA": {
-                    String[] arr = {"codigoTienda", "ubicacion"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
-                    break;
-                }
-            }
-
-        } else {
-//            
-
-        }
+        flagAddRow=true;
+        llenarTabla(model, cb_crear);
 
     }//GEN-LAST:event_cb_crearItemStateChanged
 
@@ -1552,6 +1420,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_modificar.setEnabled(true);
         tabla_eliminar.setModel(new DefaultTableModel());
         tabla_eliminar.setEnabled(true);
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_tabbed_eliminarMouseClicked
     private void btn_cerrar_sesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesionMouseClicked
         Perfil_clientes_enLinea.dispose();
@@ -1734,6 +1608,19 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ServicioAlCliente.dispose();
     }//GEN-LAST:event_btn_regresar_servicioMouseClicked
 
+    private void cb_modificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_modificarItemStateChanged
+        // TODO add your handling code here:
+        tabla_modificar.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_modificar.getModel();
+        llenarTabla(model, cb_modificar);
+        
+        try {
+            mostrarDatosT(model,cb_modificar);
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cb_modificarItemStateChanged
+
 
     /**
      * @param args the command line arguments
@@ -1811,6 +1698,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_regresar_servicio;
     private javax.swing.JButton btn_siguiente;
     private javax.swing.JComboBox<String> cb_crear;
+    private javax.swing.JComboBox<String> cb_modificar;
     private javax.swing.JDialog centrode_llamadas;
     private javax.swing.JDialog cliente_en_linea;
     private javax.swing.JComboBox<String> cmb_tipoCliente;
@@ -1830,7 +1718,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1942,7 +1829,296 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField user_empleado;
     // End of variables declaration//GEN-END:variables
     String[] arregloAtributos;
+    boolean flagAddRow = false;
 
+    private void mostrarDatosT(DefaultTableModel model, JComboBox cb_elegido) throws SQLException{
+        if (cb_elegido.getSelectedItem() != null) {
+            String contenido = (String) cb_elegido.getSelectedItem();
+
+            switch (contenido) {
+                case "PRODUCTO": {
+                                      
+                    
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM producto";
+                    Statement st = con.createStatement();
+                    ResultSet rs =st.executeQuery(query);
+                    while(rs.next()){
+                        Object[] row = {rs.getInt("idProducto"),rs.getString("fabricante"),rs.getString("nombreProducto"),rs.getString("modelo"),rs.getFloat("precio"),rs.getString("tipoProducto"),rs.getString("descripcion")};
+                        model.addRow(row);
+                    }
+                    
+                    break;
+                }
+
+                case "CLIENTE_TIENDA": {
+                    String[] arr = {"idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CONTRATO": {
+                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CATEGORIA": {
+
+                    String[] arr = {"idProducto", "nombreCategoria"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+
+                    break;
+                }
+                case "TIENE_EN_CARRITO": {
+                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_POCO_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "DETALLE_FACTURA": {
+                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ALMACEN": {
+                    String[] arr = {"codigoAlmacen", "ciudad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "INVENTARIO": {
+                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ORDEN": {
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_VIRTUAL": {
+                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "FACTURA": {
+                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "TIENDA": {
+                    String[] arr = {"codigoTienda", "ubicacion"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+            }
+
+        }
+    }
+    
+    
+    private void llenarTabla(DefaultTableModel model, JComboBox cb_elegido){
+        if (cb_elegido.getSelectedItem() != null) {
+            String contenido = (String) cb_elegido.getSelectedItem();
+
+            switch (contenido) {
+                case "PRODUCTO": {
+                    String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    if(flagAddRow){
+                        model.setNumRows(1);
+                        
+                    }
+                    break;
+                }
+
+                case "CLIENTE_TIENDA": {
+                    String[] arr = {"idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CONTRATO": {
+                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CATEGORIA": {
+
+                    String[] arr = {"idProducto", "nombreCategoria"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+
+                    break;
+                }
+                case "TIENE_EN_CARRITO": {
+                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_POCO_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "DETALLE_FACTURA": {
+                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ALMACEN": {
+                    String[] arr = {"codigoAlmacen", "ciudad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "INVENTARIO": {
+                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ORDEN": {
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_VIRTUAL": {
+                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "FACTURA": {
+                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "TIENDA": {
+                    String[] arr = {"codigoTienda", "ubicacion"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+            }
+
+        }
+    }
+    
+    
     private boolean validarIngresoTable(JTable tabla, boolean guardar) {
         DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
         //super funcion secreta que me 4actualize el dqu

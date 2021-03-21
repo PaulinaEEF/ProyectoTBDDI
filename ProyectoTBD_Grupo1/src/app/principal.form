@@ -757,17 +757,31 @@
                 <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JComboBox" name="jComboBox2">
+                <Component class="javax.swing.JComboBox" name="cb_modificar">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="15">
+                        <StringItem index="0" value="PRODUCTO"/>
+                        <StringItem index="1" value="CLIENTE"/>
+                        <StringItem index="2" value="CLIENTE_TIENDA"/>
+                        <StringItem index="3" value="CONTRATO"/>
+                        <StringItem index="4" value="CATEGORIA"/>
+                        <StringItem index="5" value="TIENE_EN_CARRITO"/>
+                        <StringItem index="6" value="CLIENTE_FRECUENTE"/>
+                        <StringItem index="7" value="CLIENTE_POCO_FRECUENTE"/>
+                        <StringItem index="8" value="DETALLE_FACTURA"/>
+                        <StringItem index="9" value="ALMACEN"/>
+                        <StringItem index="10" value="INVENTARIO"/>
+                        <StringItem index="11" value="ORDEN"/>
+                        <StringItem index="12" value="CLIENTE_VIRTUAL"/>
+                        <StringItem index="13" value="FACTURA"/>
+                        <StringItem index="14" value="TIENDA"/>
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cb_modificarItemStateChanged"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -879,11 +893,22 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox3">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="15">
+                        <StringItem index="0" value="PRODUCTO"/>
+                        <StringItem index="1" value="CLIENTE"/>
+                        <StringItem index="2" value="CLIENTE_TIENDA"/>
+                        <StringItem index="3" value="CONTRATO"/>
+                        <StringItem index="4" value="CATEGORIA"/>
+                        <StringItem index="5" value="TIENE_EN_CARRITO"/>
+                        <StringItem index="6" value="CLIENTE_FRECUENTE"/>
+                        <StringItem index="7" value="CLIENTE_POCO_FRECUENTE"/>
+                        <StringItem index="8" value="DETALLE_FACTURA"/>
+                        <StringItem index="9" value="ALMACEN"/>
+                        <StringItem index="10" value="INVENTARIO"/>
+                        <StringItem index="11" value="ORDEN"/>
+                        <StringItem index="12" value="CLIENTE_VIRTUAL"/>
+                        <StringItem index="13" value="FACTURA"/>
+                        <StringItem index="14" value="TIENDA"/>
                       </StringArray>
                     </Property>
                   </Properties>

@@ -30,6 +30,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     ArrayList<String> EmpleadosUser = new ArrayList();
     ArrayList<String> EmpleadosPassword = new ArrayList();
+
+    ArrayList<String> ADMINSUSER = new ArrayList();
+    ArrayList<String> ADMINPASS = new ArrayList();
+
     String hora, minutos, segundos;
     Thread hilo;
     ImageIcon Imagen[] = new ImageIcon[5];
@@ -75,6 +79,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
         EmpleadosPassword.add("a11b");
         EmpleadosPassword.add("a12b");
         EmpleadosPassword.add("a13b");
+
+        ADMINSUSER.add("Yuda");
+        ADMINSUSER.add("Paulina");
+        ADMINSUSER.add("Diego");
+
+        ADMINPASS.add("1999j");
+        ADMINPASS.add("2002p");
+        ADMINPASS.add("2000d");
     }
 
     /**
@@ -840,7 +852,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
         });
         perfil_empleados.getContentPane().add(btn_cerrar_sesion_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 120, 70));
-        perfil_empleados.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 450));
+        perfil_empleados.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 450));
 
         login_admin.setUndecorated(true);
         login_admin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1192,22 +1204,70 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         String userr = user_empleado.getText();
         String pass = password_empleado.getText();
-
-        for (int i = 0; i < servicioUsuario.size(); i++) {
-            for (int j = 0; j < servicioPassword.size(); j++) {
-                if (userr.equals(servicioUsuario.get(i)) && pass.equals(servicioPassword.get(i))) {
-                    login_empleados.dispose();
-                    ServicioAlCliente.pack();
-                    ServicioAlCliente.setModal(true);
-                    ServicioAlCliente.setLocationRelativeTo(null);
-                    ServicioAlCliente.setVisible(true);
-                    break;
-                }else{
-                    
+        boolean ser = false, llam = false, emp = false;
+        TextPrompt l1 = new TextPrompt("¿Que estás buscando?", txt_busqueda);
+        if (!(userr.isEmpty() || pass.isBlank())) {
+            for (int i = 0; i < servicioUsuario.size(); i++) {
+                for (int j = 0; j < servicioPassword.size(); j++) {
+                    if (userr.equals(servicioUsuario.get(i)) && pass.equals(servicioPassword.get(i))) {
+                        ser = true;
+                        break;
+                    }
                 }
             }
+
+            if (ser == true) {
+                login_empleados.dispose();
+                ServicioAlCliente.pack();
+                ServicioAlCliente.setModal(true);
+                ServicioAlCliente.setLocationRelativeTo(null);
+                ServicioAlCliente.setVisible(true);
+            }
+
+            for (int i = 0; i < llamadasUser.size(); i++) {
+                for (int j = 0; j < llamadasPassword.size(); j++) {
+                    if (userr.equals(llamadasUser.get(i)) && pass.equals(llamadasPassword.get(i))) {
+                        llam = true;
+                        break;
+                    }
+
+                }
+
+            }
+
+            if (llam == true) {
+                login_empleados.dispose();
+                centrode_llamadas.pack();
+                centrode_llamadas.setModal(true);
+                centrode_llamadas.setLocationRelativeTo(null);
+                centrode_llamadas.setVisible(true);
+            }
+
+            for (int i = 0; i < EmpleadosUser.size(); i++) {
+                for (int j = 0; j < EmpleadosPassword.size(); j++) {
+                    if (userr.equals(EmpleadosUser.get(i)) && pass.equals(EmpleadosPassword.get(i))) {
+                        emp = true;
+                        break;
+                    }
+
+                }
+            }
+            if (emp == true) {
+                login_empleados.dispose();
+                perfil_empleados.pack();
+                perfil_empleados.setModal(true);
+                perfil_empleados.setLocationRelativeTo(null);
+                perfil_empleados.setVisible(true);
+            }
+
+            if (ser == false && llam == false && emp == false) {
+                JOptionPane.showMessageDialog(null, "Dato no encontrado");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos vacíos");
         }
-        TextPrompt l1 = new TextPrompt("¿Que estás buscando?", txt_busqueda);
+
 
     }//GEN-LAST:event_btn_login_empleadoMouseClicked
 
@@ -1217,11 +1277,33 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     private void btn_ingresar_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresar_adminMouseClicked
 
-        login_admin.dispose();
-        administradores.pack();
-        administradores.setModal(true);
-        administradores.setLocationRelativeTo(null);
-        administradores.setVisible(true);
+        String userr = user_admin.getText();
+        String pass = password_admin.getText();
+        boolean ad = false;
+        if (!(userr.isEmpty() || pass.isEmpty())) {
+
+            for (int i = 0; i < ADMINSUSER.size(); i++) {
+                for (int j = 0; j < ADMINPASS.size(); j++) {
+                    if (userr.equals(ADMINSUSER.get(i)) && pass.equals(ADMINPASS.get(i))) {
+                        ad = true;
+                        break;
+                    }
+                }
+            }
+            if (ad == true) {
+                login_admin.dispose();
+                administradores.pack();
+                administradores.setModal(true);
+                administradores.setLocationRelativeTo(null);
+                administradores.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Campo/s vacíos");
+        }
+
     }//GEN-LAST:event_btn_ingresar_adminMouseClicked
 
     private void btn_crear_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crear_clienteMouseClicked

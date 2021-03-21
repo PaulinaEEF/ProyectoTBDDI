@@ -10,7 +10,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
@@ -143,8 +146,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabbed_eliminar = new javax.swing.JTabbedPane();
         panel_crear = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        tabla_crear = new javax.swing.JTable();
+        boton_crear = new javax.swing.JButton();
         btn_regresar4 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel34 = new javax.swing.JLabel();
@@ -152,7 +155,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_modificar = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabla_modificar = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         btn_regresar3 = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
@@ -160,6 +163,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_eliminar = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
+        tabla_eliminar = new javax.swing.JTable();
         jTable3 = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -492,21 +496,27 @@ public class principal extends javax.swing.JFrame implements Runnable {
         administradores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabbed_eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 204)));
+        tabbed_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabbed_eliminarMouseClicked(evt);
+            }
+        });
 
         panel_crear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_crear.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla_crear);
+
 
         panel_crear.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 580, 220));
 
@@ -526,8 +536,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
         });
         panel_crear.add(btn_regresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 100, 70));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panel_crear.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
+        cb_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_crear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_crearItemStateChanged(evt);
+            }
+        });
+        panel_crear.add(cb_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
 
         jLabel34.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -546,18 +561,18 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_modificar.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 20));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_modificar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabla_modificar);
 
         panel_modificar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 610, 260));
 
@@ -593,18 +608,18 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_eliminar.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 90, 30));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_eliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tabla_eliminar);
 
         panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 610, 260));
 
@@ -1123,6 +1138,23 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_anteriorActionPerformed
 
     private void btn_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adminMouseClicked
+
+
+        ////////////////////////
+        tabla_crear.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
+        String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+        for (int j = 0; j < arr.length; j++) {
+            model.addColumn(arr[j]);
+        }
+        model.setNumRows(1);
+
+        arregloAtributos = arr;
+        administradores.pack();
+        administradores.setModal(true);
+        administradores.setLocationRelativeTo(null);
+        administradores.setVisible(true);
+
         TextPrompt j1 = new TextPrompt("Username", user_admin);
         TextPrompt j2 = new TextPrompt("Password", password_admin);
         login_admin.pack();
@@ -1144,6 +1176,378 @@ public class principal extends javax.swing.JFrame implements Runnable {
         administradores.dispose();
     }//GEN-LAST:event_btn_regresar4MouseClicked
 
+
+    private void cb_crearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_crearItemStateChanged
+        // TODO add your handling code here:
+        tabla_crear.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
+
+        if (cb_crear.getSelectedItem() != null) {
+            String contenido = (String) cb_crear.getSelectedItem();
+
+            switch (contenido) {
+                case "PRODUCTO": {
+                    String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+
+                case "CLIENTE_TIENDA": {
+                    String[] arr = {"idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CONTRATO": {
+                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CATEGORIA": {
+
+                    String[] arr = {"idProducto", "nombreCategoria"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+
+                    break;
+                }
+                case "TIENE_EN_CARRITO": {
+                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_POCO_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "DETALLE_FACTURA": {
+                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ALMACEN": {
+                    String[] arr = {"codigoAlmacen", "ciudad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "INVENTARIO": {
+                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ORDEN": {
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_VIRTUAL": {
+                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "FACTURA": {
+                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "TIENDA": {
+                    String[] arr = {"codigoTienda", "ubicacion"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+            }
+
+        } else {
+//            
+
+        }
+
+    }//GEN-LAST:event_cb_crearItemStateChanged
+
+    private void boton_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_crearMouseClicked
+        // TODO add your handling code here:
+
+        DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
+        if (validarIngresoTable(tabla_crear, false)) {
+            Object k = new Object[arregloAtributos.length];
+            model.addRow((Object[]) k);
+        }
+        tabla_crear.setEnabled(false);
+        Connection con = conectarBase.getConexion();
+
+        String guardar = "";
+        for (int j = 0; j < model.getColumnCount(); j++) {
+            guardar += model.getValueAt(0, j).toString() + "%";
+        }
+
+        String[] tokens = guardar.split("%");
+        PreparedStatement ps;
+
+        switch ((String) cb_crear.getSelectedItem()) {
+            case "PRODUCTO": {
+
+                    //ps.setInt(1, Integer.parseInt(tokens[0]));
+//            ps.setString(1, tokens[1]);
+//            ps.setString(2, tokens[2]);
+//            ps.setString(3, tokens[3]);
+//            ps.setFloat(4, Float.parseFloat(tokens[4]));
+//            ps.setString(5, tokens[5]);
+//            ps.setString(6, tokens[6]);
+                try {
+                    ps = con.prepareStatement("INSERT INTO producto (fabricante, nombreProducto, modelo, precio, tipoProducto, descripcion) VALUES (?,?,?,?,?,?)");
+                    for (int i = 1; i < tokens.length; i++) {
+                        if (i == 4) {
+                            ps.setFloat(i, Float.parseFloat(tokens[i]));
+                        } else {
+
+                            ps.setString(i, tokens[i]);
+                        }
+
+                    }
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+            }
+
+            case "CLIENTE_TIENDA": {
+                String[] arr = {"idCliente"};
+                
+                try {
+                    ps = con.prepareStatement("INSERT INTO producto (idCliente) VALUES (?)");
+                    for (int i = 1; i < tokens.length; i++) {
+                        System.out.println(tokens[i]);
+                        if (i == 4) {
+                            ps.setFloat(i, Float.parseFloat(tokens[i]));
+                        } else {
+
+                            ps.setString(i, tokens[i]);
+                        }
+
+                    }
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
+            case "CONTRATO": {/////////////////////////////
+                try {
+                    ps = con.prepareStatement("INSERT INTO contrato (Cuota, numCuenta, idCliente) VALUES (?,?,?)");
+                    for (int i = 1; i < tokens.length; i++) {
+                        ps.setInt(i, Integer.parseInt(tokens[i]));
+
+                    }
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
+            case "CATEGORIA": {
+
+                String[] arr = {"idProducto", "nombreCategoria"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+
+                break;
+            }
+            case "TIENE_EN_CARRITO": {
+                String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "CLIENTE_FRECUENTE": {
+                String[] arr = {"idCliente", "nombreCliente"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "CLIENTE_POCO_FRECUENTE": {
+                String[] arr = {"idCliente", "nombreCliente"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "DETALLE_FACTURA": {
+                String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "ALMACEN": {
+                String[] arr = {"codigoAlmacen", "ciudad"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "INVENTARIO": {
+                String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "ORDEN": {
+                String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "CLIENTE_VIRTUAL": {
+                String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "FACTURA": {
+                String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+            case "TIENDA": {
+                String[] arr = {"codigoTienda", "ubicacion"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                model.setNumRows(1);
+                break;
+            }
+        }
+
+//        try {
+//
+//            Connection con = conectarBase.getConexion();
+//
+//            PreparedStatement ps = con.prepareStatement("INSERT INTO cliente (idCliente, nombreCliente) VALUES (?,?)");
+//
+//            ps.setInt(1, id);
+//
+//            ps.setString(2, nombreCliente);
+//            String matricula = this.txt_Matricula.getText();
+//            String nombre = this.txt_nombre.getText();
+//            int edad = Integer.parseInt(txt_edad.getText());
+//            String email = txt_email.getText();
+//
+//            try {
+//                Connection con = conection.getConexion();
+//                PreparedStatement ps = con.prepareStatement("INSERT INTO alumnos (matricula, nombre, email, edad,activo) VALUES (?,?,?,?,?)");
+//                ps.setString(1, matricula);
+//                ps.setString(2, nombre);
+//                ps.setString(3, email);
+//                ps.setInt(4, edad);
+//                ps.setInt(5, 1);
+//                ps.executeUpdate();
+//                JOptionPane.showMessageDialog(null, "Registro guardado");
+//            } catch (HeadlessException | SQLException e) {
+//                JOptionPane.showMessageDialog(null, e);
+//            }
+
+    }//GEN-LAST:event_boton_crearMouseClicked
+
+    private void tabbed_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabbed_eliminarMouseClicked
+        // TODO add your handling code here:
+        tabla_crear.setModel(new DefaultTableModel());
+        tabla_crear.setEnabled(true);
+        tabla_modificar.setModel(new DefaultTableModel());
+        tabla_modificar.setEnabled(true);
+        tabla_eliminar.setModel(new DefaultTableModel());
+        tabla_eliminar.setEnabled(true);
+    }//GEN-LAST:event_tabbed_eliminarMouseClicked
     private void btn_cerrar_sesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesionMouseClicked
         Perfil_clientes_enLinea.dispose();
 
@@ -1325,6 +1729,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ServicioAlCliente.dispose();
     }//GEN-LAST:event_btn_regresar_servicioMouseClicked
 
+
     /**
      * @param args the command line arguments
      */
@@ -1339,16 +1744,21 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1368,6 +1778,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JDialog ServicioAlCliente;
     private javax.swing.JDialog administradores;
     private javax.swing.JButton anterior;
+    private javax.swing.JButton boton_cliente1;
+    private javax.swing.JButton boton_crear;
     private javax.swing.JButton anterior1;
     private javax.swing.JButton anterior2;
     private javax.swing.JButton boton_empleado;
@@ -1391,6 +1803,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_regresar4;
     private javax.swing.JButton btn_regresarCliente;
     private javax.swing.JButton btn_regresar_empleado;
+    private javax.swing.JComboBox<String> cb_crear;
     private javax.swing.JButton btn_regresar_loginAdmin;
     private javax.swing.JButton btn_regresar_servicio;
     private javax.swing.JButton btn_siguiente;
@@ -1409,12 +1822,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel fondo_servicioAlCliente;
     private javax.swing.JLabel hora_jbl;
     private javax.swing.JTextField id_login_cliente;
+
     private javax.swing.JTextField id_registrar_cliente;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
@@ -1517,6 +1930,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton siguiente1;
     private javax.swing.JButton siguiente2;
     private javax.swing.JTabbedPane tabbed_eliminar;
+    private javax.swing.JTable tabla_crear;
+    private javax.swing.JTable tabla_eliminar;
+    private javax.swing.JTable tabla_modificar;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo2;
     private javax.swing.JTextField txt_buscar;
@@ -1526,8 +1942,52 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField user_admin;
     private javax.swing.JTextField user_empleado;
     // End of variables declaration//GEN-END:variables
+    String[] arregloAtributos;
 
-    @Override
+    private boolean validarIngresoTable(JTable tabla, boolean guardar) {
+        DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
+        //super funcion secreta que me 4actualize el dqu
+        if (tabla_crear.isEditing()) {
+            tabla_crear.getCellEditor().stopCellEditing();
+        }
+        if (model.getRowCount() != 0) {
+            for (int i = 0; i < model.getColumnCount(); i++) {//se puede poner otro for para rows pero es feo pero asi soy feliz
+                if (model.getValueAt(model.getRowCount() - 1, i) == null) {
+                    if (guardar) {
+                        model.removeRow(model.getRowCount() - 1);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No puede dejar ningun campo vacio!");
+                        return false;
+                    }
+                }
+                if ((model.getValueAt(model.getRowCount() - 1, i).toString().length() > 80) && !model.getValueAt(model.getRowCount() - 1, i).toString().equals("ubicacion")) {
+                    JOptionPane.showMessageDialog(null, "En el campo \""
+                            + model.getValueAt(model.getRowCount() - 1, i).toString() + "\" se esta pasando de la longitud maxima"
+                            + " que es 80");
+                    model.setValueAt("", model.getRowCount() - 1, i);
+                    return false;
+                } else if ((model.getValueAt(model.getRowCount() - 1, i).toString().length() > 150) && model.getValueAt(model.getRowCount() - 1, i).toString().equals("ubicacion")) {
+                    JOptionPane.showMessageDialog(null, "En el campo \""
+                            + model.getValueAt(model.getRowCount() - 1, i).toString() + "\" se esta pasando de la longitud maxima"
+                            + " que es 150");
+                    model.setValueAt("", model.getRowCount() - 1, i);
+                }
+//                if ("int".equals()) {
+//                    try {
+//                        Integer.parseInt(model.getValueAt(model.getRowCount() - 1, i).toString());
+//                    } catch (NumberFormatException e) {
+//                        JOptionPane.showMessageDialog(null, "En el campo \""
+//                                + model.getValueAt(model.getRowCount() - 1, i).toString()
+//                                + "\" esta ingresando caracteres y solo se permiten enteros!");
+//                        return false;
+//                    }
+//                }
+            }
+        }
+        return true;
+
+    }
+
     public void run() {
         Thread current = Thread.currentThread();
         while (current == hilo) {

@@ -18,6 +18,8 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -149,7 +151,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_crear = new javax.swing.JTable();
         boton_crear = new javax.swing.JButton();
         btn_regresar4 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_crear = new javax.swing.JComboBox<>();
         jLabel34 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         panel_modificar = new javax.swing.JPanel();
@@ -164,7 +166,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jComboBox3 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_eliminar = new javax.swing.JTable();
-        jTable3 = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         btn_regresar2 = new javax.swing.JButton();
@@ -517,14 +518,18 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane1.setViewportView(tabla_crear);
 
-
         panel_crear.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 580, 220));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user.png"))); // NOI18N
-        jButton1.setToolTipText("");
-        jButton1.setContentAreaFilled(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user (1).png"))); // NOI18N
-        panel_crear.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 100, 70));
+        boton_crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user.png"))); // NOI18N
+        boton_crear.setToolTipText("");
+        boton_crear.setContentAreaFilled(false);
+        boton_crear.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user (1).png"))); // NOI18N
+        boton_crear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_crearMouseClicked(evt);
+            }
+        });
+        panel_crear.add(boton_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 100, 70));
 
         btn_regresar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
         btn_regresar4.setContentAreaFilled(false);
@@ -1139,6 +1144,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     private void btn_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adminMouseClicked
 
+        TextPrompt j1 = new TextPrompt("Username", user_admin);
+        TextPrompt j2 = new TextPrompt("Password", password_admin);
+        login_admin.pack();
+        login_admin.setModal(true);
+        login_admin.setLocationRelativeTo(null);
+        login_admin.setVisible(true);
 
         ////////////////////////
         tabla_crear.setModel(new DefaultTableModel());
@@ -1155,12 +1166,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         administradores.setLocationRelativeTo(null);
         administradores.setVisible(true);
 
-        TextPrompt j1 = new TextPrompt("Username", user_admin);
-        TextPrompt j2 = new TextPrompt("Password", password_admin);
-        login_admin.pack();
-        login_admin.setModal(true);
-        login_admin.setLocationRelativeTo(null);
-        login_admin.setVisible(true);
 
     }//GEN-LAST:event_btn_adminMouseClicked
 
@@ -1778,10 +1783,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JDialog ServicioAlCliente;
     private javax.swing.JDialog administradores;
     private javax.swing.JButton anterior;
-    private javax.swing.JButton boton_cliente1;
-    private javax.swing.JButton boton_crear;
     private javax.swing.JButton anterior1;
     private javax.swing.JButton anterior2;
+    private javax.swing.JButton boton_crear;
     private javax.swing.JButton boton_empleado;
     private javax.swing.JButton boton_salir;
     private javax.swing.JButton btn_admin;
@@ -1803,10 +1807,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_regresar4;
     private javax.swing.JButton btn_regresarCliente;
     private javax.swing.JButton btn_regresar_empleado;
-    private javax.swing.JComboBox<String> cb_crear;
     private javax.swing.JButton btn_regresar_loginAdmin;
     private javax.swing.JButton btn_regresar_servicio;
     private javax.swing.JButton btn_siguiente;
+    private javax.swing.JComboBox<String> cb_crear;
     private javax.swing.JDialog centrode_llamadas;
     private javax.swing.JDialog cliente_en_linea;
     private javax.swing.JComboBox<String> cmb_tipoCliente;
@@ -1822,9 +1826,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel fondo_servicioAlCliente;
     private javax.swing.JLabel hora_jbl;
     private javax.swing.JTextField id_login_cliente;
-
     private javax.swing.JTextField id_registrar_cliente;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
@@ -1905,9 +1907,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;

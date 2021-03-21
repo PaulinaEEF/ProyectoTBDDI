@@ -293,7 +293,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         });
         panel_crear.add(btn_regresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 100, 40));
 
-        cb_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
         cb_crear.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_crearItemStateChanged(evt);
@@ -511,35 +511,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_anteriorActionPerformed
 
     private void btn_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adminMouseClicked
-        String guardar = "123|a|b|c|34.8|d|e|";
-        String[] tokens = guardar.split("|");
-        Connection con = conectarBase.getConexion();
-        PreparedStatement ps;
-        try {
-
-            ps = con.prepareStatement("INSERT INTO dbo.producto (fabricante, nombreProducto, modelo, precio, tipoProducto, descripcion) VALUES (?,?,?,?,?,?)");
-            //ps.setInt(1, Integer.parseInt(tokens[0]));
-            ps.setString(1, tokens[1]);
-            ps.setString(2, tokens[2]);
-            ps.setString(3, tokens[3]);
-            ps.setFloat(4, Float.parseFloat(tokens[4]));
-            ps.setString(5, tokens[5]);
-            ps.setString(6, tokens[6]);
-            System.out.println("544");
-//            for (int i = 1; i < tokens.length; i++) {
-//                System.out.println(tokens[i - 1]);
-//                if (i == 4) {
-//                    ps.setFloat(i, Float.parseFloat(tokens[i - 2]));
-//                } else {
-//
-//                    ps.setString(i, tokens[i - 2]);
-//                }
-//
-//            }
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         ////////////////////////
         tabla_crear.setModel(new DefaultTableModel());
@@ -580,7 +551,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
             switch (contenido) {
                 case "PRODUCTO": {
-                    String[] arr = {"idProducto", "nombreProducto", "fabricante", "descripcion", "tipoProducto", "precio", "modelo"};
+                    String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -599,7 +570,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "CONTRATO": {
-                    String[] arr = {"Cuota", "numCuenta", "idCliente"};
+                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -726,33 +697,34 @@ public class principal extends javax.swing.JFrame implements Runnable {
             model.addRow((Object[]) k);
         }
         tabla_crear.setEnabled(false);
+        Connection con = conectarBase.getConexion();
+
+        String guardar = "";
+        for (int j = 0; j < model.getColumnCount(); j++) {
+            guardar += model.getValueAt(0, j).toString() + "%";
+        }
+
+        String[] tokens = guardar.split("%");
+        PreparedStatement ps;
 
         switch ((String) cb_crear.getSelectedItem()) {
             case "PRODUCTO": {
-                Connection con = conectarBase.getConexion();
 
-                String guardar = "";
-
-                System.out.println(model.getColumnCount() + " cuantas");
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                    guardar += model.getValueAt(0, j).toString() + "|";
-                    System.out.println(guardar);
-                }
-
-                String[] tokens = guardar.split("|");
-
-                PreparedStatement ps;
-                try {
-
-                    ps = con.prepareStatement("INSERT INTO producto (fabricante, nombreProducto, modelo, precio, tipoProducto, descripcion) VALUES (?,?,?,?,?,?)");
                     //ps.setInt(1, Integer.parseInt(tokens[0]));
+//            ps.setString(1, tokens[1]);
+//            ps.setString(2, tokens[2]);
+//            ps.setString(3, tokens[3]);
+//            ps.setFloat(4, Float.parseFloat(tokens[4]));
+//            ps.setString(5, tokens[5]);
+//            ps.setString(6, tokens[6]);
+                try {
+                    ps = con.prepareStatement("INSERT INTO producto (fabricante, nombreProducto, modelo, precio, tipoProducto, descripcion) VALUES (?,?,?,?,?,?)");
                     for (int i = 1; i < tokens.length; i++) {
-                        System.out.println(tokens[i - 1]);
                         if (i == 4) {
-                            ps.setFloat(i, Float.parseFloat(tokens[i - 2]));
+                            ps.setFloat(i, Float.parseFloat(tokens[i]));
                         } else {
 
-                            ps.setString(i, tokens[i - 2]);
+                            ps.setString(i, tokens[i]);
                         }
 
                     }
@@ -766,20 +738,36 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
             case "CLIENTE_TIENDA": {
                 String[] arr = {"idCliente"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+                
+                try {
+                    ps = con.prepareStatement("INSERT INTO producto (idCliente) VALUES (?)");
+                    for (int i = 1; i < tokens.length; i++) {
+                        System.out.println(tokens[i]);
+                        if (i == 4) {
+                            ps.setFloat(i, Float.parseFloat(tokens[i]));
+                        } else {
+
+                            ps.setString(i, tokens[i]);
+                        }
+
+                    }
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
                 break;
             }
-            case "CONTRATO": {
-                String[] arr = {"Cuota", "numCuenta", "idCliente"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+            case "CONTRATO": {/////////////////////////////
+                try {
+                    ps = con.prepareStatement("INSERT INTO contrato (Cuota, numCuenta, idCliente) VALUES (?,?,?)");
+                    for (int i = 1; i < tokens.length; i++) {
+                        ps.setInt(i, Integer.parseInt(tokens[i]));
+
+                    }
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
                 break;
             }
             case "CATEGORIA": {

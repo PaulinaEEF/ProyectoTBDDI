@@ -164,7 +164,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel33 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         panel_eliminar = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cb_eliminar = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_eliminar = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
@@ -519,7 +519,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane1.setViewportView(tabla_crear);
 
-        panel_crear.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 580, 220));
+        panel_crear.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 580, 220));
 
         boton_crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-user.png"))); // NOI18N
         boton_crear.setToolTipText("");
@@ -542,13 +542,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
         });
         panel_crear.add(btn_regresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 100, 70));
 
-        cb_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_crear.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        cb_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una tabla", "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
         cb_crear.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_crearItemStateChanged(evt);
             }
         });
-        panel_crear.add(cb_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
+        panel_crear.add(cb_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 30));
 
         jLabel34.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -564,13 +565,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         panel_modificar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cb_modificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_modificar.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        cb_modificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA TABLA", "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
         cb_modificar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_modificarItemStateChanged(evt);
             }
         });
-        panel_modificar.add(cb_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 20));
+        panel_modificar.add(cb_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 180, 30));
 
         tabla_modificar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -585,12 +587,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane2.setViewportView(tabla_modificar);
 
-        panel_modificar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 610, 260));
+        panel_modificar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 610, 260));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order (1).png"))); // NOI18N
-        panel_modificar.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 100, 70));
+        panel_modificar.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, 70));
 
         btn_regresar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
         btn_regresar3.setContentAreaFilled(false);
@@ -610,14 +612,20 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel35.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("Modificar");
-        panel_modificar.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, -1, -1));
+        panel_modificar.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, -1, -1));
 
         tabbed_eliminar.addTab("Modificar", panel_modificar);
 
         panel_eliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
-        panel_eliminar.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 90, 30));
+        cb_eliminar.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        cb_eliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA TABLA", "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_eliminar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_eliminarItemStateChanged(evt);
+            }
+        });
+        panel_eliminar.add(cb_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 180, 30));
 
         tabla_eliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -632,17 +640,17 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane3.setViewportView(tabla_eliminar);
 
-        panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 610, 260));
+        panel_eliminar.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 610, 260));
 
         jLabel31.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Eliminar");
-        panel_eliminar.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 90, -1));
+        panel_eliminar.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 90, -1));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x.png"))); // NOI18N
         jButton5.setContentAreaFilled(false);
         jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x (1).png"))); // NOI18N
-        panel_eliminar.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 90, 70));
+        panel_eliminar.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 90, 70));
 
         btn_regresar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
         btn_regresar2.setContentAreaFilled(false);
@@ -1192,7 +1200,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
         tabla_crear.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
-        flagAddRow=true;
+        flagAddRow = true;
         llenarTabla(model, cb_crear);
 
     }//GEN-LAST:event_cb_crearItemStateChanged
@@ -1219,7 +1227,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         switch ((String) cb_crear.getSelectedItem()) {
             case "PRODUCTO": {
 
-                    //ps.setInt(1, Integer.parseInt(tokens[0]));
+                //ps.setInt(1, Integer.parseInt(tokens[0]));
 //            ps.setString(1, tokens[1]);
 //            ps.setString(2, tokens[2]);
 //            ps.setString(3, tokens[3]);
@@ -1247,7 +1255,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
             case "CLIENTE_TIENDA": {
                 String[] arr = {"idCliente"};
-                
+
                 try {
                     ps = con.prepareStatement("INSERT INTO producto (idCliente) VALUES (?)");
                     for (int i = 1; i < tokens.length; i++) {
@@ -1420,12 +1428,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_modificar.setEnabled(true);
         tabla_eliminar.setModel(new DefaultTableModel());
         tabla_eliminar.setEnabled(true);
-        
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_tabbed_eliminarMouseClicked
     private void btn_cerrar_sesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesionMouseClicked
         Perfil_clientes_enLinea.dispose();
@@ -1613,14 +1617,25 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_modificar.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) tabla_modificar.getModel();
         llenarTabla(model, cb_modificar);
-        
+
         try {
-            mostrarDatosT(model,cb_modificar);
+            mostrarDatosT(model, cb_modificar);
         } catch (SQLException ex) {
             Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cb_modificarItemStateChanged
 
+    private void cb_eliminarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_eliminarItemStateChanged
+        tabla_eliminar.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_eliminar.getModel();
+        llenarTabla(model, cb_eliminar);
+
+        try {
+            mostrarDatosE(model, cb_eliminar);
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cb_eliminarItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1698,6 +1713,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_regresar_servicio;
     private javax.swing.JButton btn_siguiente;
     private javax.swing.JComboBox<String> cb_crear;
+    private javax.swing.JComboBox<String> cb_eliminar;
     private javax.swing.JComboBox<String> cb_modificar;
     private javax.swing.JDialog centrode_llamadas;
     private javax.swing.JDialog cliente_en_linea;
@@ -1718,7 +1734,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1831,152 +1846,348 @@ public class principal extends javax.swing.JFrame implements Runnable {
     String[] arregloAtributos;
     boolean flagAddRow = false;
 
-    private void mostrarDatosT(DefaultTableModel model, JComboBox cb_elegido) throws SQLException{
+    private void mostrarDatosT(DefaultTableModel model, JComboBox cb_elegido) throws SQLException {
         if (cb_elegido.getSelectedItem() != null) {
             String contenido = (String) cb_elegido.getSelectedItem();
 
             switch (contenido) {
                 case "PRODUCTO": {
-                                      
-                    
+
                     Connection con = conectarBase.getConexion();
                     String query = "SELECT * FROM producto";
                     Statement st = con.createStatement();
-                    ResultSet rs =st.executeQuery(query);
-                    while(rs.next()){
-                        Object[] row = {rs.getInt("idProducto"),rs.getString("fabricante"),rs.getString("nombreProducto"),rs.getString("modelo"),rs.getFloat("precio"),rs.getString("tipoProducto"),rs.getString("descripcion")};
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idProducto"), rs.getString("fabricante"), rs.getString("nombreProducto"), rs.getString("modelo"), rs.getFloat("precio"), rs.getString("tipoProducto"), rs.getString("descripcion")};
                         model.addRow(row);
                     }
-                    
+
                     break;
                 }
 
                 case "CLIENTE_TIENDA": {
-                    String[] arr = {"idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_tienda";
+
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
+
                     break;
                 }
                 case "CONTRATO": {
-                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM contrato";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("numCuenta"), rs.getInt("cuota"), rs.getInt("idCliente")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CATEGORIA": {
 
-                    String[] arr = {"idProducto", "nombreCategoria"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM categoria";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idProducto"), rs.getString("nombreCategoria")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
 
                     break;
                 }
                 case "TIENE_EN_CARRITO": {
-                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM tiene_en_carrito";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getString("nombreUsuario"), rs.getInt("idProducto"), rs.getInt("cantidadProductoCarrito")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_frecuente";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_POCO_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_poco_frecuente";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "DETALLE_FACTURA": {
-                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM detalle_factura";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("noFactura"), rs.getInt("idProducto"), rs.getInt("cantidadProducto"), rs.getFloat("ISV")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "ALMACEN": {
-                    String[] arr = {"codigoAlmacen", "ciudad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM almacen";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("codigoAlmacen"), rs.getString("ciudad")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "INVENTARIO": {
-                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM inventario";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "ORDEN": {
-                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM orden";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("noOrden"), rs.getInt("idCliente"), rs.getString("nombreRemitente"), rs.getString("empresaEnvio"), rs.getString("direccionEnvio"), rs.getInt("noSeguimiento")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_VIRTUAL": {
-                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_virtual";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "FACTURA": {
-                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM factura";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("noFactura"), rs.getInt("codigoTienda"), rs.getString("direccion"), rs.getString("rtn"), rs.getString("fechaEmision"), rs.getInt("idCliente")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "TIENDA": {
-                    String[] arr = {"codigoTienda", "ubicacion"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM tienda";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("codigoTienda"), rs.getString("ubicacion")};
+                        model.addRow(row);
                     }
-                    model.setNumRows(1);
                     break;
                 }
             }
 
         }
     }
-    
-    
-    private void llenarTabla(DefaultTableModel model, JComboBox cb_elegido){
+    private void mostrarDatosE(DefaultTableModel model, JComboBox cb_elegido) throws SQLException {
+        if (cb_elegido.getSelectedItem() != null) {
+            String contenido = (String) cb_elegido.getSelectedItem();
+
+            switch (contenido) {
+                case "PRODUCTO": {
+
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM producto";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idProducto"), rs.getString("fabricante"), rs.getString("nombreProducto"), rs.getString("modelo"), rs.getFloat("precio"), rs.getString("tipoProducto"), rs.getString("descripcion")};
+                        model.addRow(row);
+                    }
+
+                    break;
+                }
+
+                case "CLIENTE_TIENDA": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_tienda";
+
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente")};
+                        model.addRow(row);
+                    }
+
+                    break;
+                }
+                case "CONTRATO": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM contrato";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("numCuenta"), rs.getInt("cuota"), rs.getInt("idCliente")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "CATEGORIA": {
+
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM categoria";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idProducto"), rs.getString("nombreCategoria")};
+                        model.addRow(row);
+                    }
+
+                    break;
+                }
+                case "TIENE_EN_CARRITO": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM tiene_en_carrito";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getString("nombreUsuario"), rs.getInt("idProducto"), rs.getInt("cantidadProductoCarrito")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "CLIENTE_FRECUENTE": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_frecuente";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "CLIENTE_POCO_FRECUENTE": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_poco_frecuente";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "DETALLE_FACTURA": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM detalle_factura";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("noFactura"), rs.getInt("idProducto"), rs.getInt("cantidadProducto"), rs.getFloat("ISV")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "ALMACEN": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM almacen";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("codigoAlmacen"), rs.getString("ciudad")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "INVENTARIO": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM inventario";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "ORDEN": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM orden";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("noOrden"), rs.getInt("idCliente"), rs.getString("nombreRemitente"), rs.getString("empresaEnvio"), rs.getString("direccionEnvio"), rs.getInt("noSeguimiento")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "CLIENTE_VIRTUAL": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente_virtual";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "FACTURA": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM factura";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("noFactura"), rs.getInt("codigoTienda"), rs.getString("direccion"), rs.getString("rtn"), rs.getString("fechaEmision"), rs.getInt("idCliente")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+                case "TIENDA": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM tienda";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("codigoTienda"), rs.getString("ubicacion")};
+                        model.addRow(row);
+                    }
+                    break;
+                }
+            }
+
+        }
+    }
+
+    private void llenarTabla(DefaultTableModel model, JComboBox cb_elegido) {
         if (cb_elegido.getSelectedItem() != null) {
             String contenido = (String) cb_elegido.getSelectedItem();
 
@@ -1987,9 +2198,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    if(flagAddRow){
+                    if (flagAddRow) {
                         model.setNumRows(1);
-                        
+
                     }
                     break;
                 }
@@ -2117,8 +2328,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         }
     }
-    
-    
+
     private boolean validarIngresoTable(JTable tabla, boolean guardar) {
         DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
         //super funcion secreta que me 4actualize el dqu

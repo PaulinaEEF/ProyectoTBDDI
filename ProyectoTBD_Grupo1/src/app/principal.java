@@ -18,8 +18,11 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.management.modelmbean.ModelMBean;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -159,7 +162,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         cb_modificar = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_modificar = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        btn_modificar_sql = new javax.swing.JButton();
         btn_regresar3 = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -589,10 +592,15 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         panel_modificar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 610, 260));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order.png"))); // NOI18N
-        jButton3.setContentAreaFilled(false);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order (1).png"))); // NOI18N
-        panel_modificar.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, 70));
+        btn_modificar_sql.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order.png"))); // NOI18N
+        btn_modificar_sql.setContentAreaFilled(false);
+        btn_modificar_sql.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/order (1).png"))); // NOI18N
+        btn_modificar_sql.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_modificar_sqlMouseClicked(evt);
+            }
+        });
+        panel_modificar.add(btn_modificar_sql, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, 70));
 
         btn_regresar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
         btn_regresar3.setContentAreaFilled(false);
@@ -1637,6 +1645,79 @@ public class principal extends javax.swing.JFrame implements Runnable {
         }
     }//GEN-LAST:event_cb_eliminarItemStateChanged
 
+    private void btn_modificar_sqlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_modificar_sqlMouseClicked
+        // el index del combo inicia en 0
+        switch (cb_modificar.getSelectedIndex()) {
+            case 1:
+                DefaultTableModel model = (DefaultTableModel) tabla_modificar.getModel();
+
+                model.addTableModelListener(new TableModelListener() {
+                    @Override
+                    public void tableChanged(TableModelEvent e) {
+                        if (e.getType() == TableModelEvent.UPDATE) {
+                            String colName = null;
+                            switch (e.getColumn()) {
+                                case 1:
+                                    colName = "fabricante";
+                                    break;
+
+                                case 2:
+                                    colName = "nombreProducto";
+                                    break;
+
+                                case 3:
+                                    colName = "modelo";
+                                    break;
+
+                                case 4:
+                                    colName = "precio";
+                                    break;
+
+                                case 5:
+                                    colName = "tipoProducto";
+                                    break;
+
+                                case 6:
+                                    colName = "descripcion";
+                                    break;
+
+                                default:
+                                    throw new AssertionError();
+                            }
+
+                            String sql = "UPDATE producto set" + colName + "=" + model.getValueAt(e.getFirstRow(), e.getColumn()) + "'WHERE idProducto=" + model.getValueAt(e.getFirstRow(), 0);
+                            Connection con = conectarBase.getConexion();
+                            PreparedStatement pst;
+
+                            try {
+                                pst = con.prepareStatement(sql);
+                                pst.executeUpdate();
+                                JOptionPane.showMessageDialog(null, "editado");
+                            } catch (Exception ex) {
+
+                            }
+
+                        }
+
+                    }
+                });
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+        }
+    }//GEN-LAST:event_btn_modificar_sqlMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1703,6 +1784,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_ingresarCliente;
     private javax.swing.JButton btn_ingresar_admin;
     private javax.swing.JButton btn_login_empleado;
+    private javax.swing.JButton btn_modificar_sql;
     private javax.swing.JButton btn_regresar;
     private javax.swing.JButton btn_regresar2;
     private javax.swing.JButton btn_regresar3;
@@ -1732,7 +1814,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField id_login_cliente;
     private javax.swing.JTextField id_registrar_cliente;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2016,6 +2097,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         }
     }
+
     private void mostrarDatosE(DefaultTableModel model, JComboBox cb_elegido) throws SQLException {
         if (cb_elegido.getSelectedItem() != null) {
             String contenido = (String) cb_elegido.getSelectedItem();

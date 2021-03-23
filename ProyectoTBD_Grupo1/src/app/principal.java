@@ -1180,14 +1180,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         ////////////////////////
         tabla_crear.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
-        String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
-        for (int j = 0; j < arr.length; j++) {
-            model.addColumn(arr[j]);
-        }
-        model.setNumRows(1);
 
-        arregloAtributos = arr;
         administradores.pack();
         administradores.setModal(true);
         administradores.setLocationRelativeTo(null);
@@ -1266,22 +1259,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
                 break;
             }
-
-            case "CLIENTE_TIENDA": {
-                String[] arr = {"idCliente"};
-
+            case "CLIENTE": {/////////////////////////////
                 try {
-                    ps = con.prepareStatement("INSERT INTO producto (idCliente) VALUES (?)");
-                    for (int i = 1; i < tokens.length; i++) {
-                        System.out.println(tokens[i]);
-                        if (i == 4) {
-                            ps.setFloat(i, Float.parseFloat(tokens[i]));
-                        } else {
-
-                            ps.setString(i, tokens[i]);
-                        }
-
-                    }
+                    ps = con.prepareStatement("INSERT INTO cliente (nombreCliente) VALUES (?)");
+                    ps.setString(1, tokens[0]);
                     ps.executeUpdate();
                 } catch (SQLException ex) {
                     Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1289,45 +1270,146 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 break;
             }
             case "CONTRATO": {/////////////////////////////
-                try {
-                    ps = con.prepareStatement("INSERT INTO contrato (Cuota, numCuenta, idCliente) VALUES (?,?,?)");
-                    for (int i = 1; i < tokens.length; i++) {
-                        ps.setInt(i, Integer.parseInt(tokens[i]));
 
+                String acum = "";
+                String query = "SELECT * FROM cliente";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idCliente") + " ";
                     }
-                    ps.executeUpdate();
                 } catch (SQLException ex) {
                     Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                if (acum.contains(tokens[1])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO contrato (cuota, idCliente) VALUES (?,?)");
+                        for (int i = 1; i < tokens.length; i++) {
+                            ps.setInt(i, Integer.parseInt(tokens[i]));
+
+                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un cliente con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
+
             case "CATEGORIA": {
 
-                String[] arr = {"idProducto", "nombreCategoria"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+                String acum = "";
+                String query = "SELECT * FROM producto";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idProducto") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                if (acum.contains(tokens[0])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO categoria (idProducto, nombreCategoria) VALUES (?,?)");
+                        ps.setInt(1, Integer.parseInt(tokens[0]));
+                        ps.setString(2, tokens[1]);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un producto con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
-            case "TIENE_EN_CARRITO": {
-                String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+            case "TIENE_EN_CARRITO": {/////////
+                String acum = "";
+                String query = "SELECT * FROM producto";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idProducto") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                if (acum.contains(tokens[1])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO tiene_en_carrito (nombreUsuario, idProducto, cantidadProductoCarrito) VALUES (?,?,?)");
+                        ps.setString(1, tokens[0]);
+                        ps.setInt(2, Integer.parseInt(tokens[1]));
+                        ps.setString(3, tokens[2]);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un producto con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
             case "CLIENTE_FRECUENTE": {
-                String[] arr = {"idCliente", "nombreCliente"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+                String acum = "";
+                String acumCon = "";
+                String query = "SELECT * FROM cliente";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idCliente") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                String queryCon = "SELECT * FROM contrato";
+                Statement stCon;
+                try {
+                    stCon = con.createStatement();
+                    ResultSet rs = stCon.executeQuery(queryCon);
+                    while (rs.next()) {
+                        acumCon += rs.getInt("numCuenta") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (acum.contains(tokens[0]) && acumCon.contains(tokens[2])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO cliente_frecuente (idCliente, nombreCliente, numCuenta) VALUES (?,?,?)");
+                        ps.setInt(1, Integer.parseInt(tokens[0]));
+                        ps.setString(2, tokens[1]);
+                        ps.setInt(3, Integer.parseInt(tokens[2]));
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un producto o cliente con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
             case "CLIENTE_POCO_FRECUENTE": {
@@ -1339,70 +1421,249 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 model.setNumRows(1);
                 break;
             }
-            case "DETALLE_FACTURA": {
-                String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+            case "DETALLE_FACTURA": {/////////////////////////////////////////////////////////////
+                String acum = "";
+                String acumCon = "";
+                String query = "SELECT * FROM factura";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("noFactura") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                String queryCon = "SELECT * FROM producto";
+                Statement stCon;
+                try {
+                    stCon = con.createStatement();
+                    ResultSet rs = stCon.executeQuery(queryCon);
+                    while (rs.next()) {
+                        acumCon += rs.getInt("idProducto") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (acum.contains(tokens[0]) && acumCon.contains(tokens[1])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO detalle_factura (noFactura, idProducto, cantidadProducto, ISV) VALUES (?,?,?,?)");
+                        ps.setInt(1, Integer.parseInt(tokens[0]));
+                        ps.setInt(2, Integer.parseInt(tokens[1]));
+                        ps.setInt(3, Integer.parseInt(tokens[2]));
+                        ps.setFloat(4, Float.parseFloat(tokens[3]));
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un producto o factura con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
-            case "ALMACEN": {
-                String[] arr = {"codigoAlmacen", "ciudad"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+            case "ALMACEN": {//*******************************/////////////////////////////////////////////////
+                try {
+                    ps = con.prepareStatement("INSERT INTO almacen (ciudad) VALUES (?)");
+                    ps.setString(1, tokens[0]);
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
                 break;
             }
-            case "INVENTARIO": {
-                String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+            case "INVENTARIO": {//////////////////////////////////////////////////////////////////
+                String acum = "";
+                String acumCon = "";
+                String query = "SELECT * FROM almacen";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("codigoAlmacen") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                String acumTien = "";
+                String query3 = "SELECT * FROM tienda";
+                Statement sta;
+                try {
+                    sta = con.createStatement();
+                    ResultSet rs = sta.executeQuery(query3);
+                    while (rs.next()) {
+                        acumTien += rs.getInt("codigoTienda") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String queryCon = "SELECT * FROM producto";
+                Statement stCon;
+                try {
+                    stCon = con.createStatement();
+                    ResultSet rs = stCon.executeQuery(queryCon);
+                    while (rs.next()) {
+                        acumCon += rs.getInt("idProducto") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (acum.contains(tokens[0]) && acumCon.contains(tokens[2]) && acumTien.contains(tokens[1])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO inventario (codigoAlmacen, codigoTienda, idProducto,cantidadInventario) VALUES (?,?,?,?)");
+                        for (int i = 1; i < 5; i++) {
+                            ps.setInt(i, Integer.parseInt(tokens[i - 1]));
+
+                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un producto, almacen o tienda con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
-            case "ORDEN": {
-                String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+            case "ORDEN": {//************
+                String acum = "";
+                String query = "SELECT * FROM cliente";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idCliente") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                if (acum.contains(tokens[1])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO orden (idCliente,nombreRemitente, empresaEnvio, direccionEnvio, noSeguimiento) VALUES (?,?,?,?,?)");
+                        ps.setInt(1, Integer.parseInt(tokens[1]));
+                        ps.setString(2, tokens[2]);
+                        ps.setString(3, tokens[3]);
+                        ps.setString(4, tokens[4]);
+                        ps.setInt(5, Integer.parseInt(tokens[5]));
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un cliente con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
-            case "CLIENTE_VIRTUAL": {
-                String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+            case "CLIENTE_VIRTUAL": {///////////////////////////////
+                String acum = "";
+                String query = "SELECT * FROM cliente";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idCliente") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                if (acum.contains(tokens[0])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO cliente_virtual (idCliente,direccionFacturacion, nombreUsuario, password, numeroTarjeta, tarjetahabiente, mesVencimiento, yearVencimiento, codigoSeguridad) VALUES (?,?,?,?,?,?,?,?,?)");
+                        for (int i = 1; i <= tokens.length; i++) {
+                            if (i == 5 || i == 1) {
+                                ps.setInt(i, Integer.parseInt(tokens[i - 1]));
+                            } else {
+                                ps.setString(i, tokens[i - 1]);
+
+                            }
+                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un cliente con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
             case "FACTURA": {
-                String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+                String acum = "";
+                String acumCon = "";
+                String query = "SELECT * FROM tienda";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("codigoTienda") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                String queryCon = "SELECT * FROM cliente";
+                Statement stCon;
+                try {
+                    stCon = con.createStatement();
+                    ResultSet rs = stCon.executeQuery(queryCon);
+                    while (rs.next()) {
+                        acumCon += rs.getInt("idCliente") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                if (acum.contains(tokens[1]) && acumCon.contains(tokens[5])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO factura (codigoTienda, direccion, rtn, fechaEmision, idCliente) VALUES (?,?,?,?,?)");
+                        ps.setInt(1, Integer.parseInt(tokens[1]));
+                        ps.setString(2, tokens[2]);
+                        ps.setString(3, tokens[3]);
+                        ps.setString(4, tokens[4]);
+                        ps.setInt(5, Integer.parseInt(tokens[5]));
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un tienda o cliente con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                }
                 break;
             }
             case "TIENDA": {
-                String[] arr = {"codigoTienda", "ubicacion"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+                try {
+                    ps = con.prepareStatement("INSERT INTO tienda (ubicacion) VALUES (?)");
+                    ps.setString(1, tokens[1]);
+
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
                 break;
             }
         }
+        JOptionPane.showMessageDialog(null, "Dato insertado correctamente");
 
 //        try {
 //
@@ -1441,9 +1702,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_modificar.setModel(new DefaultTableModel());
         tabla_modificar.setEnabled(true);
         tabla_eliminar.setModel(new DefaultTableModel());
-        
-        //tabla_eliminar.getCellEditor().cancelCellEditing();
 
+        //tabla_eliminar.getCellEditor().cancelCellEditing();
 
     }//GEN-LAST:event_tabbed_eliminarMouseClicked
     private void btn_cerrar_sesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesionMouseClicked
@@ -1631,6 +1891,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
         tabla_modificar.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) tabla_modificar.getModel();
+        flagAddRow = false;
         llenarTabla(model, cb_modificar);
 
         try {
@@ -1643,6 +1904,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private void cb_eliminarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_eliminarItemStateChanged
         tabla_eliminar.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) tabla_eliminar.getModel();
+        flagAddRow = false;
         llenarTabla(model, cb_eliminar);
 
         try {
@@ -2005,7 +2267,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
             tabla_eliminar.setModel(new DefaultTableModel());
             JOptionPane.showMessageDialog(null, "Eliminación realizada");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
 
@@ -2568,7 +2830,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
             switch (contenido) {
                 case "PRODUCTO": {
-                    String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+                    String[] arr = {"fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -2580,8 +2842,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
 
-                case "CLIENTE_TIENDA": {
-                    String[] arr = {"idCliente"};
+                case "CLIENTE": {
+                    String[] arr = {"nombreCliente"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -2590,7 +2852,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "CONTRATO": {
-                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
+                    String[] arr = {"Cuota", "idCliente"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -2619,7 +2881,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "CLIENTE_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
+                    String[] arr = {"idCliente", "nombreCliente", "numCuenta"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -2646,7 +2908,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "ALMACEN": {
-                    String[] arr = {"codigoAlmacen", "ciudad"};
+                    String[] arr = {"ciudad"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -2664,7 +2926,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "ORDEN": {
-                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    String[] arr = {"idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -2682,7 +2944,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "FACTURA": {
-                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    String[] arr = {"codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
@@ -2691,7 +2953,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "TIENDA": {
-                    String[] arr = {"codigoTienda", "ubicacion"};
+                    String[] arr = {"ubicacion"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);

@@ -171,7 +171,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_eliminar = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        btn_eliminar_sql = new javax.swing.JButton();
         btn_regresar2 = new javax.swing.JButton();
         jLabel32 = new javax.swing.JLabel();
         fondo_admiistradores = new javax.swing.JLabel();
@@ -655,10 +655,15 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel31.setText("Eliminar");
         panel_eliminar.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 90, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x.png"))); // NOI18N
-        jButton5.setContentAreaFilled(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x (1).png"))); // NOI18N
-        panel_eliminar.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 90, 70));
+        btn_eliminar_sql.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x.png"))); // NOI18N
+        btn_eliminar_sql.setContentAreaFilled(false);
+        btn_eliminar_sql.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-x (1).png"))); // NOI18N
+        btn_eliminar_sql.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_eliminar_sqlMouseClicked(evt);
+            }
+        });
+        panel_eliminar.add(btn_eliminar_sql, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 90, 70));
 
         btn_regresar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reply-message.png"))); // NOI18N
         btn_regresar2.setContentAreaFilled(false);
@@ -1168,10 +1173,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         TextPrompt j1 = new TextPrompt("Username", user_admin);
         TextPrompt j2 = new TextPrompt("Password", password_admin);
-        login_admin.pack();
-        login_admin.setModal(true);
-        login_admin.setLocationRelativeTo(null);
-        login_admin.setVisible(true);
+//        login_admin.pack();
+//        login_admin.setModal(true);
+//        login_admin.setLocationRelativeTo(null);
+//        login_admin.setVisible(true);
 
         ////////////////////////
         tabla_crear.setModel(new DefaultTableModel());
@@ -1196,7 +1201,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btn_regresar2MouseClicked
 
     private void btn_regresar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar3MouseClicked
-        administradores.dispose();
+        //administradores.dispose();
+        administradores.setVisible(false);
     }//GEN-LAST:event_btn_regresar3MouseClicked
 
     private void btn_regresar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresar4MouseClicked
@@ -1435,7 +1441,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_modificar.setModel(new DefaultTableModel());
         tabla_modificar.setEnabled(true);
         tabla_eliminar.setModel(new DefaultTableModel());
-        tabla_eliminar.setEnabled(true);
+        
+        //tabla_eliminar.getCellEditor().cancelCellEditing();
 
 
     }//GEN-LAST:event_tabbed_eliminarMouseClicked
@@ -1647,76 +1654,362 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     private void btn_modificar_sqlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_modificar_sqlMouseClicked
         // el index del combo inicia en 0
-        switch (cb_modificar.getSelectedIndex()) {
-            case 1:
-                DefaultTableModel model = (DefaultTableModel) tabla_modificar.getModel();
 
-                model.addTableModelListener(new TableModelListener() {
-                    @Override
-                    public void tableChanged(TableModelEvent e) {
-                        if (e.getType() == TableModelEvent.UPDATE) {
-                            String colName = null;
-                            switch (e.getColumn()) {
-                                case 1:
-                                    colName = "fabricante";
-                                    break;
+        if (tabla_modificar.getSelectedRowCount() != 0 && cb_modificar.getSelectedIndex() != 0) {
+            DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
+            int row = tabla_modificar.getSelectedRow();
+            String fila = "";
+            for (int i = 0; i < tabla_modificar.getColumnCount(); i++) {
+                fila += tabla_modificar.getModel().getValueAt(row, i).toString() + "%";
+            }
 
-                                case 2:
-                                    colName = "nombreProducto";
-                                    break;
+            //switch (cb_modificar.getSelectedIndex()) {
+            String[] tokens = fila.split("%");
+            PreparedStatement ps;
+            Connection con = conectarBase.getConexion();
+            String query = "";
 
-                                case 3:
-                                    colName = "modelo";
-                                    break;
-
-                                case 4:
-                                    colName = "precio";
-                                    break;
-
-                                case 5:
-                                    colName = "tipoProducto";
-                                    break;
-
-                                case 6:
-                                    colName = "descripcion";
-                                    break;
-
-                                default:
-                                    throw new AssertionError();
-                            }
-
-                            String sql = "UPDATE producto set" + colName + "=" + model.getValueAt(e.getFirstRow(), e.getColumn()) + "'WHERE idProducto=" + model.getValueAt(e.getFirstRow(), 0);
-                            Connection con = conectarBase.getConexion();
-                            PreparedStatement pst;
-
-                            try {
-                                pst = con.prepareStatement(sql);
-                                pst.executeUpdate();
-                                JOptionPane.showMessageDialog(null, "editado");
-                            } catch (Exception ex) {
-
+            switch ((String) cb_modificar.getSelectedItem()) {
+                case "PRODUCTO": {
+                    try {
+                        query = "UPDATE producto SET fabricante=?, nombreProducto=?, modelo=?, precio=?, tipoProducto=?, descripcion=? WHERE idProducto=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        for (int i = 1; i < tokens.length; i++) {
+                            if (i == 4) {
+                                ps.setFloat(i, Float.parseFloat(tokens[i]));
+                            } else {
+                                ps.setString(i, tokens[i]);
                             }
 
                         }
-
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                });
 
-                break;
+                    break;
+                }
 
-            case 2:
+                case "CLIENTE_TIENDA": {
+                    String[] arr = {"idCliente"};
 
-                break;
+                    try {
+                        ps = con.prepareStatement("INSERT INTO producto (idCliente) VALUES (?)");
+                        for (int i = 1; i < tokens.length; i++) {
+                            System.out.println(tokens[i]);
+                            if (i == 4) {
+                                ps.setFloat(i, Float.parseFloat(tokens[i]));
+                            } else {
 
-            case 3:
+                                ps.setString(i, tokens[i]);
+                            }
 
-                break;
+                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                }
+                case "CONTRATO": {/////////////////////////////
+                    try {
+                        ps = con.prepareStatement("INSERT INTO contrato (Cuota, numCuenta, idCliente) VALUES (?,?,?)");
+                        for (int i = 1; i < tokens.length; i++) {
+                            ps.setInt(i, Integer.parseInt(tokens[i]));
 
-            case 4:
+                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                }
+                case "CATEGORIA": {
 
-                break;
+                    String[] arr = {"idProducto", "nombreCategoria"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+
+                    break;
+                }
+                case "TIENE_EN_CARRITO": {
+                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_POCO_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "DETALLE_FACTURA": {
+                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ALMACEN": {
+                    String[] arr = {"codigoAlmacen", "ciudad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "INVENTARIO": {
+                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ORDEN": {
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_VIRTUAL": {
+                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "FACTURA": {
+                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "TIENDA": {
+                    String[] arr = {"codigoTienda", "ubicacion"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+            }
+
         }
     }//GEN-LAST:event_btn_modificar_sqlMouseClicked
+
+    private void btn_eliminar_sqlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminar_sqlMouseClicked
+        // TODO add your handling code here:
+        if (tabla_eliminar.getSelectedRowCount() != 0 && cb_eliminar.getSelectedIndex() != 0) {
+            DefaultTableModel model = (DefaultTableModel) tabla_eliminar.getModel();
+            int row = tabla_eliminar.getSelectedRow();
+            String fila = "";
+            for (int i = 0; i < tabla_eliminar.getColumnCount(); i++) {
+                fila += tabla_eliminar.getModel().getValueAt(row, i).toString() + "%";
+            }
+
+            //switch (cb_modificar.getSelectedIndex()) {
+            String[] tokens = fila.split("%");
+            PreparedStatement ps;
+            Connection con = conectarBase.getConexion();
+            String query = "";
+
+            switch ((String) cb_eliminar.getSelectedItem()) {
+                case "PRODUCTO": {
+                    try {
+                        query = "DELETE FROM producto WHERE idProducto=" + tokens[0];
+                        ps = con.prepareStatement(query);
+//                        for (int i = 1; i < tokens.length; i++) {
+//                            if (i == 4) {
+//                                ps.setFloat(i, Float.parseFloat(tokens[i]));
+//                            } else {
+//                                ps.setString(i, tokens[i]);
+//                            }
+//
+//                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    break;
+                }
+
+                case "CLIENTE_TIENDA": {
+                    String[] arr = {"idCliente"};
+
+                    try {
+                        ps = con.prepareStatement("INSERT INTO producto (idCliente) VALUES (?)");
+                        for (int i = 1; i < tokens.length; i++) {
+                            System.out.println(tokens[i]);
+                            if (i == 4) {
+                                ps.setFloat(i, Float.parseFloat(tokens[i]));
+                            } else {
+
+                                ps.setString(i, tokens[i]);
+                            }
+
+                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                }
+                case "CONTRATO": {/////////////////////////////
+                    try {
+                        ps = con.prepareStatement("INSERT INTO contrato (Cuota, numCuenta, idCliente) VALUES (?,?,?)");
+                        for (int i = 1; i < tokens.length; i++) {
+                            ps.setInt(i, Integer.parseInt(tokens[i]));
+
+                        }
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                }
+                case "CATEGORIA": {
+
+                    String[] arr = {"idProducto", "nombreCategoria"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+
+                    break;
+                }
+                case "TIENE_EN_CARRITO": {
+                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_POCO_FRECUENTE": {
+                    String[] arr = {"idCliente", "nombreCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "DETALLE_FACTURA": {
+                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ALMACEN": {
+                    String[] arr = {"codigoAlmacen", "ciudad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "INVENTARIO": {
+                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "ORDEN": {
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "CLIENTE_VIRTUAL": {
+                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "FACTURA": {
+                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+                case "TIENDA": {
+                    String[] arr = {"codigoTienda", "ubicacion"};
+                    arregloAtributos = arr;
+                    for (int j = 0; j < arr.length; j++) {
+                        model.addColumn(arr[j]);
+                    }
+                    model.setNumRows(1);
+                    break;
+                }
+            }
+            tabla_eliminar.setModel(new DefaultTableModel());
+            JOptionPane.showMessageDialog(null, "Eliminación realizada");
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+
+    }//GEN-LAST:event_btn_eliminar_sqlMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1781,6 +2074,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_cerrar_sesion2;
     private javax.swing.JButton btn_cerrar_sesion_empleado;
     private javax.swing.JButton btn_crear_cliente;
+    private javax.swing.JButton btn_eliminar_sql;
     private javax.swing.JButton btn_ingresarCliente;
     private javax.swing.JButton btn_ingresar_admin;
     private javax.swing.JButton btn_login_empleado;
@@ -1814,7 +2108,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField id_login_cliente;
     private javax.swing.JTextField id_registrar_cliente;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

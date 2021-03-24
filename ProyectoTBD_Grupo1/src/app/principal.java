@@ -1262,7 +1262,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
             case "CLIENTE": {/////////////////////////////
                 try {
                     ps = con.prepareStatement("INSERT INTO cliente (nombreCliente) VALUES (?)");
-                    ps.setString(1, tokens[0]);
+                    ps.setString(1, tokens[1]);
                     ps.executeUpdate();
                 } catch (SQLException ex) {
                     Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1702,6 +1702,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_modificar.setModel(new DefaultTableModel());
         tabla_modificar.setEnabled(true);
         tabla_eliminar.setModel(new DefaultTableModel());
+        cb_crear.setSelectedIndex(0);
+        cb_modificar.setSelectedIndex(0);
+        cb_eliminar.setSelectedIndex(0);
 
         //tabla_eliminar.getCellEditor().cancelCellEditing();
 
@@ -1934,7 +1937,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
             switch ((String) cb_modificar.getSelectedItem()) {
                 case "PRODUCTO": {
                     try {
-                        query = "UPDATE producto SET fabricante=?, nombreProducto=?, modelo=?, precio=?, tipoProducto=?, descripcion=? WHERE idProducto=" + 8;
+                        query = "UPDATE producto SET fabricante=?, nombreProducto=?, modelo=?, precio=?, tipoProducto=?, descripcion=? WHERE idProducto=" + tokens[0];
                         ps = con.prepareStatement(query);
                         for (int i = 1; i < tokens.length; i++) {
                             if (i == 4) {
@@ -1945,14 +1948,24 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
                         }
                         ps.executeUpdate();
-                        JOptionPane.showMessageDialog(null, "pasa");
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     break;
                 }
-
+                case "CLIENTE": {/////////////////////////////
+                    try {
+                        query = "UPDATE cliente SET nombreCliente WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.setString(1, tokens[1]);
+                        
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                }
                 case "CLIENTE_TIENDA": {
                     String[] arr = {"idCliente"};
 
@@ -1976,7 +1989,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "CONTRATO": {/////////////////////////////
                     try {
-                        query = "UPDATE contrato SET cuota=? WHERE numCuenta="+ tokens[0]+" AND idCliente="  + tokens[2];
+                        query = "UPDATE contrato SET cuota=? WHERE numCuenta=" + tokens[0] + " AND idCliente=" + tokens[2];
                         ps = con.prepareStatement(query);
 
                         ps.setInt(1, Integer.parseInt(tokens[1]));
@@ -2004,11 +2017,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "TIENE_EN_CARRITO": {
                     try {
-                        query = "UPDATE tiene en carrito SET nombreUsuario=?, cantidadProductoCarrito=? WHERE idProducto=" + tokens[1];
+                        query = "UPDATE tiene_en_carrito SET nombreUsuario=?, cantidadProductoCarrito=? WHERE idProducto=" + tokens[1];
                         ps = con.prepareStatement(query);
 
                         ps.setString(1, tokens[0]);
-                        ps.setInt(3, Integer.parseInt(tokens[2]));
+                        ps.setInt(2, Integer.parseInt(tokens[2]));
 
                         ps.executeUpdate();
                     } catch (SQLException ex) {
@@ -2044,7 +2057,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "DETALLE_FACTURA": {
                     try {
-                        query = "UPDATE detalle_de_factura SET cantidadProducto=?,ISV=? WHERE noFactura="+ tokens[0]+"AND idCliente="  + tokens[1];
+                        query = "UPDATE detalle_de_factura SET cantidadProducto=?,ISV=? WHERE noFactura=" + tokens[0] + "AND idCliente=" + tokens[1];
                         ps = con.prepareStatement(query);
 
                         ps.setInt(3, Integer.parseInt(tokens[2]));
@@ -2071,7 +2084,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "INVENTARIO": {
                     try {
-                        query = "UPDATE inventario SET cantidadInventario=? WHERE codigoAlmacen= "+ tokens[0] +"codigoTienda="+ tokens[1]+"idProducto=" + tokens[2];
+                        query = "UPDATE inventario SET cantidadInventario=? WHERE codigoAlmacen= " + tokens[0] + "codigoTienda=" + tokens[1] + "idProducto=" + tokens[2];
                         ps = con.prepareStatement(query);
 
                         ps.setInt(4, Integer.parseInt(tokens[3]));
@@ -2084,7 +2097,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "ORDEN": {
                     try {
-                        query = "UPDATE orden SET nombreRemitente=?,empresaEnvio=?, direccionEnvio=?, noSeguimiento=? WHERE noOrden="+ tokens[0]+"idCliente="  + tokens[1];
+                        query = "UPDATE orden SET nombreRemitente=?,empresaEnvio=?, direccionEnvio=?, noSeguimiento=? WHERE noOrden=" + tokens[0] + "idCliente=" + tokens[1];
                         ps = con.prepareStatement(query);
 
                         ps.setString(3, tokens[2]);
@@ -2121,7 +2134,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "FACTURA": {
                     try {
-                        query = "UPDATE factura SET direccion=?,rtn=?,fechaEmision=? WHERE noFactura=" + tokens[0]+"codigoTienda="+ tokens[1] +"idCliente=" + tokens[5];
+                        query = "UPDATE factura SET direccion=?,rtn=?,fechaEmision=? WHERE noFactura=" + tokens[0] + "codigoTienda=" + tokens[1] + "idCliente=" + tokens[5];
                         ps = con.prepareStatement(query);
 
                         ps.setString(3, tokens[2]);
@@ -2180,7 +2193,16 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
                     break;
                 }
-
+                case "CLIENTE": {/////////////////////////////
+                    try {
+                        query = "DELETE FROM cliente WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                }
                 case "CLIENTE_TIENDA": {
                     String[] arr = {"idCliente"};
 

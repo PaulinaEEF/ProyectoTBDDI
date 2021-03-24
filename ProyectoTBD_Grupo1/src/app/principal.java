@@ -1989,12 +1989,21 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "CATEGORIA": {
 
-                    String[] arr = {"idProducto", "nombreCategoria"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+
+                        query = "UPDATE categoria SET nombreCategoria=? WHERE idProducto=" + tokens[0];
+
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(1, tokens[1]);
+
+                        ps.executeUpdate();
+
+                    } catch (SQLException ex) {
+
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+
                     }
-                    model.setNumRows(1);
 
                     break;
                 }
@@ -2158,12 +2167,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "CATEGORIA": {
 
-                    String[] arr = {"idProducto", "nombreCategoria"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM categoria WHERE idProducto=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
 
                     break;
                 }
@@ -2823,34 +2833,29 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
             switch (contenido) {
                 case "PRODUCTO": {
-                    String[] arr = {"idProducto","fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+                    String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    if (flagAddRow) {
-                        model.setNumRows(1);
 
-                    }
                     break;
                 }
 
                 case "CLIENTE": {
-                    String[] arr = {"nombreCliente"};
+                    String[] arr = {"idCliente", "nombreCliente"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CONTRATO": {
-                    String[] arr = {"Cuota", "idCliente"};
+                    String[] arr = {"numCuenta", "Cuota", "idCliente"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CATEGORIA": {
@@ -2860,7 +2865,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
 
                     break;
                 }
@@ -2870,7 +2874,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_FRECUENTE": {
@@ -2879,7 +2882,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_POCO_FRECUENTE": {
@@ -2888,7 +2890,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "DETALLE_FACTURA": {
@@ -2897,7 +2898,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "ALMACEN": {
@@ -2906,7 +2906,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "INVENTARIO": {
@@ -2915,16 +2914,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "ORDEN": {
-                    String[] arr = {"idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_VIRTUAL": {
@@ -2933,29 +2930,29 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "FACTURA": {
-                    String[] arr = {"codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    String[] arr = {"noFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "TIENDA": {
-                    String[] arr = {"ubicacion"};
+                    String[] arr = {"codigoTienda", "ubicacion"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);
                     }
-                    model.setNumRows(1);
                     break;
                 }
             }
+            if (flagAddRow) {
+                model.setNumRows(1);
 
+            }
         }
     }
 

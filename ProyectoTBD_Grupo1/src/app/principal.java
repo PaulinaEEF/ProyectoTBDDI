@@ -1934,7 +1934,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
             switch ((String) cb_modificar.getSelectedItem()) {
                 case "PRODUCTO": {
                     try {
-                        query = "UPDATE producto SET fabricante=?, nombreProducto=?, modelo=?, precio=?, tipoProducto=?, descripcion=? WHERE idProducto=" + tokens[0];
+                        query = "UPDATE producto SET fabricante=?, nombreProducto=?, modelo=?, precio=?, tipoProducto=?, descripcion=? WHERE idProducto=" + 8;
                         ps = con.prepareStatement(query);
                         for (int i = 1; i < tokens.length; i++) {
                             if (i == 4) {
@@ -1945,6 +1945,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
                         }
                         ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "pasa");
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -2113,14 +2114,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     try {
                         query = "DELETE FROM producto WHERE idProducto=" + tokens[0];
                         ps = con.prepareStatement(query);
-//                        for (int i = 1; i < tokens.length; i++) {
-//                            if (i == 4) {
-//                                ps.setFloat(i, Float.parseFloat(tokens[i]));
-//                            } else {
-//                                ps.setString(i, tokens[i]);
-//                            }
-//
-//                        }
                         ps.executeUpdate();
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -2830,7 +2823,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
             switch (contenido) {
                 case "PRODUCTO": {
-                    String[] arr = {"fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+                    String[] arr = {"idProducto","fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);

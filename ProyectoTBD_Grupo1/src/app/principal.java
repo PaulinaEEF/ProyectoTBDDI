@@ -1976,11 +1976,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "CONTRATO": {/////////////////////////////
                     try {
-                        ps = con.prepareStatement("INSERT INTO contrato (Cuota, numCuenta, idCliente) VALUES (?,?,?)");
-                        for (int i = 1; i < tokens.length; i++) {
-                            ps.setInt(i, Integer.parseInt(tokens[i]));
+                        query = "UPDATE contrato SET cuota=? WHERE numCuenta="+ tokens[0]+" AND idCliente="  + tokens[2];
+                        ps = con.prepareStatement(query);
 
-                        }
+                        ps.setInt(1, Integer.parseInt(tokens[1]));
+
                         ps.executeUpdate();
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1990,111 +1990,161 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 case "CATEGORIA": {
 
                     try {
-
                         query = "UPDATE categoria SET nombreCategoria=? WHERE idProducto=" + tokens[0];
-
                         ps = con.prepareStatement(query);
 
                         ps.setString(1, tokens[1]);
 
                         ps.executeUpdate();
-
                     } catch (SQLException ex) {
-
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-
                     }
 
                     break;
                 }
                 case "TIENE_EN_CARRITO": {
-                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE tiene en carrito SET nombreUsuario=?, cantidadProductoCarrito=? WHERE idProducto=" + tokens[1];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(1, tokens[0]);
+                        ps.setInt(3, Integer.parseInt(tokens[2]));
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE cliente_frecuente SET nombreCliente=? WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(1, tokens[1]);
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_POCO_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE cliente_poco_frecuente SET nombreCliente=? WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(1, tokens[1]);
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "DETALLE_FACTURA": {
-                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE detalle_de_factura SET cantidadProducto=?,ISV=? WHERE noFactura="+ tokens[0]+"AND idCliente="  + tokens[1];
+                        ps = con.prepareStatement(query);
+
+                        ps.setInt(3, Integer.parseInt(tokens[2]));
+                        ps.setFloat(4, Float.parseFloat(tokens[3]));
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "ALMACEN": {
-                    String[] arr = {"codigoAlmacen", "ciudad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE almacen SET ciudad=? WHERE codigoAlmacen=" + tokens[0];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(2, tokens[1]);
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "INVENTARIO": {
-                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
-                    }
-                    model.setNumRows(1);
+                    try {
+                        query = "UPDATE inventario SET cantidadInventario=? WHERE codigoAlmacen= "+ tokens[0] +"codigoTienda="+ tokens[1]+"idProducto=" + tokens[2];
+                        ps = con.prepareStatement(query);
+
+                        ps.setInt(4, Integer.parseInt(tokens[3]));
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    };
                     break;
                 }
                 case "ORDEN": {
-                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE orden SET nombreRemitente=?,empresaEnvio=?, direccionEnvio=?, noSeguimiento=? WHERE noOrden="+ tokens[0]+"idCliente="  + tokens[1];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(3, tokens[2]);
+                        ps.setString(4, tokens[3]);
+                        ps.setString(5, tokens[4]);
+                        ps.setInt(6, Integer.parseInt(tokens[5]));
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_VIRTUAL": {
-                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    //String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                    try {
+                        query = "UPDATE cliente_virtual SET direccion=?,nombre=?,password=?, numeroTarjeta=?, tarjetahabiente=?, mesVencimiento=?, yearVencimiento=?, codigoSeguridad=? WHERE idCliente =" + tokens[0];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(2, tokens[1]);
+                        ps.setString(3, tokens[2]);
+                        ps.setString(4, tokens[3]);
+                        ps.setInt(5, Integer.parseInt(tokens[4]));
+                        ps.setString(6, tokens[5]);
+                        ps.setString(7, tokens[6]);
+                        ps.setString(8, tokens[7]);
+                        ps.setString(9, tokens[8]);
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "FACTURA": {
-                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE factura SET direccion=?,rtn=?,fechaEmision=? WHERE noFactura=" + tokens[0]+"codigoTienda="+ tokens[1] +"idCliente=" + tokens[5];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(3, tokens[2]);
+                        ps.setString(4, tokens[3]);
+                        ps.setString(5, tokens[4]);
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "TIENDA": {
-                    String[] arr = {"codigoTienda", "ubicacion"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "UPDATE tienda SET ubicacion=? WHERE codigoTienda=" + tokens[0];
+                        ps = con.prepareStatement(query);
+
+                        ps.setString(2, tokens[1]);
+
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
             }

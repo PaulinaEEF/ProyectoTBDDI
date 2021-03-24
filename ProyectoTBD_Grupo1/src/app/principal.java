@@ -2575,7 +2575,19 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
                     break;
                 }
+                case "CLIENTE": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente";
 
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        model.addRow(row);
+                    }
+
+                    break;
+                }
                 case "CLIENTE_TIENDA": {
                     Connection con = conectarBase.getConexion();
                     String query = "SELECT * FROM cliente_tienda";
@@ -2630,7 +2642,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(query);
                     while (rs.next()) {
-                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente"), rs.getInt("numCuenta")};
                         model.addRow(row);
                     }
                     break;
@@ -2746,7 +2758,19 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
                     break;
                 }
+                case "CLIENTE": {
+                    Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM cliente";
 
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        model.addRow(row);
+                    }
+
+                    break;
+                }
                 case "CLIENTE_TIENDA": {
                     Connection con = conectarBase.getConexion();
                     String query = "SELECT * FROM cliente_tienda";
@@ -2801,7 +2825,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(query);
                     while (rs.next()) {
-                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente")};
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente"),rs.getInt("numCuenta")};
                         model.addRow(row);
                     }
                     break;

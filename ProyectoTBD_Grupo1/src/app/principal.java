@@ -2190,7 +2190,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
                     break;
                 }
                 case "CLIENTE": {/////////////////////////////
@@ -2204,20 +2203,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "CLIENTE_TIENDA": {
-                    String[] arr = {"idCliente"};
-
                     try {
-                        ps = con.prepareStatement("INSERT INTO producto (idCliente) VALUES (?)");
-                        for (int i = 1; i < tokens.length; i++) {
-                            System.out.println(tokens[i]);
-                            if (i == 4) {
-                                ps.setFloat(i, Float.parseFloat(tokens[i]));
-                            } else {
-
-                                ps.setString(i, tokens[i]);
-                            }
-
-                        }
+                        query = "DELETE FROM cliente_tienda WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
                         ps.executeUpdate();
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -2226,11 +2214,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "CONTRATO": {/////////////////////////////
                     try {
-                        ps = con.prepareStatement("INSERT INTO contrato (Cuota, numCuenta, idCliente) VALUES (?,?,?)");
-                        for (int i = 1; i < tokens.length; i++) {
-                            ps.setInt(i, Integer.parseInt(tokens[i]));
-
-                        }
+                        query = "DELETE FROM contrato WHERE numCuenta=" + tokens[0];
+                        ps = con.prepareStatement(query);
                         ps.executeUpdate();
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -2250,93 +2235,103 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "TIENE_EN_CARRITO": {
-                    String[] arr = {"nombreUsuario", "idProducto", "cantidadProductoCarrito"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM tiene_en_carrito WHERE idProducto=" + tokens[1]+" AND nombreUsuario=" + tokens[0]+" AND cantidadProductoCarrito=" + tokens[2];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM cliente_frecuente WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_POCO_FRECUENTE": {
-                    String[] arr = {"idCliente", "nombreCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM cliente_poco_frecuente WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "DETALLE_FACTURA": {
-                    String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM detalle_factura WHERE idProducto=" + tokens[1]+" AND noFactura="+tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "ALMACEN": {
-                    String[] arr = {"codigoAlmacen", "ciudad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM almacen WHERE codigoAlmacen=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "INVENTARIO": {
-                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM inventario WHERE codigoAlmacen=" + tokens[0]+" AND codigoTienda=" + tokens[1]+" AND cantidadInventario=" + tokens[2];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "ORDEN": {
-                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM orden WHERE noOrden=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "CLIENTE_VIRTUAL": {
-                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM cliente_virtual WHERE idCliente=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "FACTURA": {
-                    String[] arr = {"NoFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM factura WHERE noFactura=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
                 case "TIENDA": {
-                    String[] arr = {"codigoTienda", "ubicacion"};
-                    arregloAtributos = arr;
-                    for (int j = 0; j < arr.length; j++) {
-                        model.addColumn(arr[j]);
+                    try {
+                        query = "DELETE FROM tienda WHERE codigoTienda=" + tokens[0];
+                        ps = con.prepareStatement(query);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    model.setNumRows(1);
                     break;
                 }
             }
@@ -2708,7 +2703,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(query);
                     while (rs.next()) {
-                        Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad")};
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad"), rs.getString("correo_electronico"), rs.getString("numero_telefonico")};
                         model.addRow(row);
                     }
                     break;
@@ -2891,7 +2886,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(query);
                     while (rs.next()) {
-                        Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad")};
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad"), rs.getString("correo_electronico"), rs.getString("numero_telefonico")};
                         model.addRow(row);
                     }
                     break;
@@ -3021,7 +3016,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "CLIENTE_VIRTUAL": {
-                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad"};
+                    String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad", "correo_electronico", "numero_telefonico"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);

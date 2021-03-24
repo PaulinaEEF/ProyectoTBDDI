@@ -85,7 +85,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         EmpleadosUser.add("Daniela");
         EmpleadosUser.add("Andres");
 
-        EmpleadosPassword.add("a11b");
+        EmpleadosPassword.add("123");
         EmpleadosPassword.add("a12b");
         EmpleadosPassword.add("a13b");
 
@@ -219,7 +219,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jTextField3 = new javax.swing.JTextField();
         perfil_empleados = new javax.swing.JDialog();
         btn_cerrar_sesion_empleado = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tabla_empleado = new javax.swing.JTable();
+        cb_almacen = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
+        boton_insertarE = new javax.swing.JButton();
         login_admin = new javax.swing.JDialog();
         btn_ingresar_admin = new javax.swing.JButton();
         btn_regresar_loginAdmin = new javax.swing.JButton();
@@ -245,7 +249,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel2 = new javax.swing.JLabel();
         btn_busqueda = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tabla_servicio = new javax.swing.JTable();
         fondo_servicioAlCliente = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         centrode_llamadas = new javax.swing.JDialog();
@@ -899,7 +903,38 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
         });
         perfil_empleados.getContentPane().add(btn_cerrar_sesion_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 120, 70));
+
+        tabla_empleado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane6.setViewportView(tabla_empleado);
+
+        perfil_empleados.getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 870, 230));
+
+        cb_almacen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Insertar Orden", "Actualizar Inventario", "Ver Orden" }));
+        cb_almacen.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_almacenItemStateChanged(evt);
+            }
+        });
+        perfil_empleados.getContentPane().add(cb_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 140, 40));
         perfil_empleados.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 450));
+
+        boton_insertarE.setText("Insertar");
+        boton_insertarE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_insertarEMouseClicked(evt);
+            }
+        });
+        perfil_empleados.getContentPane().add(boton_insertarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
 
         login_admin.setUndecorated(true);
         login_admin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -995,20 +1030,26 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         btn_busqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search (2).png"))); // NOI18N
         btn_busqueda.setContentAreaFilled(false);
+        btn_busqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_busquedaMouseClicked(evt);
+            }
+        });
         ServicioAlCliente.getContentPane().add(btn_busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 90, 60));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_servicio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        tabla_servicio.setEnabled(false);
+        jScrollPane4.setViewportView(tabla_servicio);
 
         ServicioAlCliente.getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 820, 170));
 
@@ -1921,7 +1962,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         // el index del combo inicia en 0
 
         if (tabla_modificar.getSelectedRowCount() != 0 && cb_modificar.getSelectedIndex() != 0) {
-            DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
             int row = tabla_modificar.getSelectedRow();
             String fila = "";
             for (int i = 0; i < tabla_modificar.getColumnCount(); i++) {
@@ -1959,7 +1999,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                         query = "UPDATE cliente SET nombreCliente WHERE idCliente=" + tokens[0];
                         ps = con.prepareStatement(query);
                         ps.setString(1, tokens[1]);
-                        
+
                         ps.executeUpdate();
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -2084,7 +2124,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "INVENTARIO": {
                     try {
-                        query = "UPDATE inventario SET cantidadInventario=? WHERE codigoAlmacen= " + tokens[0] + "codigoTienda=" + tokens[1] + "idProducto=" + tokens[2];
+                        query = "UPDATE inventario SET cantidadInventario=? WHERE codigoAlmacen= " + tokens[0] + " AND codigoTienda=" + tokens[1] + " AND idProducto=" + tokens[2];
                         ps = con.prepareStatement(query);
 
                         ps.setInt(4, Integer.parseInt(tokens[3]));
@@ -2092,12 +2132,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
                         ps.executeUpdate();
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-                    };
+                    }
                     break;
                 }
                 case "ORDEN": {
                     try {
-                        query = "UPDATE orden SET nombreRemitente=?,empresaEnvio=?, direccionEnvio=?, noSeguimiento=? WHERE noOrden=" + tokens[0] + "idCliente=" + tokens[1];
+                        query = "UPDATE orden SET nombreRemitente=?,empresaEnvio=?, direccionEnvio=?, noSeguimiento=? WHERE noOrden=" + tokens[0] + " AND idCliente=" + tokens[1];
                         ps = con.prepareStatement(query);
 
                         ps.setString(3, tokens[2]);
@@ -2134,7 +2174,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "FACTURA": {
                     try {
-                        query = "UPDATE factura SET direccion=?,rtn=?,fechaEmision=? WHERE noFactura=" + tokens[0] + "codigoTienda=" + tokens[1] + "idCliente=" + tokens[5];
+                        query = "UPDATE factura SET direccion=?,rtn=?,fechaEmision=? WHERE noFactura=" + tokens[0] + " AND codigoTienda=" + tokens[1] + " AND idCliente=" + tokens[5];
                         ps = con.prepareStatement(query);
 
                         ps.setString(3, tokens[2]);
@@ -2236,7 +2276,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "TIENE_EN_CARRITO": {
                     try {
-                        query = "DELETE FROM tiene_en_carrito WHERE idProducto=" + tokens[1]+" AND nombreUsuario=" + tokens[0]+" AND cantidadProductoCarrito=" + tokens[2];
+                        query = "DELETE FROM tiene_en_carrito WHERE idProducto=" + tokens[1] + " AND nombreUsuario=" + tokens[0] + " AND cantidadProductoCarrito=" + tokens[2];
                         ps = con.prepareStatement(query);
                         ps.executeUpdate();
                     } catch (SQLException ex) {
@@ -2266,7 +2306,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "DETALLE_FACTURA": {
                     try {
-                        query = "DELETE FROM detalle_factura WHERE idProducto=" + tokens[1]+" AND noFactura="+tokens[0];
+                        query = "DELETE FROM detalle_factura WHERE idProducto=" + tokens[1] + " AND noFactura=" + tokens[0];
                         ps = con.prepareStatement(query);
                         ps.executeUpdate();
                     } catch (SQLException ex) {
@@ -2286,7 +2326,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
                 case "INVENTARIO": {
                     try {
-                        query = "DELETE FROM inventario WHERE codigoAlmacen=" + tokens[0]+" AND codigoTienda=" + tokens[1]+" AND cantidadInventario=" + tokens[2];
+                        query = "DELETE FROM inventario WHERE codigoAlmacen=" + tokens[0] + " AND codigoTienda=" + tokens[1] + " AND cantidadInventario=" + tokens[2];
                         ps = con.prepareStatement(query);
                         ps.executeUpdate();
                     } catch (SQLException ex) {
@@ -2343,6 +2383,182 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_btn_eliminar_sqlMouseClicked
 
+    private void btn_busquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_busquedaMouseClicked
+        // TODO add your handling code here:
+        Connection con = conectarBase.getConexion();
+        String query = "SELECT * FROM inventario where codigoTienda=" + txt_busqueda.getText();
+        Statement st;
+        String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+        arregloAtributos = arr;
+        tabla_servicio.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_servicio.getModel();
+        for (String arr1 : arr) {
+            model.addColumn(arr1);
+        }
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
+                model.addRow(row);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_busquedaMouseClicked
+
+    private void cb_almacenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_almacenItemStateChanged
+        // TODO add your handling code here:
+        tabla_empleado.setModel(new DefaultTableModel());
+
+        if (cb_almacen.getSelectedIndex() == 1) {
+            boton_insertarE.setEnabled(true);
+            String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+
+            arregloAtributos = arr;
+            tabla_empleado.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+            for (String arr1 : arr) {
+                model.addColumn(arr1);
+            }
+            model.setRowCount(1);
+        } else if (cb_almacen.getSelectedIndex() == 2) {
+            boton_insertarE.setEnabled(true);
+            String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+
+            arregloAtributos = arr;
+            tabla_empleado.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+            for (String arr1 : arr) {
+                model.addColumn(arr1);
+            }
+            Connection con = conectarBase.getConexion();
+
+            String query = "SELECT * FROM inventario";
+            Statement st;
+            try {
+                st = con.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
+                    Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
+                    model.addRow(row);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (cb_almacen.getSelectedIndex() == 3) {
+            boton_insertarE.setEnabled(false);
+            String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+
+            arregloAtributos = arr;
+            tabla_empleado.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+            for (String arr1 : arr) {
+                model.addColumn(arr1);
+            }
+            Connection con = conectarBase.getConexion();
+            String query = "SELECT * FROM orden";
+            Statement st;
+            try {
+                st = con.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
+                    Object[] row = {rs.getInt("noOrden"), rs.getInt("idCliente"), rs.getString("nombreRemitente"), rs.getString("empresaEnvio"), rs.getString("direccionEnvio"), rs.getInt("noSeguimiento")};
+                    model.addRow(row);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_cb_almacenItemStateChanged
+
+    private void boton_insertarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_insertarEMouseClicked
+        // TODO add your handling code here:
+        if (tabla_empleado.getSelectedRowCount() != 0) {
+
+            if (cb_almacen.getSelectedIndex() == 1) {
+                DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+                if (validarIngresoTable(tabla_empleado, false)) {
+                    Object k = new Object[arregloAtributos.length];
+                    model.addRow((Object[]) k);
+                }
+                tabla_empleado.setEnabled(false);
+                Connection con = conectarBase.getConexion();
+
+                String guardar = "";
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    guardar += model.getValueAt(0, j).toString() + "%";
+                }
+
+                String[] tokens = guardar.split("%");
+                PreparedStatement ps;
+
+                String acum = "";
+                String query = "SELECT * FROM cliente";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idCliente") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (acum.contains(tokens[1])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO orden (idCliente,nombreRemitente, empresaEnvio, direccionEnvio, noSeguimiento) VALUES (?,?,?,?,?)");
+                        ps.setInt(1, Integer.parseInt(tokens[1]));
+                        ps.setString(2, tokens[2]);
+                        ps.setString(3, tokens[3]);
+                        ps.setString(4, tokens[4]);
+                        ps.setInt(5, Integer.parseInt(tokens[5]));
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    JOptionPane.showMessageDialog(null, "Dato insertado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe una orden con ese id");
+                    cb_almacen.setSelectedIndex(0);
+                    tabla_empleado.setModel(new DefaultTableModel());
+                    tabla_empleado.setEnabled(true);
+                }
+            } else if (cb_almacen.getSelectedIndex() == 2) {
+                try {
+                    int row = tabla_empleado.getSelectedRow();
+                    String fila = "";
+                    for (int i = 0; i < tabla_empleado.getColumnCount(); i++) {
+                        fila += tabla_empleado.getModel().getValueAt(row, i).toString() + "%";
+                    }
+
+                    //switch (cb_modificar.getSelectedIndex()) {
+                    String[] tokens = fila.split("%");
+                    PreparedStatement ps;
+                    Connection con = conectarBase.getConexion();
+                    String query = "";
+                    query = "UPDATE inventario SET cantidadInventario=? WHERE codigoAlmacen= " + tokens[0] + " AND codigoTienda=" + tokens[1] + " AND idProducto=" + tokens[2];
+                    ps = con.prepareStatement(query);
+
+                    ps.setInt(1, Integer.parseInt(tokens[3]));
+
+                    ps.executeUpdate();
+                    cb_almacen.setSelectedIndex(0);
+                    tabla_empleado.setModel(new DefaultTableModel());
+                    tabla_empleado.setEnabled(true);
+                    JOptionPane.showMessageDialog(null, "Dato modificado correctamente");
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado alguna fila");
+
+        }
+
+    }//GEN-LAST:event_boton_insertarEMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2395,6 +2611,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton anterior2;
     private javax.swing.JButton boton_crear;
     private javax.swing.JButton boton_empleado;
+    private javax.swing.JButton boton_insertarE;
     private javax.swing.JButton boton_salir;
     private javax.swing.JButton btn_admin;
     private javax.swing.JButton btn_buscar_producto;
@@ -2420,6 +2637,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_regresar_loginAdmin;
     private javax.swing.JButton btn_regresar_servicio;
     private javax.swing.JButton btn_siguiente;
+    private javax.swing.JComboBox<String> cb_almacen;
     private javax.swing.JComboBox<String> cb_crear;
     private javax.swing.JComboBox<String> cb_eliminar;
     private javax.swing.JComboBox<String> cb_modificar;
@@ -2515,7 +2733,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -2539,7 +2757,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTabbedPane tabbed_eliminar;
     private javax.swing.JTable tabla_crear;
     private javax.swing.JTable tabla_eliminar;
+    private javax.swing.JTable tabla_empleado;
     private javax.swing.JTable tabla_modificar;
+    private javax.swing.JTable tabla_servicio;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo2;
     private javax.swing.JTextField txt_buscar;
@@ -2820,7 +3040,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(query);
                     while (rs.next()) {
-                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente"),rs.getInt("numCuenta")};
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("nombreCliente"), rs.getInt("numCuenta")};
                         model.addRow(row);
                     }
                     break;

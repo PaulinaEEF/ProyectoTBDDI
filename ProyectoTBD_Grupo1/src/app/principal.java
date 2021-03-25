@@ -257,10 +257,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
         fondo_servicioAlCliente = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         centrode_llamadas = new javax.swing.JDialog();
-        jButton2 = new javax.swing.JButton();
+        boton_enLinea = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
+        tabla_llamadas = new javax.swing.JTable();
+        tf_enLinea = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
         fondo_centroLlamadas = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         ventana_bitacora = new javax.swing.JDialog();
@@ -1147,26 +1148,32 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         centrode_llamadas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("jButton2");
-        centrode_llamadas.getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 80, 30));
+        boton_enLinea.setText("Buscar");
+        boton_enLinea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_enLineaMouseClicked(evt);
+            }
+        });
+        centrode_llamadas.getContentPane().add(boton_enLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 80, 30));
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_llamadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane5.setViewportView(jTable5);
+        jScrollPane5.setViewportView(tabla_llamadas);
 
         centrode_llamadas.getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 830, 310));
+        centrode_llamadas.getContentPane().add(tf_enLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 110, 30));
 
-        jTextField2.setText("jTextField2");
-        centrode_llamadas.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 110, 30));
+        jLabel49.setText("Ingrese el id del cliente que desea buscar");
+        centrode_llamadas.getContentPane().add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, -1));
 
         fondo_centroLlamadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_clientes1.gif"))); // NOI18N
         centrode_llamadas.getContentPane().add(fondo_centroLlamadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
@@ -1342,18 +1349,15 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         TextPrompt j1 = new TextPrompt("Username", user_admin);
         TextPrompt j2 = new TextPrompt("Password", password_admin);
-//        login_admin.pack();
-//        login_admin.setModal(true);
-//        login_admin.setLocationRelativeTo(null);
-//        login_admin.setVisible(true);
+        tabla_crear.setModel(new DefaultTableModel());
+        login_admin.pack();
+        login_admin.setModal(true);
+        login_admin.setLocationRelativeTo(null);
+        login_admin.setVisible(true);
 
         ////////////////////////
-        tabla_crear.setModel(new DefaultTableModel());
 
-        administradores.pack();
-        administradores.setModal(true);
-        administradores.setLocationRelativeTo(null);
-        administradores.setVisible(true);
+        
 
 
     }//GEN-LAST:event_btn_adminMouseClicked
@@ -2073,6 +2077,27 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 user_empleado.setText("");
 
                 password_empleado.setText("");
+
+                tabla_llamadas.setModel(new DefaultTableModel());
+                DefaultTableModel model = (DefaultTableModel) tabla_llamadas.getModel();
+                String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad", "correo_electronico", "numero_telefonico"};
+                arregloAtributos = arr;
+                for (int j = 0; j < arr.length; j++) {
+                    model.addColumn(arr[j]);
+                }
+                Connection con = conectarBase.getConexion();
+                String query = "SELECT * FROM cliente_virtual";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad"), rs.getString("correo_electronico"), rs.getString("numero_telefonico")};
+                        model.addRow(row);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 login_empleados.dispose();
                 centrode_llamadas.pack();
                 centrode_llamadas.setModal(true);
@@ -2801,7 +2826,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private void boton_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_ClienteMouseClicked
         // TODO add your handling code here:
 
-
         login_clientes.pack();
         login_clientes.setModal(true);
         login_clientes.setLocationRelativeTo(null);
@@ -2963,11 +2987,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
         }
         JOptionPane.showMessageDialog(null, "Compra realizada con exito");
-        
-        
+
         tabla_fac.setModel(new DefaultTableModel());
         DefaultTableModel modelo = (DefaultTableModel) tabla_fac.getModel();
-        
+
         String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
         arregloAtributos = arr;
         for (int j = 0; j < arr.length; j++) {
@@ -3092,6 +3115,56 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel10.setIcon(Imagen[contImages]);
     }//GEN-LAST:event_anteriorActionPerformed
 
+    private void boton_enLineaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_enLineaMouseClicked
+        // TODO add your handling code here:
+        String id = tf_enLinea.getText();
+        Connection con = conectarBase.getConexion();
+
+        String acum = "";
+        String query = "SELECT * FROM cliente_virtual";
+        Statement st;
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                acum += rs.getInt("idCliente") + " ";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (acum.contains(id)) {
+
+            tabla_llamadas.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) tabla_llamadas.getModel();
+            String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad", "correo_electronico", "numero_telefonico"};
+            arregloAtributos = arr;
+            for (int j = 0; j < arr.length; j++) {
+                model.addColumn(arr[j]);
+            }
+            query = "SELECT * FROM cliente_virtual where idCliente=" + id;
+
+            try {
+                st = con.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
+                    Object[] row = {rs.getInt("idCliente"), rs.getString("direccionFacturacion"), rs.getString("nombreUsuario"), rs.getString("password"), rs.getString("numeroTarjeta"), rs.getString("tarjetaHabiente"), rs.getString("mesVencimiento"), rs.getString("yearVencimiento"), rs.getString("codigoSeguridad"), rs.getString("correo_electronico"), rs.getString("numero_telefonico")};
+                    model.addRow(row);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe cliente con ese id");
+            tabla_llamadas.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) tabla_llamadas.getModel();
+            String[] arr = {"idCliente", "direccionFacturacion", "nombreUsario", "password", "numeroTarjeta", "tarjetahabiente", "mesVencimiento", "yearVencimiento", "codigoSeguridad", "correo_electronico", "numero_telefonico"};
+            arregloAtributos = arr;
+            for (int j = 0; j < arr.length; j++) {
+                model.addColumn(arr[j]);
+            }
+        }
+    }//GEN-LAST:event_boton_enLineaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3146,6 +3219,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton boton_carrito;
     private javax.swing.JButton boton_crear;
     private javax.swing.JButton boton_empleado;
+    private javax.swing.JButton boton_enLinea;
     private javax.swing.JButton boton_insertarE;
     private javax.swing.JButton boton_salir;
     private javax.swing.JButton btn_admin;
@@ -3196,7 +3270,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField id_login_cliente;
     private javax.swing.JTextField id_registrar_cliente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3240,6 +3313,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -3273,9 +3347,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
@@ -3302,8 +3374,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTable tabla_eliminar;
     private javax.swing.JTable tabla_empleado;
     private javax.swing.JTable tabla_fac;
+    private javax.swing.JTable tabla_llamadas;
     private javax.swing.JTable tabla_modificar;
     private javax.swing.JTable tabla_servicio;
+    private javax.swing.JTextField tf_enLinea;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo2;
     private javax.swing.JTextField txt_buscar1;

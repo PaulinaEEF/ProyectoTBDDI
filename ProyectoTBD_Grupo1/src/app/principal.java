@@ -140,12 +140,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel15 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         administradores = new javax.swing.JDialog();
@@ -268,6 +262,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         hora_jbl = new javax.swing.JLabel();
         titulo2 = new javax.swing.JLabel();
         boton_empleado = new javax.swing.JButton();
+        boton_Cliente = new javax.swing.JButton();
         fondo_princiipal = new javax.swing.JLabel();
         fondo_principal2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -406,7 +401,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 btn_cerrar_sesionMouseClicked(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(btn_cerrar_sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 0, 130, 80));
+        Perfil_clientes_enLinea.getContentPane().add(btn_cerrar_sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 130, 80));
 
         btn_buscar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search.png"))); // NOI18N
         btn_buscar_producto.setContentAreaFilled(false);
@@ -420,7 +415,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 siguienteActionPerformed(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 700, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 660, -1, -1));
 
         anterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
         anterior.setContentAreaFilled(false);
@@ -429,10 +424,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 anteriorActionPerformed(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 700, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, -1, -1));
 
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 3));
-        Perfil_clientes_enLinea.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 1280, 260));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 1240, 260));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
         Perfil_clientes_enLinea.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 800, 480));
@@ -441,10 +436,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
         Perfil_clientes_enLinea.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 470));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes_enLinea.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 610));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 540));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes_enLinea.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 810, 620));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 810, 540));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/categories.png"))); // NOI18N
         jMenu1.setText("Categorías");
@@ -452,37 +447,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jMenu1.setPreferredSize(new java.awt.Dimension(100, 30));
         jMenu1.setRequestFocusEnabled(false);
         jMenu1.setRolloverEnabled(false);
-
-        jMenuItem1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/television.png"))); // NOI18N
-        jMenuItem1.setText("Smart TV");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iphone.png"))); // NOI18N
-        jMenuItem2.setText("Celulares");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/smart-watch.png"))); // NOI18N
-        jMenuItem3.setText("Relojes");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/macbook-pro.png"))); // NOI18N
-        jMenuItem4.setText("Computadoras");
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/video-camera.png"))); // NOI18N
-        jMenuItem5.setText("Cámaras");
-        jMenu1.add(jMenuItem5);
-
-        jMenuItem6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ps4.png"))); // NOI18N
-        jMenuItem6.setText("Consolas de juego");
-        jMenu1.add(jMenuItem6);
-
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu3.setBackground(new java.awt.Color(255, 255, 255));
@@ -1151,6 +1120,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
         });
         getContentPane().add(boton_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, 180, 120));
+
+        boton_Cliente.setText("Cliente Virtual");
+        boton_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_ClienteMouseClicked(evt);
+            }
+        });
+        getContentPane().add(boton_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, -1, -1));
 
         fondo_princiipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
         getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 590));
@@ -2412,64 +2389,66 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_empleado.setModel(new DefaultTableModel());
 
         switch (cb_almacen.getSelectedIndex()) {
-            case 1:
-                {
-                    boton_insertarE.setEnabled(true);
-                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-                    arregloAtributos = arr;
-                    tabla_empleado.setModel(new DefaultTableModel());
-                    DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
-                    for (String arr1 : arr) {
-                        model.addColumn(arr1);
-                    }       model.setRowCount(1);
-                    break;
+            case 1: {
+                boton_insertarE.setEnabled(true);
+                String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                arregloAtributos = arr;
+                tabla_empleado.setModel(new DefaultTableModel());
+                DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+                for (String arr1 : arr) {
+                    model.addColumn(arr1);
                 }
-            case 2:
-                {
-                    boton_insertarE.setEnabled(true);
-                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
-                    arregloAtributos = arr;
-                    tabla_empleado.setModel(new DefaultTableModel());
-                    DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
-                    for (String arr1 : arr) {
-                        model.addColumn(arr1);
-                    }       Connection con = conectarBase.getConexion();
-                    String query = "SELECT * FROM inventario";
-                    Statement st;
-                    try {
-                        st = con.createStatement();
-                        ResultSet rs = st.executeQuery(query);
-                        while (rs.next()) {
-                            Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
-                            model.addRow(row);
-                        }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-                    }       break;
+                model.setRowCount(1);
+                break;
+            }
+            case 2: {
+                boton_insertarE.setEnabled(true);
+                String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                arregloAtributos = arr;
+                tabla_empleado.setModel(new DefaultTableModel());
+                DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+                for (String arr1 : arr) {
+                    model.addColumn(arr1);
                 }
-            case 3:
-                {
-                    boton_insertarE.setEnabled(false);
-                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-                    arregloAtributos = arr;
-                    tabla_empleado.setModel(new DefaultTableModel());
-                    DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
-                    for (String arr1 : arr) {
-                        model.addColumn(arr1);
-                    }       Connection con = conectarBase.getConexion();
-                    String query = "SELECT * FROM orden";
-                    Statement st;
-                    try {
-                        st = con.createStatement();
-                        ResultSet rs = st.executeQuery(query);
-                        while (rs.next()) {
-                            Object[] row = {rs.getInt("noOrden"), rs.getInt("idCliente"), rs.getString("nombreRemitente"), rs.getString("empresaEnvio"), rs.getString("direccionEnvio"), rs.getInt("noSeguimiento")};
-                            model.addRow(row);
-                        }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-                    }       break;
+                Connection con = conectarBase.getConexion();
+                String query = "SELECT * FROM inventario";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
+                        model.addRow(row);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                break;
+            }
+            case 3: {
+                boton_insertarE.setEnabled(false);
+                String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                arregloAtributos = arr;
+                tabla_empleado.setModel(new DefaultTableModel());
+                DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+                for (String arr1 : arr) {
+                    model.addColumn(arr1);
+                }
+                Connection con = conectarBase.getConexion();
+                String query = "SELECT * FROM orden";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        Object[] row = {rs.getInt("noOrden"), rs.getInt("idCliente"), rs.getString("nombreRemitente"), rs.getString("empresaEnvio"), rs.getString("direccionEnvio"), rs.getInt("noSeguimiento")};
+                        model.addRow(row);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
             default:
                 break;
         }
@@ -2562,6 +2541,53 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_boton_insertarEMouseClicked
 
+    private void boton_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_ClienteMouseClicked
+        // TODO add your handling code here:
+
+        Perfil_clientes_enLinea.pack();
+        Perfil_clientes_enLinea.setModal(true);
+        Perfil_clientes_enLinea.setLocationRelativeTo(null);
+        Perfil_clientes_enLinea.setVisible(true);
+
+
+    }//GEN-LAST:event_boton_ClienteMouseClicked
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        jMenu1 = new javax.swing.JMenu();
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/categories.png"))); // NOI18N
+        jMenu1.setText("Categorías");
+        jMenu1.setMinimumSize(new java.awt.Dimension(100, 70));
+        jMenu1.setPreferredSize(new java.awt.Dimension(100, 30));
+        jMenu1.setRequestFocusEnabled(false);
+        jMenu1.setRolloverEnabled(false);
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        Connection con = conectarBase.getConexion();
+        String query = "SELECT * FROM categoria";
+        Statement st;
+
+        ArrayList<Object> row = new ArrayList();
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                row.add(rs.getString("nombreCategoria"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < row.size(); i++) {
+            javax.swing.JMenuItem subM = new javax.swing.JMenuItem();
+            subM.setText((String) row.get(i));
+            jMenu1.add(subM);
+        }
+    }//GEN-LAST:event_jMenu1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2612,6 +2638,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton anterior;
     private javax.swing.JButton anterior1;
     private javax.swing.JButton anterior2;
+    private javax.swing.JButton boton_Cliente;
     private javax.swing.JButton boton_crear;
     private javax.swing.JButton boton_empleado;
     private javax.swing.JButton boton_insertarE;
@@ -2713,7 +2740,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
@@ -2723,11 +2749,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;

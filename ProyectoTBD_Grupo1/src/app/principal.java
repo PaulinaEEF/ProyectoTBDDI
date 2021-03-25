@@ -134,6 +134,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
         siguiente = new javax.swing.JButton();
         anterior = new javax.swing.JButton();
         cb_clienteV = new javax.swing.JComboBox<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tabla_cliente = new javax.swing.JTable();
+        boton_carrito = new javax.swing.JButton();
+        verCarrito = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -233,6 +237,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel38 = new javax.swing.JLabel();
         fondo_registro_clientes = new javax.swing.JLabel();
         cliente_en_linea = new javax.swing.JDialog();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tabla_carrito = new javax.swing.JTable();
+        salirCliente = new javax.swing.JButton();
+        comprarCliente = new javax.swing.JButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tabla_fac = new javax.swing.JTable();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         ServicioAlCliente = new javax.swing.JDialog();
         txt_busqueda = new javax.swing.JTextField();
@@ -424,7 +436,43 @@ public class principal extends javax.swing.JFrame implements Runnable {
         Perfil_clientes_enLinea.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, -1, -1));
 
         cb_clienteV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una categoria" }));
+        cb_clienteV.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_clienteVItemStateChanged(evt);
+            }
+        });
         Perfil_clientes_enLinea.getContentPane().add(cb_clienteV, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+
+        tabla_cliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane7.setViewportView(tabla_cliente);
+
+        Perfil_clientes_enLinea.getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 640, 220));
+
+        boton_carrito.setText("Agregar a carrito");
+        boton_carrito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_carritoMouseClicked(evt);
+            }
+        });
+        Perfil_clientes_enLinea.getContentPane().add(boton_carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, -1, -1));
+
+        verCarrito.setText("Ver Carrito");
+        verCarrito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verCarritoMouseClicked(evt);
+            }
+        });
+        Perfil_clientes_enLinea.getContentPane().add(verCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 230, -1, -1));
 
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 3));
         Perfil_clientes_enLinea.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 1240, 260));
@@ -948,7 +996,60 @@ public class principal extends javax.swing.JFrame implements Runnable {
         crear_cuenta_cliente.getContentPane().add(fondo_registro_clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 320));
 
         cliente_en_linea.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        cliente_en_linea.getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 370));
+
+        tabla_carrito.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane8.setViewportView(tabla_carrito);
+
+        cliente_en_linea.getContentPane().add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 520, 150));
+
+        salirCliente.setText("Salir");
+        salirCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salirClienteMouseClicked(evt);
+            }
+        });
+        cliente_en_linea.getContentPane().add(salirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, -1, -1));
+
+        comprarCliente.setText("Comprar");
+        comprarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comprarClienteMouseClicked(evt);
+            }
+        });
+        cliente_en_linea.getContentPane().add(comprarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, -1, -1));
+
+        tabla_fac.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tabla_fac.setEnabled(false);
+        jScrollPane9.setViewportView(tabla_fac);
+
+        cliente_en_linea.getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 490, 140));
+
+        jLabel43.setText("Facturas");
+        cliente_en_linea.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, -1, -1));
+
+        jLabel44.setText("Carreta");
+        cliente_en_linea.getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        cliente_en_linea.getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 520));
 
         ServicioAlCliente.setUndecorated(true);
         ServicioAlCliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1418,7 +1519,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 } catch (SQLException ex) {
                     Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 if (acum.contains(tokens[0])) {
                     try {
                         ps = con.prepareStatement("INSERT INTO cliente_poco_frecuente (idCliente, nombreCliente) VALUES (?,?)");
@@ -1653,12 +1754,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
                 if (acum.contains(tokens[1]) && acumCon.contains(tokens[5])) {
                     try {
-                        ps = con.prepareStatement("INSERT INTO factura (codigoTienda, direccion, rtn, fechaEmision, idCliente) VALUES (?,?,?,?,?)");
+                        ps = con.prepareStatement("INSERT INTO factura (codigoTienda, direccion, rtn, fechaEmision, idCliente, total_venta) VALUES (?,?,?,?,?,?)");
                         ps.setInt(1, Integer.parseInt(tokens[1]));
                         ps.setString(2, tokens[2]);
                         ps.setString(3, tokens[3]);
                         ps.setString(4, tokens[4]);
                         ps.setInt(5, Integer.parseInt(tokens[5]));
+                        ps.setFloat(6, Float.parseFloat(tokens[6]));
                         ps.executeUpdate();
                     } catch (SQLException ex) {
                         Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1685,9 +1787,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 break;
             }
         }
-        if(idExistente){
+        if (idExistente) {
             JOptionPane.showMessageDialog(null, "Dato insertado correctamente");
-            
+
         }
 
 //        try {
@@ -1758,14 +1860,74 @@ public class principal extends javax.swing.JFrame implements Runnable {
         contImages--;
         jLabel10.setIcon(Imagen[contImages]);
     }//GEN-LAST:event_anterior1ActionPerformed
-
+    int id_ingresado;
     private void btn_ingresarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarClienteMouseClicked
-        Perfil_clientes_enLinea.pack();
-        Perfil_clientes_enLinea.setModal(true);
-        Perfil_clientes_enLinea.setLocationRelativeTo(null);
-        Perfil_clientes_enLinea.setVisible(true);
-    }//GEN-LAST:event_btn_ingresarClienteMouseClicked
+        ArrayList<String> cliente = new ArrayList();
+        ArrayList<String> pass = new ArrayList();
+        ArrayList<Integer> id = new ArrayList();
 
+        Connection con2 = conectarBase.getConexion();
+        String query2 = "SELECT * FROM cliente_virtual";
+        Statement st2;
+        try {
+            st2 = con2.createStatement();
+            ResultSet rs = st2.executeQuery(query2);
+            while (rs.next()) {
+                cliente.add(rs.getString("nombreUsuario"));
+                pass.add(rs.getString("password"));
+                id.add(rs.getInt("idCliente"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean ser = false;
+        if (!(id_login_cliente.getText().isEmpty() || password_login_cliente.getText().isBlank())) {
+            for (int i = 0; i < cliente.size(); i++) {
+                if (id_login_cliente.getText().equals(cliente.get(i)) && password_login_cliente.getText().equals(pass.get(i))) {
+                    ser = true;
+                    cliente_ingresado = cliente.get(i);
+                    id_ingresado = id.get(i);
+                    break;
+                }
+            }
+
+            if (ser == true) {
+                id_login_cliente.setText("");
+
+                password_login_cliente.setText("");
+                Connection con = conectarBase.getConexion();
+                String query = "SELECT * FROM categoria";
+                Statement st;
+
+                ArrayList<Object> row = new ArrayList();
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        row.add(rs.getString("nombreCategoria"));
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                for (int i = 0; i < row.size(); i++) {
+                    cb_clienteV.addItem((String) row.get(i));
+                }
+                login_clientes.setVisible(false);
+                Perfil_clientes_enLinea.pack();
+                Perfil_clientes_enLinea.setModal(true);
+                Perfil_clientes_enLinea.setLocationRelativeTo(null);
+                Perfil_clientes_enLinea.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene los campos");
+        }
+
+
+    }//GEN-LAST:event_btn_ingresarClienteMouseClicked
+    String cliente_ingresado;
     private void btn_cerrar_sesion2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrar_sesion2MouseClicked
         Perfil_clientes_poco_frecuentes.dispose();
     }//GEN-LAST:event_btn_cerrar_sesion2MouseClicked
@@ -2561,30 +2723,248 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private void boton_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_ClienteMouseClicked
         // TODO add your handling code here:
 
-        
-        Connection con = conectarBase.getConexion();
-        String query = "SELECT * FROM categoria";
-        Statement st;
+        login_clientes.pack();
+        login_clientes.setModal(true);
+        login_clientes.setLocationRelativeTo(null);
+        login_clientes.setVisible(true);
+    }//GEN-LAST:event_boton_ClienteMouseClicked
+    String categoria;
+    private void cb_clienteVItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_clienteVItemStateChanged
+        // TODO add your handling code here:
+        if (cb_clienteV.getSelectedIndex() != 0) {
+            String valor = (String) cb_clienteV.getSelectedItem();
+            categoria = valor;
+            tabla_cliente.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) tabla_cliente.getModel();
 
-        ArrayList<Object> row = new ArrayList();
-        try {
-            st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                row.add(rs.getString("nombreCategoria"));
+            String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+            arregloAtributos = arr;
+            for (int j = 0; j < arr.length; j++) {
+                model.addColumn(arr[j]);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for (int i = 0; i < row.size(); i++) {
-            cb_clienteV.addItem((String) row.get(i));
+            Connection con = conectarBase.getConexion();
+            String acum = "";
+            String query2 = "SELECT * FROM categoria";
+            Statement st1;
+            //JOptionPane.showMessageDialog(null, valor);
+
+            try {
+                st1 = con.createStatement();
+                ResultSet rs = st1.executeQuery(query2);
+                while (rs.next()) {
+                    if (valor.equals(rs.getString("nombreCategoria"))) {
+                        acum += rs.getInt("idProducto") + " ";
+
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //JOptionPane.showMessageDialog(null, acum);
+            String query = "SELECT * FROM producto";
+
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                rs.next();
+                //JOptionPane.showMessageDialog(null, rs.getInt("idProducto")+" mas "+acum.contains(rs.getInt("idProducto")+""));
+                while (rs.next()) {
+                    if (acum.contains(rs.getInt("idProducto") + "")) {
+                        //JOptionPane.showMessageDialog(null, "entra");
+                        Object[] row = {rs.getInt("idProducto"), rs.getString("fabricante"), rs.getString("nombreProducto"), rs.getString("modelo"), rs.getFloat("precio"), rs.getString("tipoProducto"), rs.getString("descripcion")};
+                        model.addRow(row);
+
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
+
+    }//GEN-LAST:event_cb_clienteVItemStateChanged
+
+    private void boton_carritoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_carritoMouseClicked
+        // TODO add your handling code here:
+        if (tabla_cliente.getSelectedRowCount() != 0) {
+            DefaultTableModel model = (DefaultTableModel) tabla_cliente.getModel();
+            if (validarIngresoTable(tabla_cliente, false)) {
+                Object k = new Object[arregloAtributos.length];
+                model.addRow((Object[]) k);
+            }
+
+            String guardar = "";
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                guardar += model.getValueAt(0, j).toString() + "%";
+            }
+
+            String[] tokens = guardar.split("%");
+            Connection con = conectarBase.getConexion();
+            PreparedStatement ps;
+            try {
+                ps = con.prepareStatement("INSERT INTO tiene_en_carrito (nombreUsuario, idProducto, cantidadProductoCarrito) VALUES (?,?,?)");
+                ps.setString(1, cliente_ingresado);
+                ps.setInt(2, Integer.parseInt(tokens[0]));
+                ps.setInt(3, 1);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ////////////////////////////////////
+
+        }
+
+    }//GEN-LAST:event_boton_carritoMouseClicked
+
+    private void salirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirClienteMouseClicked
+        // TODO add your handling code here:
+        cliente_en_linea.setVisible(false);
         Perfil_clientes_enLinea.pack();
         Perfil_clientes_enLinea.setModal(true);
         Perfil_clientes_enLinea.setLocationRelativeTo(null);
         Perfil_clientes_enLinea.setVisible(true);
-    }//GEN-LAST:event_boton_ClienteMouseClicked
+    }//GEN-LAST:event_salirClienteMouseClicked
+
+    private void comprarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprarClienteMouseClicked
+        // TODO add your handling code here:
+        Connection con = conectarBase.getConexion();
+        PreparedStatement ps;
+        DefaultTableModel model = (DefaultTableModel) tabla_carrito.getModel();
+
+        String[] guardar = new String[tabla_carrito.getRowCount()];
+        int precio = 0;
+        for (int i = 0; i < tabla_carrito.getRowCount(); i++) {
+
+            guardar[i] = model.getValueAt(i, 0).toString();
+            precio += Float.parseFloat(model.getValueAt(i, 4).toString());
+
+        }
+
+        String dire = JOptionPane.showInputDialog("Ingrese su direccion");
+        String rtn = JOptionPane.showInputDialog("Ingrese su rtn");
+
+        try {
+            ps = con.prepareStatement("INSERT INTO factura (codigoTienda, direccion, rtn, fechaEmision, idCliente, total_venta) VALUES (?,?,?,?,?,?)");
+            ps.setInt(1, 1);
+            ps.setString(2, dire);
+            ps.setString(3, rtn);
+            ps.setString(4, hora_jbl.getText());
+            ps.setInt(5, id_ingresado);
+            ps.setFloat(6, precio * 15);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String query = "SELECT * FROM factura";
+        Statement st;
+        int nfac = 0;
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                nfac = rs.getInt("noFactura");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < tabla_carrito.getRowCount(); i++) {
+
+            try {
+                ps = con.prepareStatement("INSERT INTO detalle_factura (noFactura, idProducto, cantidadProducto, ISV) VALUES (?,?,?,?)");
+                ps.setInt(1, nfac);
+                ps.setInt(2, Integer.parseInt(guardar[i]));
+                ps.setInt(3, 1);
+                ps.setFloat(4, 13.1f);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Compra realizada con exito");
+        
+        
+        tabla_fac.setModel(new DefaultTableModel());
+        DefaultTableModel modelo = (DefaultTableModel) tabla_fac.getModel();
+        
+        String[] arr = {"NoFactura", "idProducto", "cantidadProducto", "ISV"};
+        arregloAtributos = arr;
+        for (int j = 0; j < arr.length; j++) {
+            modelo.addColumn(arr[j]);
+        }
+        String query2 = "SELECT * FROM detalle_factura";
+        Statement st2;
+        try {
+            st2 = con.createStatement();
+            ResultSet rs = st2.executeQuery(query2);
+            while (rs.next()) {
+                Object[] row = {rs.getInt("noFactura"), rs.getInt("idProducto"), rs.getInt("cantidadProducto"), rs.getFloat("ISV")};
+                modelo.addRow(row);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_comprarClienteMouseClicked
+
+    private void verCarritoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verCarritoMouseClicked
+        // TODO add your handling code here:
+
+        //////////////////////////a
+        tabla_carrito.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_carrito.getModel();
+
+        String[] arr = {"idProducto", "fabricante", "nombreProducto", "modelo", "precio", "tipoProducto", "descripcion"};
+        arregloAtributos = arr;
+        for (int j = 0; j < arr.length; j++) {
+            model.addColumn(arr[j]);
+        }
+        Connection con = conectarBase.getConexion();
+        String acum = "";
+        String query2 = "SELECT * FROM categoria";
+        Statement st1;
+        //JOptionPane.showMessageDialog(null, valor);
+
+        try {
+            st1 = con.createStatement();
+            ResultSet rs = st1.executeQuery(query2);
+            while (rs.next()) {
+                if (categoria.equals(rs.getString("nombreCategoria"))) {
+                    acum += rs.getInt("idProducto") + " ";
+
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //JOptionPane.showMessageDialog(null, acum);
+        String query = "SELECT * FROM producto";
+
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            //JOptionPane.showMessageDialog(null, rs.getInt("idProducto")+" mas "+acum.contains(rs.getInt("idProducto")+""));
+            while (rs.next()) {
+                if (acum.contains(rs.getInt("idProducto") + "")) {
+                    //JOptionPane.showMessageDialog(null, "entra");
+                    Object[] row = {rs.getInt("idProducto"), rs.getString("fabricante"), rs.getString("nombreProducto"), rs.getString("modelo"), rs.getFloat("precio"), rs.getString("tipoProducto"), rs.getString("descripcion")};
+                    model.addRow(row);
+
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Perfil_clientes_enLinea.setVisible(false);
+        cliente_en_linea.pack();
+        cliente_en_linea.setModal(true);
+        cliente_en_linea.setLocationRelativeTo(null);
+        cliente_en_linea.setVisible(true);
+    }//GEN-LAST:event_verCarritoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2637,6 +3017,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton anterior1;
     private javax.swing.JButton anterior2;
     private javax.swing.JButton boton_Cliente;
+    private javax.swing.JButton boton_carrito;
     private javax.swing.JButton boton_crear;
     private javax.swing.JButton boton_empleado;
     private javax.swing.JButton boton_insertarE;
@@ -2673,6 +3054,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JDialog centrode_llamadas;
     private javax.swing.JDialog cliente_en_linea;
     private javax.swing.JComboBox<String> cmb_tipoCliente;
+    private javax.swing.JButton comprarCliente;
     private javax.swing.JDialog crear_cuenta_cliente;
     private javax.swing.JLabel fondo_admiistradores;
     private javax.swing.JLabel fondo_centroLlamadas;
@@ -2724,6 +3106,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2753,6 +3137,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -2770,13 +3157,17 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPasswordField password_empleado;
     private javax.swing.JPasswordField password_login_cliente;
     private javax.swing.JDialog perfil_empleados;
+    private javax.swing.JButton salirCliente;
     private javax.swing.JButton siguiente;
     private javax.swing.JButton siguiente1;
     private javax.swing.JButton siguiente2;
     private javax.swing.JTabbedPane tabbed_eliminar;
+    private javax.swing.JTable tabla_carrito;
+    private javax.swing.JTable tabla_cliente;
     private javax.swing.JTable tabla_crear;
     private javax.swing.JTable tabla_eliminar;
     private javax.swing.JTable tabla_empleado;
+    private javax.swing.JTable tabla_fac;
     private javax.swing.JTable tabla_modificar;
     private javax.swing.JTable tabla_servicio;
     private javax.swing.JLabel titulo;
@@ -2787,6 +3178,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField txt_busqueda;
     private javax.swing.JTextField user_admin;
     private javax.swing.JTextField user_empleado;
+    private javax.swing.JButton verCarrito;
     // End of variables declaration//GEN-END:variables
     String[] arregloAtributos;
     boolean flagAddRow = false;
@@ -2953,7 +3345,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(query);
                     while (rs.next()) {
-                        Object[] row = {rs.getInt("noFactura"), rs.getInt("codigoTienda"), rs.getString("direccion"), rs.getString("rtn"), rs.getString("fechaEmision"), rs.getInt("idCliente")};
+                        Object[] row = {rs.getInt("noFactura"), rs.getInt("codigoTienda"), rs.getString("direccion"), rs.getString("rtn"), rs.getString("fechaEmision"), rs.getInt("idCliente"), rs.getFloat("total_venta")};
                         model.addRow(row);
                     }
                     break;
@@ -3136,7 +3528,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(query);
                     while (rs.next()) {
-                        Object[] row = {rs.getInt("noFactura"), rs.getInt("codigoTienda"), rs.getString("direccion"), rs.getString("rtn"), rs.getString("fechaEmision"), rs.getInt("idCliente")};
+                        Object[] row = {rs.getInt("noFactura"), rs.getInt("codigoTienda"), rs.getString("direccion"), rs.getString("rtn"), rs.getString("fechaEmision"), rs.getInt("idCliente"), rs.getFloat("total_venta")};
                         model.addRow(row);
                     }
                     break;
@@ -3263,7 +3655,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     break;
                 }
                 case "FACTURA": {
-                    String[] arr = {"noFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente"};
+                    String[] arr = {"noFactura", "codigoTienda", "direccion", "rtn", "fechaEmision", "idCliente", "total_venta"};
                     arregloAtributos = arr;
                     for (int j = 0; j < arr.length; j++) {
                         model.addColumn(arr[j]);

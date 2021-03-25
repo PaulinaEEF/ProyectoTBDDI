@@ -256,6 +256,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_bitacora = new javax.swing.JTable();
         jLabel43 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel44 = new javax.swing.JLabel();
         btn_regresar_tabbed = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
@@ -634,13 +635,17 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         administradores.getContentPane().add(tabbed_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 840, 410));
 
-        btn_ver_bitacora.setText("jButton3");
+        btn_ver_bitacora.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        btn_ver_bitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document.png"))); // NOI18N
+        btn_ver_bitacora.setText("Ver bitacora");
+        btn_ver_bitacora.setContentAreaFilled(false);
+        btn_ver_bitacora.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document (1).png"))); // NOI18N
         btn_ver_bitacora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_ver_bitacoraMouseClicked(evt);
             }
         });
-        administradores.getContentPane().add(btn_ver_bitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 100, 40));
+        administradores.getContentPane().add(btn_ver_bitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 450, 180, 90));
 
         fondo_admiistradores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
         administradores.getContentPane().add(fondo_admiistradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 540));
@@ -1045,6 +1050,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         ventana_bitacora.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tabla_bitacora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 204)));
         tabla_bitacora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1062,14 +1068,23 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel43.setText("Bitacora");
         ventana_bitacora.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 140, 20));
 
+        jButton1.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
         jButton1.setText("Volver al crud");
+        jButton1.setContentAreaFilled(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        ventana_bitacora.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 120, 30));
-        ventana_bitacora.getContentPane().add(btn_regresar_tabbed, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 520));
+        ventana_bitacora.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, 200, 70));
+
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        jLabel44.setText("jLabel44");
+        ventana_bitacora.getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 270, 580));
+
+        btn_regresar_tabbed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        ventana_bitacora.getContentPane().add(btn_regresar_tabbed, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1089,7 +1104,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 boton_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 230, 140));
+        getContentPane().add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, 230, 140));
 
         jLabel40.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1135,13 +1150,17 @@ public class principal extends javax.swing.JFrame implements Runnable {
         });
         getContentPane().add(boton_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, 180, 120));
 
+        boton_Cliente.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        boton_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/privado (1).png"))); // NOI18N
         boton_Cliente.setText("Cliente Virtual");
+        boton_Cliente.setContentAreaFilled(false);
+        boton_Cliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/privado (2).png"))); // NOI18N
         boton_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 boton_ClienteMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, 110, 60));
+        getContentPane().add(boton_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, 310, 160));
 
         fondo_princiipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
         getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 590));
@@ -2807,6 +2826,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

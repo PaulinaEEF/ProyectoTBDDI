@@ -64,7 +64,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
             jLabel10.setIcon(Imagen[1]);
 
         }
-        TextPrompt cc2 = new TextPrompt("¿Qué estás buscando?", txt_buscar);
+        //TextPrompt cc2 = new TextPrompt("¿Qué estás buscando?", txt_buscar);
         servicioUsuario.add("Daniel");
         servicioUsuario.add("Andrea");
         servicioUsuario.add("Sebastian");
@@ -128,9 +128,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         btn_regresar_empleado = new javax.swing.JButton();
         fondo_login_empleados = new javax.swing.JLabel();
         Perfil_clientes_enLinea = new javax.swing.JDialog();
-        txt_buscar = new javax.swing.JTextField();
         btn_cerrar_sesion = new javax.swing.JButton();
-        btn_buscar_producto = new javax.swing.JButton();
         siguiente = new javax.swing.JButton();
         anterior = new javax.swing.JButton();
         cb_clienteV = new javax.swing.JComboBox<>();
@@ -246,7 +244,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_fac = new javax.swing.JTable();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
         ServicioAlCliente = new javax.swing.JDialog();
         txt_busqueda = new javax.swing.JTextField();
         btn_regresar_servicio = new javax.swing.JButton();
@@ -264,11 +264,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
         fondo_centroLlamadas = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         ventana_bitacora = new javax.swing.JDialog();
-        jScrollPane7 = new javax.swing.JScrollPane();
+        jScrollPane10 = new javax.swing.JScrollPane();
         tabla_bitacora = new javax.swing.JTable();
-        jLabel43 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel44 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
         btn_regresar_tabbed = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
@@ -408,7 +408,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         Perfil_clientes_enLinea.setUndecorated(true);
         Perfil_clientes_enLinea.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        Perfil_clientes_enLinea.getContentPane().add(txt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 180, 30));
 
         btn_cerrar_sesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/power.png"))); // NOI18N
         btn_cerrar_sesion.setContentAreaFilled(false);
@@ -420,11 +419,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         });
         Perfil_clientes_enLinea.getContentPane().add(btn_cerrar_sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 130, 80));
 
-        btn_buscar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search.png"))); // NOI18N
-        btn_buscar_producto.setContentAreaFilled(false);
-        btn_buscar_producto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search (1).png"))); // NOI18N
-        Perfil_clientes_enLinea.getContentPane().add(btn_buscar_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 150, 80));
-
         siguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/next-button.png"))); // NOI18N
         siguiente.setContentAreaFilled(false);
         siguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -432,7 +426,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 siguienteActionPerformed(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 660, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 700, -1, -1));
 
         anterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
         anterior.setContentAreaFilled(false);
@@ -441,15 +435,16 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 anteriorActionPerformed(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 700, -1, -1));
 
+        cb_clienteV.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         cb_clienteV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una categoria" }));
         cb_clienteV.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_clienteVItemStateChanged(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(cb_clienteV, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(cb_clienteV, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 190, 30));
 
         tabla_cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -464,26 +459,34 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane7.setViewportView(tabla_cliente);
 
-        Perfil_clientes_enLinea.getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 640, 220));
+        Perfil_clientes_enLinea.getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 700, 320));
 
+        boton_carrito.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        boton_carrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/shopping-cart.png"))); // NOI18N
         boton_carrito.setText("Agregar a carrito");
+        boton_carrito.setContentAreaFilled(false);
+        boton_carrito.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/shopping-cart (1).png"))); // NOI18N
         boton_carrito.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 boton_carritoMouseClicked(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(boton_carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(boton_carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, -1, 70));
 
+        verCarrito.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        verCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-to-cart_1.png"))); // NOI18N
         verCarrito.setText("Ver Carrito");
+        verCarrito.setContentAreaFilled(false);
+        verCarrito.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-to-cart (1).png"))); // NOI18N
         verCarrito.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 verCarritoMouseClicked(evt);
             }
         });
-        Perfil_clientes_enLinea.getContentPane().add(verCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 230, -1, -1));
+        Perfil_clientes_enLinea.getContentPane().add(verCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 1, 210, 70));
 
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 3));
-        Perfil_clientes_enLinea.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 1240, 260));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 1240, 260));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
         Perfil_clientes_enLinea.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 800, 480));
@@ -492,10 +495,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
         Perfil_clientes_enLinea.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 470));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes_enLinea.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 540));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 570));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        Perfil_clientes_enLinea.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 810, 540));
+        Perfil_clientes_enLinea.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 810, 580));
 
         administradores.setUndecorated(true);
         administradores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1032,21 +1035,28 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         cliente_en_linea.getContentPane().add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 520, 150));
 
-        salirCliente.setText("Salir");
+        salirCliente.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        salirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
+        salirCliente.setText("Regresar");
+        salirCliente.setContentAreaFilled(false);
         salirCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 salirClienteMouseClicked(evt);
             }
         });
-        cliente_en_linea.getContentPane().add(salirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, -1, -1));
+        cliente_en_linea.getContentPane().add(salirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 390, -1, -1));
 
+        comprarCliente.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        comprarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/payment-method.png"))); // NOI18N
         comprarCliente.setText("Comprar");
+        comprarCliente.setContentAreaFilled(false);
+        comprarCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/payment-method (1).png"))); // NOI18N
         comprarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comprarClienteMouseClicked(evt);
             }
         });
-        cliente_en_linea.getContentPane().add(comprarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, -1, -1));
+        cliente_en_linea.getContentPane().add(comprarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 180, 80));
 
         tabla_fac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1062,14 +1072,29 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabla_fac.setEnabled(false);
         jScrollPane9.setViewportView(tabla_fac);
 
-        cliente_en_linea.getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 490, 140));
+        cliente_en_linea.getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, 490, 150));
 
-        jLabel43.setText("Facturas");
-        cliente_en_linea.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, -1, -1));
+        jLabel43.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel43.setText("Tus facturas");
+        cliente_en_linea.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 70, -1, -1));
 
-        jLabel44.setText("Carreta");
-        cliente_en_linea.getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
-        cliente_en_linea.getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 520));
+        jLabel44.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel44.setText("En carreta");
+        cliente_en_linea.getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
+
+        jLabel47.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel47.setText("Realizando compra");
+        cliente_en_linea.getContentPane().add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
+
+        jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        cliente_en_linea.getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, 670, 470));
+
+        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        jLabel48.setText("jLabel48");
+        cliente_en_linea.getContentPane().add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 670, 470));
 
         ServicioAlCliente.setUndecorated(true);
         ServicioAlCliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1160,14 +1185,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
             }
         ));
-        jScrollPane7.setViewportView(tabla_bitacora);
+        jScrollPane10.setViewportView(tabla_bitacora);
 
-        ventana_bitacora.getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 930, 390));
+        ventana_bitacora.getContentPane().add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 930, 390));
 
-        jLabel43.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel43.setText("Bitacora");
-        ventana_bitacora.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 140, 20));
+        jLabel45.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel45.setText("Bitacora");
+        ventana_bitacora.getContentPane().add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 140, 20));
 
         jButton1.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/previous.png"))); // NOI18N
@@ -1180,9 +1205,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
         });
         ventana_bitacora.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, 200, 70));
 
-        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
-        jLabel44.setText("jLabel44");
-        ventana_bitacora.getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 270, 580));
+        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        jLabel46.setText("jLabel44");
+        ventana_bitacora.getContentPane().add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 270, 580));
 
         btn_regresar_tabbed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
         ventana_bitacora.getContentPane().add(btn_regresar_tabbed, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));
@@ -1312,14 +1337,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         contImages++;
         jLabel10.setIcon(Imagen[contImages]);
     }//GEN-LAST:event_siguienteActionPerformed
-
-    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
-        if (contImages == 1) {
-            contImages = 4;
-        }
-        contImages--;
-        jLabel10.setIcon(Imagen[contImages]);
-    }//GEN-LAST:event_anteriorActionPerformed
 
     private void btn_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adminMouseClicked
 
@@ -3067,6 +3084,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
         administradores.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
+        if (contImages == 1) {
+            contImages = 4;
+        }
+        contImages--;
+        jLabel10.setIcon(Imagen[contImages]);
+    }//GEN-LAST:event_anteriorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3124,7 +3149,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton boton_insertarE;
     private javax.swing.JButton boton_salir;
     private javax.swing.JButton btn_admin;
-    private javax.swing.JButton btn_buscar_producto;
     private javax.swing.JButton btn_buscar_producto1;
     private javax.swing.JButton btn_buscar_producto2;
     private javax.swing.JButton btn_busqueda;
@@ -3212,6 +3236,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -3236,16 +3264,15 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -3268,12 +3295,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton siguiente1;
     private javax.swing.JButton siguiente2;
     private javax.swing.JTabbedPane tabbed_eliminar;
-
     private javax.swing.JTable tabla_bitacora;
-
     private javax.swing.JTable tabla_carrito;
     private javax.swing.JTable tabla_cliente;
-
     private javax.swing.JTable tabla_crear;
     private javax.swing.JTable tabla_eliminar;
     private javax.swing.JTable tabla_empleado;
@@ -3282,17 +3306,13 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTable tabla_servicio;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo2;
-    private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_buscar1;
     private javax.swing.JTextField txt_buscar2;
     private javax.swing.JTextField txt_busqueda;
     private javax.swing.JTextField user_admin;
     private javax.swing.JTextField user_empleado;
-
     private javax.swing.JDialog ventana_bitacora;
-
     private javax.swing.JButton verCarrito;
-
     // End of variables declaration//GEN-END:variables
     String[] arregloAtributos;
     boolean flagAddRow = false;

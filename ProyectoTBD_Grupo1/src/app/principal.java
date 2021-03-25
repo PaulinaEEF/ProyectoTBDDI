@@ -165,6 +165,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         btn_eliminar_sql = new javax.swing.JButton();
         btn_regresar2 = new javax.swing.JButton();
         jLabel32 = new javax.swing.JLabel();
+        btn_ver_bitacora = new javax.swing.JButton();
         fondo_admiistradores = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         Perfil_clientes_frecuentes = new javax.swing.JDialog();
@@ -250,6 +251,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jTextField2 = new javax.swing.JTextField();
         fondo_centroLlamadas = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
+        ventana_bitacora = new javax.swing.JDialog();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tabla_bitacora = new javax.swing.JTable();
+        jLabel43 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        btn_regresar_tabbed = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
         jLabel40 = new javax.swing.JLabel();
@@ -626,6 +633,14 @@ public class principal extends javax.swing.JFrame implements Runnable {
         tabbed_eliminar.addTab("Eliminar", panel_eliminar);
 
         administradores.getContentPane().add(tabbed_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 840, 410));
+
+        btn_ver_bitacora.setText("jButton3");
+        btn_ver_bitacora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ver_bitacoraMouseClicked(evt);
+            }
+        });
+        administradores.getContentPane().add(btn_ver_bitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 100, 40));
 
         fondo_admiistradores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
         administradores.getContentPane().add(fondo_admiistradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 540));
@@ -1028,6 +1043,34 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_clientes1.gif"))); // NOI18N
         centrode_llamadas.getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 530, 600));
 
+        ventana_bitacora.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabla_bitacora.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane7.setViewportView(tabla_bitacora);
+
+        ventana_bitacora.getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 930, 390));
+
+        jLabel43.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel43.setText("Bitacora");
+        ventana_bitacora.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 140, 20));
+
+        jButton1.setText("Volver al crud");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        ventana_bitacora.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 120, 30));
+        ventana_bitacora.getContentPane().add(btn_regresar_tabbed, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 520));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1098,7 +1141,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 boton_ClienteMouseClicked(evt);
             }
         });
-        getContentPane().add(boton_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, -1, -1));
+        getContentPane().add(boton_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, 110, 60));
 
         fondo_princiipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget2.gif"))); // NOI18N
         getContentPane().add(fondo_princiipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 590));
@@ -1418,7 +1461,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 } catch (SQLException ex) {
                     Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 if (acum.contains(tokens[0])) {
                     try {
                         ps = con.prepareStatement("INSERT INTO cliente_poco_frecuente (idCliente, nombreCliente) VALUES (?,?)");
@@ -1685,9 +1728,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 break;
             }
         }
-        if(idExistente){
+        if (idExistente) {
             JOptionPane.showMessageDialog(null, "Dato insertado correctamente");
-            
+
         }
 
 //        try {
@@ -1850,7 +1893,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
             if (emp == true) {
                 user_empleado.setText("");
-
                 password_empleado.setText("");
                 login_empleados.dispose();
                 perfil_empleados.pack();
@@ -2561,7 +2603,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private void boton_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_ClienteMouseClicked
         // TODO add your handling code here:
 
-        
         Connection con = conectarBase.getConexion();
         String query = "SELECT * FROM categoria";
         Statement st;
@@ -2585,6 +2626,44 @@ public class principal extends javax.swing.JFrame implements Runnable {
         Perfil_clientes_enLinea.setLocationRelativeTo(null);
         Perfil_clientes_enLinea.setVisible(true);
     }//GEN-LAST:event_boton_ClienteMouseClicked
+
+    private void btn_ver_bitacoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ver_bitacoraMouseClicked
+        tabla_bitacora.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_bitacora.getModel();
+        String[] arr = {"table_name", "registro", "usuario", "ipv4", "query", "fecha"};
+        arregloAtributos = arr;
+        for (int j = 0; j < arr.length; j++) {
+            model.addColumn(arr[j]);
+        }
+
+        Connection con = conectarBase.getConexion();
+        String query = "SELECT * FROM bitacora";
+        Statement st;
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Object[] row = {rs.getString("table_name"), rs.getString("registro"), rs.getString("usuario"), rs.getString("ipv4"), rs.getString("query"), rs.getString("fecha")};
+                model.addRow(row);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        administradores.setVisible(false);
+        ventana_bitacora.pack();
+        ventana_bitacora.setModal(true);
+        ventana_bitacora.setLocationRelativeTo(null);
+        ventana_bitacora.setVisible(true);
+    }//GEN-LAST:event_btn_ver_bitacoraMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        ventana_bitacora.dispose();
+        administradores.pack();
+        administradores.setModal(true);
+        administradores.setLocationRelativeTo(null);
+        administradores.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -2664,7 +2743,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_regresar_empleado;
     private javax.swing.JButton btn_regresar_loginAdmin;
     private javax.swing.JButton btn_regresar_servicio;
+    private javax.swing.JLabel btn_regresar_tabbed;
     private javax.swing.JButton btn_siguiente;
+    private javax.swing.JButton btn_ver_bitacora;
     private javax.swing.JComboBox<String> cb_almacen;
     private javax.swing.JComboBox<String> cb_clienteV;
     private javax.swing.JComboBox<String> cb_crear;
@@ -2686,6 +2767,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel hora_jbl;
     private javax.swing.JTextField id_login_cliente;
     private javax.swing.JTextField id_registrar_cliente;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2724,6 +2806,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2753,6 +2836,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -2774,6 +2858,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton siguiente1;
     private javax.swing.JButton siguiente2;
     private javax.swing.JTabbedPane tabbed_eliminar;
+    private javax.swing.JTable tabla_bitacora;
     private javax.swing.JTable tabla_crear;
     private javax.swing.JTable tabla_eliminar;
     private javax.swing.JTable tabla_empleado;
@@ -2787,6 +2872,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField txt_busqueda;
     private javax.swing.JTextField user_admin;
     private javax.swing.JTextField user_empleado;
+    private javax.swing.JDialog ventana_bitacora;
     // End of variables declaration//GEN-END:variables
     String[] arregloAtributos;
     boolean flagAddRow = false;

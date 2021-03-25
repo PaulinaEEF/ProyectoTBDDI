@@ -2411,64 +2411,67 @@ public class principal extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
         tabla_empleado.setModel(new DefaultTableModel());
 
-        if (cb_almacen.getSelectedIndex() == 1) {
-            boton_insertarE.setEnabled(true);
-            String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-
-            arregloAtributos = arr;
-            tabla_empleado.setModel(new DefaultTableModel());
-            DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
-            for (String arr1 : arr) {
-                model.addColumn(arr1);
-            }
-            model.setRowCount(1);
-        } else if (cb_almacen.getSelectedIndex() == 2) {
-            boton_insertarE.setEnabled(true);
-            String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
-
-            arregloAtributos = arr;
-            tabla_empleado.setModel(new DefaultTableModel());
-            DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
-            for (String arr1 : arr) {
-                model.addColumn(arr1);
-            }
-            Connection con = conectarBase.getConexion();
-
-            String query = "SELECT * FROM inventario";
-            Statement st;
-            try {
-                st = con.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                while (rs.next()) {
-                    Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
-                    model.addRow(row);
+        switch (cb_almacen.getSelectedIndex()) {
+            case 1:
+                {
+                    boton_insertarE.setEnabled(true);
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    arregloAtributos = arr;
+                    tabla_empleado.setModel(new DefaultTableModel());
+                    DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+                    for (String arr1 : arr) {
+                        model.addColumn(arr1);
+                    }       model.setRowCount(1);
+                    break;
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (cb_almacen.getSelectedIndex() == 3) {
-            boton_insertarE.setEnabled(false);
-            String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
-
-            arregloAtributos = arr;
-            tabla_empleado.setModel(new DefaultTableModel());
-            DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
-            for (String arr1 : arr) {
-                model.addColumn(arr1);
-            }
-            Connection con = conectarBase.getConexion();
-            String query = "SELECT * FROM orden";
-            Statement st;
-            try {
-                st = con.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                while (rs.next()) {
-                    Object[] row = {rs.getInt("noOrden"), rs.getInt("idCliente"), rs.getString("nombreRemitente"), rs.getString("empresaEnvio"), rs.getString("direccionEnvio"), rs.getInt("noSeguimiento")};
-                    model.addRow(row);
+            case 2:
+                {
+                    boton_insertarE.setEnabled(true);
+                    String[] arr = {"codigoAlmacen", "codigoTienda", "idProducto", "cantidadInventario"};
+                    arregloAtributos = arr;
+                    tabla_empleado.setModel(new DefaultTableModel());
+                    DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+                    for (String arr1 : arr) {
+                        model.addColumn(arr1);
+                    }       Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM inventario";
+                    Statement st;
+                    try {
+                        st = con.createStatement();
+                        ResultSet rs = st.executeQuery(query);
+                        while (rs.next()) {
+                            Object[] row = {rs.getInt("codigoAlmacen"), rs.getInt("codigoTienda"), rs.getInt("idProducto"), rs.getInt("cantidadInventario")};
+                            model.addRow(row);
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }       break;
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            case 3:
+                {
+                    boton_insertarE.setEnabled(false);
+                    String[] arr = {"noOrden", "idCliente", "nombreRemitemte", "empresaEnvio", "direccionEnvio", "noSeguimiento"};
+                    arregloAtributos = arr;
+                    tabla_empleado.setModel(new DefaultTableModel());
+                    DefaultTableModel model = (DefaultTableModel) tabla_empleado.getModel();
+                    for (String arr1 : arr) {
+                        model.addColumn(arr1);
+                    }       Connection con = conectarBase.getConexion();
+                    String query = "SELECT * FROM orden";
+                    Statement st;
+                    try {
+                        st = con.createStatement();
+                        ResultSet rs = st.executeQuery(query);
+                        while (rs.next()) {
+                            Object[] row = {rs.getInt("noOrden"), rs.getInt("idCliente"), rs.getString("nombreRemitente"), rs.getString("empresaEnvio"), rs.getString("direccionEnvio"), rs.getInt("noSeguimiento")};
+                            model.addRow(row);
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }       break;
+                }
+            default:
+                break;
         }
     }//GEN-LAST:event_cb_almacenItemStateChanged
 

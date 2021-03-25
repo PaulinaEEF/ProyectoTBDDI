@@ -109,13 +109,11 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         login_clientes = new javax.swing.JDialog();
         jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         id_login_cliente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         password_login_cliente = new javax.swing.JPasswordField();
         btn_ingresarCliente = new javax.swing.JButton();
         btn_regresarCliente = new javax.swing.JButton();
-        btn_crear_cliente = new javax.swing.JButton();
         fondo_loginCliente = new javax.swing.JLabel();
         login_empleados = new javax.swing.JDialog();
         btn_login_empleado = new javax.swing.JButton();
@@ -216,8 +214,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
         jScrollPane6 = new javax.swing.JScrollPane();
         tabla_empleado = new javax.swing.JTable();
         cb_almacen = new javax.swing.JComboBox<>();
-        jLabel28 = new javax.swing.JLabel();
         boton_insertarE = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         login_admin = new javax.swing.JDialog();
         btn_ingresar_admin = new javax.swing.JButton();
         btn_regresar_loginAdmin = new javax.swing.JButton();
@@ -292,11 +291,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
         login_clientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         login_clientes.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 380, 220));
 
-        jLabel12.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("¿Eres cliente nuevo?");
-        login_clientes.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 36, 130, 30));
-
         id_login_cliente.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         id_login_cliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         login_clientes.getContentPane().add(id_login_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 180, 30));
@@ -331,18 +325,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
         });
         login_clientes.getContentPane().add(btn_regresarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 570, 180, 60));
-
-        btn_crear_cliente.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btn_crear_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/follow.png"))); // NOI18N
-        btn_crear_cliente.setText("Crea una cuenta");
-        btn_crear_cliente.setContentAreaFilled(false);
-        btn_crear_cliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/follow (1).png"))); // NOI18N
-        btn_crear_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_crear_clienteMouseClicked(evt);
-            }
-        });
-        login_clientes.getContentPane().add(btn_crear_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 200, 80));
 
         fondo_loginCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2021-03-18 at 21.35.49.jpeg"))); // NOI18N
         login_clientes.getContentPane().add(fondo_loginCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 630));
@@ -929,24 +911,33 @@ public class principal extends javax.swing.JFrame implements Runnable {
         ));
         jScrollPane6.setViewportView(tabla_empleado);
 
-        perfil_empleados.getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 870, 230));
+        perfil_empleados.getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 870, 230));
 
+        cb_almacen.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         cb_almacen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Insertar Orden", "Actualizar Inventario", "Ver Orden" }));
         cb_almacen.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_almacenItemStateChanged(evt);
             }
         });
-        perfil_empleados.getContentPane().add(cb_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 140, 40));
-        perfil_empleados.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 450));
+        perfil_empleados.getContentPane().add(cb_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 230, 40));
 
+        boton_insertarE.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        boton_insertarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/follow.png"))); // NOI18N
         boton_insertarE.setText("Insertar");
+        boton_insertarE.setContentAreaFilled(false);
         boton_insertarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 boton_insertarEMouseClicked(evt);
             }
         });
-        perfil_empleados.getContentPane().add(boton_insertarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
+        perfil_empleados.getContentPane().add(boton_insertarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 170, 80));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        perfil_empleados.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 520));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
+        perfil_empleados.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 190, 520));
 
         login_admin.setUndecorated(true);
         login_admin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2171,17 +2162,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_btn_ingresar_adminMouseClicked
 
-    private void btn_crear_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crear_clienteMouseClicked
-        TextPrompt p1 = new TextPrompt("Crea un ID", id_registrar_cliente);
-        TextPrompt p2 = new TextPrompt("Tu nombre", nombre_registrar_cliente);
-        login_clientes.dispose();
-        crear_cuenta_cliente.pack();
-        crear_cuenta_cliente.setModal(true);
-        crear_cuenta_cliente.setLocationRelativeTo(null);
-        crear_cuenta_cliente.setVisible(true);
-
-    }//GEN-LAST:event_btn_crear_clienteMouseClicked
-
     private void btn_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarMouseClicked
         crear_cuenta_cliente.dispose();
     }//GEN-LAST:event_btn_regresarMouseClicked
@@ -3230,7 +3210,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_cerrar_sesion1;
     private javax.swing.JButton btn_cerrar_sesion2;
     private javax.swing.JButton btn_cerrar_sesion_empleado;
-    private javax.swing.JButton btn_crear_cliente;
     private javax.swing.JButton btn_eliminar_sql;
     private javax.swing.JButton btn_ingresarCliente;
     private javax.swing.JButton btn_ingresar_admin;

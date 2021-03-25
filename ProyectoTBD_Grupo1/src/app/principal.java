@@ -133,15 +133,12 @@ public class principal extends javax.swing.JFrame implements Runnable {
         btn_buscar_producto = new javax.swing.JButton();
         siguiente = new javax.swing.JButton();
         anterior = new javax.swing.JButton();
+        cb_clienteV = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         administradores = new javax.swing.JDialog();
         tabbed_eliminar = new javax.swing.JTabbedPane();
         panel_crear = new javax.swing.JPanel();
@@ -426,6 +423,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
         });
         Perfil_clientes_enLinea.getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, -1, -1));
 
+        cb_clienteV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una categoria" }));
+        Perfil_clientes_enLinea.getContentPane().add(cb_clienteV, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 3));
         Perfil_clientes_enLinea.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 1240, 260));
 
@@ -440,35 +440,6 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/electronicgadget.gif"))); // NOI18N
         Perfil_clientes_enLinea.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 810, 540));
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/categories.png"))); // NOI18N
-        jMenu1.setText("Categorías");
-        jMenu1.setMinimumSize(new java.awt.Dimension(100, 70));
-        jMenu1.setPreferredSize(new java.awt.Dimension(100, 30));
-        jMenu1.setRequestFocusEnabled(false);
-        jMenu1.setRolloverEnabled(false);
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu1);
-
-        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add-to-cart.png"))); // NOI18N
-        jMenu3.setText("Añadir al carrito");
-        jMenu3.setMinimumSize(new java.awt.Dimension(100, 70));
-        jMenu3.setName(""); // NOI18N
-        jMenu3.setOpaque(true);
-        jMenu3.setPreferredSize(new java.awt.Dimension(145, 30));
-        jMenu3.setRequestFocusEnabled(false);
-        jMenu3.setRolloverEnabled(false);
-        jMenuBar1.add(jMenu3);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        Perfil_clientes_enLinea.setJMenuBar(jMenuBar1);
 
         administradores.setUndecorated(true);
         administradores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -519,7 +490,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_crear.add(btn_regresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 100, 70));
 
         cb_crear.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
-        cb_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una tabla", "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una tabla", "PRODUCTO", "CLIENTE", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
         cb_crear.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_crearItemStateChanged(evt);
@@ -542,7 +513,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_modificar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cb_modificar.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        cb_modificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA TABLA", "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_modificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA TABLA", "PRODUCTO", "CLIENTE", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
         cb_modificar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_modificarItemStateChanged(evt);
@@ -600,7 +571,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_eliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cb_eliminar.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        cb_eliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA TABLA", "PRODUCTO", "CLIENTE", "CLIENTE_TIENDA", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
+        cb_eliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA TABLA", "PRODUCTO", "CLIENTE", "CONTRATO", "CATEGORIA", "TIENE_EN_CARRITO", "CLIENTE_FRECUENTE", "CLIENTE_POCO_FRECUENTE", "DETALLE_FACTURA", "ALMACEN", "INVENTARIO", "ORDEN", "CLIENTE_VIRTUAL", "FACTURA", "TIENDA" }));
         cb_eliminar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_eliminarItemStateChanged(evt);
@@ -1232,7 +1203,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
     private void boton_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_crearMouseClicked
         // TODO add your handling code here:
-
+        boolean idExistente = true;
         DefaultTableModel model = (DefaultTableModel) tabla_crear.getModel();
         if (validarIngresoTable(tabla_crear, false)) {
             Object k = new Object[arregloAtributos.length];
@@ -1301,7 +1272,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 } catch (SQLException ex) {
                     Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (acum.contains(tokens[1])) {
+                if (acum.contains(tokens[2])) {
                     try {
                         ps = con.prepareStatement("INSERT INTO contrato (cuota, idCliente) VALUES (?,?)");
                         for (int i = 1; i < tokens.length; i++) {
@@ -1318,6 +1289,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1351,6 +1323,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1383,6 +1356,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1423,20 +1397,45 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "No existe un producto o cliente con ese id");
+                    JOptionPane.showMessageDialog(null, "No existe un producto o contrato con ese id");
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
             case "CLIENTE_POCO_FRECUENTE": {
-                String[] arr = {"idCliente", "nombreCliente"};
-                arregloAtributos = arr;
-                for (int j = 0; j < arr.length; j++) {
-                    model.addColumn(arr[j]);
+                String acum = "";
+                String query = "SELECT * FROM cliente";
+                Statement st;
+                try {
+                    st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {
+                        acum += rs.getInt("idCliente") + " ";
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                model.setNumRows(1);
+                
+                if (acum.contains(tokens[0])) {
+                    try {
+                        ps = con.prepareStatement("INSERT INTO cliente_poco_frecuente (idCliente, nombreCliente) VALUES (?,?)");
+                        ps.setInt(1, Integer.parseInt(tokens[0]));
+                        ps.setString(2, tokens[1]);
+                        ps.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe un producto con ese id");
+                    cb_crear.setSelectedIndex(0);
+                    tabla_crear.setModel(new DefaultTableModel());
+                    tabla_crear.setEnabled(true);
+                    idExistente = false;
+                }
                 break;
             }
             case "DETALLE_FACTURA": {/////////////////////////////////////////////////////////////
@@ -1481,6 +1480,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1548,6 +1548,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1582,6 +1583,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1619,6 +1621,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1666,6 +1669,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                     cb_crear.setSelectedIndex(0);
                     tabla_crear.setModel(new DefaultTableModel());
                     tabla_crear.setEnabled(true);
+                    idExistente = false;
                 }
                 break;
             }
@@ -1681,7 +1685,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 break;
             }
         }
-        JOptionPane.showMessageDialog(null, "Dato insertado correctamente");
+        if(idExistente){
+            JOptionPane.showMessageDialog(null, "Dato insertado correctamente");
+            
+        }
 
 //        try {
 //
@@ -1800,6 +1807,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
 
             if (ser == true) {
+                user_empleado.setText("");
+
+                password_empleado.setText("");
                 login_empleados.dispose();
                 ServicioAlCliente.pack();
                 ServicioAlCliente.setModal(true);
@@ -1819,6 +1829,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
             }
 
             if (llam == true) {
+                user_empleado.setText("");
+
+                password_empleado.setText("");
                 login_empleados.dispose();
                 centrode_llamadas.pack();
                 centrode_llamadas.setModal(true);
@@ -1836,6 +1849,9 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 }
             }
             if (emp == true) {
+                user_empleado.setText("");
+
+                password_empleado.setText("");
                 login_empleados.dispose();
                 perfil_empleados.pack();
                 perfil_empleados.setModal(true);
@@ -1879,6 +1895,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
                 administradores.setModal(true);
                 administradores.setLocationRelativeTo(null);
                 administradores.setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Datos incorrectos");
             }
@@ -2544,28 +2561,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private void boton_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_ClienteMouseClicked
         // TODO add your handling code here:
 
-        Perfil_clientes_enLinea.pack();
-        Perfil_clientes_enLinea.setModal(true);
-        Perfil_clientes_enLinea.setLocationRelativeTo(null);
-        Perfil_clientes_enLinea.setVisible(true);
-
-
-    }//GEN-LAST:event_boton_ClienteMouseClicked
-
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        // TODO add your handling code here:
-        jMenu1 = new javax.swing.JMenu();
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/categories.png"))); // NOI18N
-        jMenu1.setText("Categorías");
-        jMenu1.setMinimumSize(new java.awt.Dimension(100, 70));
-        jMenu1.setPreferredSize(new java.awt.Dimension(100, 30));
-        jMenu1.setRequestFocusEnabled(false);
-        jMenu1.setRolloverEnabled(false);
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
+        
         Connection con = conectarBase.getConexion();
         String query = "SELECT * FROM categoria";
         Statement st;
@@ -2580,13 +2576,15 @@ public class principal extends javax.swing.JFrame implements Runnable {
         } catch (SQLException ex) {
             Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         for (int i = 0; i < row.size(); i++) {
-            javax.swing.JMenuItem subM = new javax.swing.JMenuItem();
-            subM.setText((String) row.get(i));
-            jMenu1.add(subM);
+            cb_clienteV.addItem((String) row.get(i));
         }
-    }//GEN-LAST:event_jMenu1MouseClicked
+
+        Perfil_clientes_enLinea.pack();
+        Perfil_clientes_enLinea.setModal(true);
+        Perfil_clientes_enLinea.setLocationRelativeTo(null);
+        Perfil_clientes_enLinea.setVisible(true);
+    }//GEN-LAST:event_boton_ClienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2668,6 +2666,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btn_regresar_servicio;
     private javax.swing.JButton btn_siguiente;
     private javax.swing.JComboBox<String> cb_almacen;
+    private javax.swing.JComboBox<String> cb_clienteV;
     private javax.swing.JComboBox<String> cb_crear;
     private javax.swing.JComboBox<String> cb_eliminar;
     private javax.swing.JComboBox<String> cb_modificar;
@@ -2730,14 +2729,10 @@ public class principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem10;

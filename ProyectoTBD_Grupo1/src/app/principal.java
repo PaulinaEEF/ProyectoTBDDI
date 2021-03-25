@@ -1218,8 +1218,8 @@ public class principal extends javax.swing.JFrame implements Runnable {
 
         titulo.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("¡Bienvenidos a tienda electronica!");
-        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 550, 30));
+        titulo.setText("¡Bienvenidos a tienda los tigres!");
+        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 550, 50));
 
         boton_salir.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
         boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit (2).png"))); // NOI18N

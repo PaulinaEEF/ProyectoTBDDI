@@ -2314,11 +2314,11 @@
           <Font name="Bell MT" size="36" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="&#xa1;Bienvenidos a tienda electronica!"/>
+        <Property name="text" type="java.lang.String" value="&#xa1;Bienvenidos a tienda los tigres!"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="490" y="70" width="550" height="30"/>
+          <AbsoluteConstraints x="490" y="50" width="550" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
